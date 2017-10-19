@@ -32,7 +32,7 @@
  AdafruitIO_Feed *livingroomtemp = io.feed("LivingRoomTemp");
  AdafruitIO_Feed *bedroomtemp = io.feed("BedroomTemp");
  AdafruitIO_Feed *setTemp = io.feed("setTemp");
- AdafruitIO_Feed *furnace = io.feed("furnaceOnOff");
+ //AdafruitIO_Feed *furnace = io.feed("furnaceOnOff");
  
  int living = 0;
  int bedroom =0;
@@ -158,7 +158,7 @@ void setup() {
   bedroomtemp->onMessage(handleBedroom);
   livingroomtemp->onMessage(handleLivingroom);
   setTemp->onMessage(handleSetTemp);
-  furnace->onMessage(handleFurnace);
+  //furnace->onMessage(handleFurnace);
     // wait for a connection
   while(io.status() < AIO_CONNECTED) {
     Serial.print(".");
@@ -257,33 +257,42 @@ void handleSetTemp(AdafruitIO_Data *message){
 // 1 sec temperature update
 long lastUpdate;
 #define TEMPINTERVAL 1000
-
+#define RECORDUPDATE 120000
+long lastrecord;
+float localtemperature;
 void loop() {
   int remainingTimeBudget = ui.update();
   io.run();
-  float temperature;
   if (millis()-lastUpdate> TEMPINTERVAL)
   {
     sensor0.wakeup();
-    temperature = sensor0.readTempF();
+    localtemperature = sensor0.readTempF();
     sensor0.sleep();
-    living = (int)temperature;
-    livingroomtemp->save(temperature);
+    living = (int)localtemperature;
+    //Adafruit IO stores a limited amount of data, if we record
+    // every second, it wraps too quickly
+    if (millis()-lastrecord > RECORDUPDATE){
+      livingroomtemp->save(localtemperature);
+      lastrecord = millis();
+      Serial.println("updated localtemp");
+    }
     lastUpdate = millis();
   }
   //heater control
   if (!furnacestate) // furnace is off
   {
-    if (temperature < (settemperature-tempgap)){
+    if (localtemperature < (settemperature-tempgap)){
       furnacestate = 1;
+      Serial.println("Turning on furnace");
       digitalWrite(furnaceSCR,HIGH);  
     }
   }
   else //furnace is on
   {
-    if (temperature >= settemperature)
+    if (localtemperature >= settemperature)
     {
       furnacestate =0;
+      Serial.println("Turning off furnace");
       digitalWrite(furnaceSCR,LOW);
     }
   }
