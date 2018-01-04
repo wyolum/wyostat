@@ -24,26 +24,26 @@
  *
  */
 
- #include <Wire.h>  // Only needed for Arduino 1.6.5 and earlier
- #include "SparkFunTMP102.h"
- #include "SSD1306.h" // alias for `#include "SSD1306Wire.h"`
- #include "config.h" // Adafruit IO config
- // set up feeds
- AdafruitIO_Feed *livingroomtemp = io.feed("LivingRoomTemp");
- AdafruitIO_Feed *bedroomtemp = io.feed("BedroomTemp");
- AdafruitIO_Feed *setTemp = io.feed("setTemp");
- //AdafruitIO_Feed *furnace = io.feed("furnaceOnOff");
- 
- int living = 0;
- int bedroom =0;
- int settemperature = 55;
+#include <Wire.h>  // Only needed for Arduino 1.6.5 and earlier
+#include <EEPROM.h>
+#include "SparkFunTMP102.h"
+#include "SSD1306.h" // alias for `#include "SSD1306Wire.h"`
+#include "config.h" // Adafruit IO config
+// set up feeds
+AdafruitIO_Feed *livingroomtemp = io.feed("LivingRoomTemp");
+AdafruitIO_Feed *bedroomtemp = io.feed("BedroomTemp");
+AdafruitIO_Feed *setTemp = io.feed("setTemp");
+//AdafruitIO_Feed *furnace = io.feed("furnaceOnOff");
 
+int living = 0;
+int bedroom =0;
+int settemperature = 55;
  // is the furnace on or off
- int furnacestate = 0;
- // temp gap for hysteresis control
- float  tempgap = 2.0L;
+int furnacestate = 0;
+// temp gap for hysteresis control
+float  tempgap = 2.0L;
  
- #define furnaceSCR 12
+#define furnaceSCR 12
  
 // Include the UI lib
 #include "OLEDDisplayUi.h"
@@ -61,7 +61,7 @@ TMP102 sensor0(0x48);
 OLEDDisplayUi ui     ( &display );
 String livingroomtitle = String("LivingRoom");
 String bedroomtitle = String("Bedroom");
-String currentRoom = livingroomtitle;
+String currentRoom = bedroomtitle;
 void roomOverlay(OLEDDisplay *display, OLEDDisplayUiState* state) {
   display->setTextAlignment(TEXT_ALIGN_RIGHT);
   display->setFont(ArialMT_Plain_10);
@@ -100,10 +100,10 @@ void drawFrame5(OLEDDisplay *display, OLEDDisplayUiState* state, int16_t x, int1
 
 // This array keeps function pointers to all frames
 // frames are the single views that slide in
-FrameCallback frames[] = { drawFrame1, drawFrame2 };
+FrameCallback frames[] = { drawFrame2, drawFrame1 };
 
 // how many frames are there?
-int frameCount = 1;
+int frameCount = 2;
 
 // Overlays are statically drawn on top of a frame eg. a clock
 OverlayCallback overlays[] = { roomOverlay};
@@ -169,7 +169,18 @@ void setup() {
   Serial.println();
   Serial.println(io.statusText());
 
-
+  EEPROM.begin(512);
+  loadSettings();
+}
+const uint8_t DEFAULT_SET_TEMP = 70;
+const uint8_t SET_TEMP_ADDR = 0;
+void loadSettings()
+{
+  settemperature = EEPROM.read(SET_TEMP_ADDR);
+  if(settemperature == 255){
+    settemperature = DEFAULT_SET_TEMP;
+  }
+    
 }
 void handleBedroom(AdafruitIO_Data *message){
     char *data = (char*)message->value();
@@ -247,8 +258,16 @@ void handleSetTemp(AdafruitIO_Data *message){
      return;
   }
   String dataStr = String(data);
-  settemperature = (int)dataStr.toInt();
-    Serial.print(message->feedName());
+  int new_settemperature = (int)dataStr.toInt();
+  if(new_settemperature != settemperature){
+    EEPROM.write(SET_TEMP_ADDR, new_settemperature);
+    EEPROM.commit();
+    settemperature = new_settemperature;
+    Serial.print("EEPROM SET TEMP: ");
+    Serial.println(EEPROM.read(SET_TEMP_ADDR));
+  }
+
+  Serial.print(message->feedName());
   Serial.print(" ");
 
   // print out the received count or counter-two value
