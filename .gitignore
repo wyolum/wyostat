@@ -1,0 +1,6 @@
+#emacs files
+**/*~
+**/\#*
+#config.h
+**/config.h
+
