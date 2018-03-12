@@ -1,3 +1,7 @@
 (sym_lib_table
-  (lib (name wyostat_sch)(type Legacy)(uri /home/anool/projects-git/wyostat/kicad/wyostat_sch_libs/wyostat_sch.lib)(options "")(descr ""))
+  (lib (name wyostat)(type Legacy)(uri ${KIPRJMOD}/wyostat_sch_libs/wyostat.lib)(options "")(descr ""))
+  (lib (name opto)(type Legacy)(uri ${KIPRJMOD}/wyostat_sch_libs/opto.lib)(options "")(descr ""))
+  (lib (name triac_thyristor)(type Legacy)(uri ${KIPRJMOD}/wyostat_sch_libs/triac_thyristor.lib)(options "")(descr ""))
+  (lib (name dh)(type Legacy)(uri /home/samata/projects-git/dh_v2/kicad/library/dh.lib)(options "")(descr ""))
+  (lib (name KlokTHREEjr)(type Legacy)(uri /home/samata/projects-git/KlokTHREEjr/kicad/KlokTHREEjr_libs/KlokTHREEjr.lib)(options "")(descr ""))
 )
