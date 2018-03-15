@@ -1,4 +1,4 @@
-(module SOT-428 (layer F.Cu) (tedit 0)
+(module SOT-428 (layer F.Cu) (tedit 5AAAA490)
   (descr SOT428)
   (attr smd)
   (fp_text reference REF** (at 0.09906 1.00076) (layer F.SilkS)
@@ -23,7 +23,7 @@
   (pad 1 smd rect (at -2.27584 3.44932) (size 1.50114 2.49936) (layers F.Cu F.Paste F.Mask))
   (pad 3 smd rect (at 2.27584 3.44932) (size 1.50114 2.49936) (layers F.Cu F.Paste F.Mask))
   (pad 2 smd rect (at 0 -3.44932) (size 7.00024 7.00024) (layers F.Cu F.Paste F.Mask))
-  (model TO_SOT_Packages_SMD.3dshapes/SOT-428.wrl
+  (model ${KIPRJMOD}/wyostat_3d_modules/SOT-428.wrl
     (at (xyz 0 0 0))
     (scale (xyz 1 1 1))
     (rotate (xyz 0 0 0))

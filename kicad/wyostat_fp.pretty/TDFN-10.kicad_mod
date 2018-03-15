@@ -1,4 +1,4 @@
-(module TDFN-10 (layer F.Cu) (tedit 5AA94ECF)
+(module TDFN-10 (layer F.Cu) (tedit 5AAAA4B2)
   (descr "DIP-8_300 smd shape")
   (tags "smd cms 8dip")
   (attr smd)
@@ -26,9 +26,9 @@
   (pad 9 smd rect (at -0.5 -0.99) (size 0.3 0.7) (layers F.Cu F.Paste F.Mask))
   (pad 10 smd rect (at -1 -0.99) (size 0.3 0.7) (layers F.Cu F.Paste F.Mask))
   (pad 11 smd rect (at 0 0) (size 2.08 0.8) (layers F.Cu F.Paste F.Mask))
-  (model SMD_Packages.3dshapes/DIP-8_SMD.wrl
+  (model ${KIPRJMOD}/wyostat_3d_modules/TDFN10.wrl
     (at (xyz 0 0 0))
-    (scale (xyz 1 0.5 0.8))
+    (scale (xyz 1 1 1))
     (rotate (xyz 0 0 0))
   )
 )

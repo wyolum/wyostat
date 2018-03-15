@@ -1127,14 +1127,14 @@ $EndComp
 $Comp
 L wyostat:Conn_01x02 J13
 U 1 1 5AD09F0B
-P 775 6575
-F 0 "J13" H 775 6700 50  0000 C CNN
-F 1 "AC_IN" H 775 6375 50  0000 C CNN
-F 2 "wyostat_fp:TerminalBlock_Pheonix_MPT-2.54mm_2pol" H 775 6575 50  0001 C CNN
-F 3 "~" H 775 6575 50  0001 C CNN
-F 4 "Value" H 775 6575 50  0001 C CNN "manf#"
-	1    775  6575
-	-1   0    0    -1  
+P 775 6675
+F 0 "J13" H 775 6800 50  0000 C CNN
+F 1 "AC_IN" H 775 6475 50  0000 C CNN
+F 2 "wyostat_fp:TerminalBlock_Pheonix_MPT-2.54mm_2pol" H 775 6675 50  0001 C CNN
+F 3 "~" H 775 6675 50  0001 C CNN
+F 4 "Value" H 775 6675 50  0001 C CNN "manf#"
+	1    775  6675
+	-1   0    0    1   
 $EndComp
 $Comp
 L wyostat:C_NP C9
@@ -1440,19 +1440,6 @@ Wire Wire Line
 NoConn ~ 3125 7075
 Wire Wire Line
 	3725 7275 3725 7325
-Wire Wire Line
-	4325 7075 4525 7075
-$Comp
-L wyostat:Conn_01x01 J14
-U 1 1 5AB874BA
-P 4725 7075
-F 0 "J14" H 4725 7175 50  0000 C CNN
-F 1 "~RST" H 4725 6950 50  0000 C CNN
-F 2 "wyostat_fp:Pin_Header_Straight_1x01" H 4725 7075 50  0001 C CNN
-F 3 "" H 4725 7075 50  0001 C CNN
-	1    4725 7075
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	4325 6675 4400 6675
 Wire Wire Line
@@ -8569,4 +8556,5 @@ Wire Notes Line
 	5375 5900 575  5900
 Text Notes 700  5875 0    50   ~ 0
 250 V AC MAX.
+NoConn ~ 4325 7075
 $EndSCHEMATC

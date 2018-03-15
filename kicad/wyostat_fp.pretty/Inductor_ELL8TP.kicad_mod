@@ -1,4 +1,4 @@
-(module Inductor_ELL8TP (layer F.Cu) (tedit 5AA93EBE)
+(module Inductor_ELL8TP (layer F.Cu) (tedit 5AAAA44E)
   (fp_text reference REF** (at 0 2.5) (layer F.SilkS)
     (effects (font (size 1 1) (thickness 0.1)))
   )
@@ -21,4 +21,9 @@
   (fp_line (start 6.5 0) (end 0 -6.5) (layer F.CrtYd) (width 0.1))
   (pad 1 smd roundrect (at 4.125 0) (size 1.65 3) (layers F.Cu F.Paste F.Mask)(roundrect_rratio 0.25))
   (pad 2 smd roundrect (at -4.125 0) (size 1.65 3) (layers F.Cu F.Paste F.Mask)(roundrect_rratio 0.25))
+  (model ${KIPRJMOD}/wyostat_3d_modules/inductor_ELL8.wrl
+    (at (xyz 0 0 0))
+    (scale (xyz 1 1 1))
+    (rotate (xyz 0 0 0))
+  )
 )
