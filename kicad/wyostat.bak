@@ -8450,10 +8450,10 @@ Wire Wire Line
 Wire Wire Line
 	1925 6575 1875 6575
 $Comp
-L wyostat:Converter_AC_DC U?
+L wyostat:Converter_AC_DC U6
 U 1 1 5AF0A665
 P 1775 5600
-F 0 "U?" H 1775 5800 40  0000 C CNN
+F 0 "U6" H 1775 5800 40  0000 C CNN
 F 1 "Converter_AC_DC" H 1775 5400 40  0000 C CNN
 F 2 "" H 1725 5600 40  0001 C CNN
 F 3 "" H 1725 5600 40  0001 C CNN
@@ -8461,10 +8461,10 @@ F 3 "" H 1725 5600 40  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L wyostat:Conn_01x02 J?
+L wyostat:Conn_01x02 J15
 U 1 1 5AF0ADA0
 P 825 5550
-F 0 "J?" H 825 5675 50  0000 C CNN
+F 0 "J15" H 825 5675 50  0000 C CNN
 F 1 "AC_IN" H 825 5350 50  0000 C CNN
 F 2 "wyostat_fp:TerminalBlock_Pheonix_MPT-2.54mm_2pol" H 825 5550 50  0001 C CNN
 F 3 "~" H 825 5550 50  0001 C CNN
@@ -8473,10 +8473,10 @@ F 4 "Value" H 825 5550 50  0001 C CNN "manf#"
 	-1   0    0    -1  
 $EndComp
 $Comp
-L wyostat:Polyfuse F?
+L wyostat:Polyfuse F2
 U 1 1 5AF0B417
 P 1225 5500
-F 0 "F?" V 1075 5500 40  0000 C CNN
+F 0 "F2" V 1075 5500 40  0000 C CNN
 F 1 "Polyfuse" V 1125 5500 40  0000 C CNN
 F 2 "wyostat_fp:Fuse_SMD2920" H 1275 5300 50  0001 L CNN
 F 3 "" H 1225 5500 50  0001 C CNN
@@ -8504,10 +8504,10 @@ GND
 Text Label 2600 5500 2    40   ~ 0
 5V_IN2
 $Comp
-L wyostat:Conn_01x04 J?
+L wyostat:Conn_01x04 J16
 U 1 1 5AF818EB
 P 4775 5550
-F 0 "J?" H 4775 5250 50  0000 C CNN
+F 0 "J16" H 4775 5250 50  0000 C CNN
 F 1 "5V_SEL" V 4875 5500 50  0000 C CNN
 F 2 "" H 4775 5550 50  0001 C CNN
 F 3 "" H 4775 5550 50  0001 C CNN
