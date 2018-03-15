@@ -1,4 +1,4 @@
-(module Choke_SMD:Choke_SMD_10.4x10.4_H4.8 (layer F.Cu) (tedit 552CF641)
+(module Choke_SMD_10.4x10.4_H4.8 (layer F.Cu) (tedit 552CF641)
   (descr "Choke, SMD, 10.4x10.4mm 4.8mm height")
   (tags "Choke, SMD")
   (attr smd)

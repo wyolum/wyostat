@@ -1,4 +1,4 @@
-(module TO_SOT_Packages_THT:TO-220_Neutral123_Vertical (layer F.Cu) (tedit 0)
+(module TO-220_Neutral123_Vertical (layer F.Cu) (tedit 0)
   (descr "TO-220, Neutral, Vertical,")
   (tags "TO-220, Neutral, Vertical,")
   (fp_text reference Q3 (at 0 -5.08) (layer F.SilkS)

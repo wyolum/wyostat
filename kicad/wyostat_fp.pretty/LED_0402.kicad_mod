@@ -1,4 +1,4 @@
-(module LEDs:LED_0402 (layer F.Cu) (tedit 57FE9357)
+(module LED_0402 (layer F.Cu) (tedit 57FE9357)
   (descr "LED 0402 smd package")
   (tags "LED led 0402 SMD smd SMT smt smdled SMDLED smtled SMTLED")
   (attr smd)

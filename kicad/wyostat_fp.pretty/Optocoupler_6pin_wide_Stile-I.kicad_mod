@@ -1,4 +1,4 @@
-(module Opto-Devices:Optocoupler_6pin_wide_Stile-I (layer F.Cu) (tedit 0)
+(module Optocoupler_6pin_wide_Stile-I (layer F.Cu) (tedit 0)
   (descr "Optocoupler, 6pin,  wide (10mm pin, 8mm Pad), like CNY17")
   (tags "Optocoupler 6pin  wide (10mm pin 8mm Pad) like CNY17")
   (fp_text reference U4 (at 0 -10.16) (layer F.SilkS)

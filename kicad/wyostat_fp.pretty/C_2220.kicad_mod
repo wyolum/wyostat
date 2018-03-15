@@ -1,4 +1,4 @@
-(module Capacitors_SMD:C_2220 (layer F.Cu) (tedit 58AA8565)
+(module C_2220 (layer F.Cu) (tedit 58AA8565)
   (descr "Capacitor SMD 2220, reflow soldering, AVX (see smccp.pdf)")
   (tags "capacitor 2220")
   (attr smd)
