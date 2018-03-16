@@ -962,11 +962,11 @@ Text Label 2225 925  0    40   ~ 0
 SW_D
 Text Label 2225 825  0    40   ~ 0
 SW_M
-Text Label 750  825  2    40   ~ 0
+Text Label 750  1025 2    40   ~ 0
 IN1
 Text Label 750  925  2    40   ~ 0
 IN2
-Text Label 750  1025 2    40   ~ 0
+Text Label 750  825  2    40   ~ 0
 IN3
 Wire Wire Line
 	750  925  925  925 
@@ -8625,4 +8625,10 @@ F 3 "" H 11000 6200 60  0000 C CNN
 	1    11000 6200
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	2675 7550 2675 7400
+Wire Wire Line
+	2675 7400 2750 7325
+Wire Wire Line
+	2675 7550 2750 7625
 $EndSCHEMATC
