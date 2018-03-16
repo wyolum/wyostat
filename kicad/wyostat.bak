@@ -50,12 +50,8 @@ F 4 "Value" H 8775 1150 50  0001 C CNN "manf#"
 	1    8775 1150
 	0    1    1    0   
 $EndComp
-Text Label 10325 1050 0    40   ~ 0
-LINE
-Text Label 10325 1150 0    40   ~ 0
+Text Label 10325 2025 0    40   ~ 0
 OUT1
-Text Label 9550 2025 2    40   ~ 0
-NEUT
 $Comp
 L wyostat:R R2
 U 1 1 5AA72195
@@ -97,19 +93,17 @@ Wire Wire Line
 Connection ~ 9550 1150
 Wire Wire Line
 	9550 1150 9900 1150
-Wire Wire Line
-	10475 1050 10225 1050
 $Comp
 L wyostat:Conn_01x02 J2
 U 1 1 5AA726AC
-P 10675 1050
-F 0 "J2" H 10775 1050 50  0000 L CNN
-F 1 "OUT1" H 10775 950 50  0000 L CNN
-F 2 "wyostat_fp:TerminalBlock_Pheonix_MPT-2.54mm_2pol" H 10675 1050 50  0001 C CNN
-F 3 "~" H 10675 1050 50  0001 C CNN
-F 4 "Value" H 10675 1050 50  0001 C CNN "manf#"
-	1    10675 1050
-	1    0    0    -1  
+P 10675 2025
+F 0 "J2" H 10775 2025 50  0000 L CNN
+F 1 "OUT1" H 10775 1925 50  0000 L CNN
+F 2 "wyostat_fp:TerminalBlock_Pheonix_MPT-2.54mm_2pol" H 10675 2025 50  0001 C CNN
+F 3 "~" H 10675 2025 50  0001 C CNN
+F 4 "Value" H 10675 2025 50  0001 C CNN "manf#"
+	1    10675 2025
+	1    0    0    1   
 $EndComp
 $Comp
 L wyostat:R R3
@@ -235,12 +229,8 @@ F 4 "Value" H 8775 2500 50  0001 C CNN "manf#"
 	1    8775 2500
 	0    1    1    0   
 $EndComp
-Text Label 10325 2400 0    40   ~ 0
-LINE
-Text Label 10325 2500 0    40   ~ 0
+Text Label 10325 3375 0    40   ~ 0
 OUT2
-Text Label 9550 3375 2    40   ~ 0
-NEUT
 $Comp
 L wyostat:R R8
 U 1 1 5AA791B7
@@ -282,19 +272,17 @@ Wire Wire Line
 Connection ~ 9550 2500
 Wire Wire Line
 	9550 2500 9900 2500
-Wire Wire Line
-	10475 2400 10225 2400
 $Comp
 L wyostat:Conn_01x02 J3
 U 1 1 5AA791CF
-P 10675 2400
-F 0 "J3" H 10775 2400 50  0000 L CNN
-F 1 "OUT2" H 10775 2300 50  0000 L CNN
-F 2 "wyostat_fp:TerminalBlock_Pheonix_MPT-2.54mm_2pol" H 10675 2400 50  0001 C CNN
-F 3 "~" H 10675 2400 50  0001 C CNN
-F 4 "Value" H 10675 2400 50  0001 C CNN "manf#"
-	1    10675 2400
-	1    0    0    -1  
+P 10675 3375
+F 0 "J3" H 10775 3375 50  0000 L CNN
+F 1 "OUT2" H 10775 3275 50  0000 L CNN
+F 2 "wyostat_fp:TerminalBlock_Pheonix_MPT-2.54mm_2pol" H 10675 3375 50  0001 C CNN
+F 3 "~" H 10675 3375 50  0001 C CNN
+F 4 "Value" H 10675 3375 50  0001 C CNN "manf#"
+	1    10675 3375
+	1    0    0    1   
 $EndComp
 $Comp
 L wyostat:R R9
@@ -393,12 +381,8 @@ F 4 "Value" H 8775 3850 50  0001 C CNN "manf#"
 	1    8775 3850
 	0    1    1    0   
 $EndComp
-Text Label 10325 3750 0    40   ~ 0
-LINE
-Text Label 10325 3850 0    40   ~ 0
+Text Label 10325 4725 0    40   ~ 0
 OUT3
-Text Label 9550 4725 2    40   ~ 0
-NEUT
 $Comp
 L wyostat:R R14
 U 1 1 5AA7ACDA
@@ -443,14 +427,14 @@ Wire Wire Line
 $Comp
 L wyostat:Conn_01x02 J4
 U 1 1 5AA7ACF2
-P 10675 3750
-F 0 "J4" H 10775 3750 50  0000 L CNN
-F 1 "OUT3" H 10775 3650 50  0000 L CNN
-F 2 "wyostat_fp:TerminalBlock_Pheonix_MPT-2.54mm_2pol" H 10675 3750 50  0001 C CNN
-F 3 "~" H 10675 3750 50  0001 C CNN
-F 4 "Value" H 10675 3750 50  0001 C CNN "manf#"
-	1    10675 3750
-	1    0    0    -1  
+P 10675 4725
+F 0 "J4" H 10775 4725 50  0000 L CNN
+F 1 "OUT3" H 10775 4625 50  0000 L CNN
+F 2 "wyostat_fp:TerminalBlock_Pheonix_MPT-2.54mm_2pol" H 10675 4725 50  0001 C CNN
+F 3 "~" H 10675 4725 50  0001 C CNN
+F 4 "Value" H 10675 4725 50  0001 C CNN "manf#"
+	1    10675 4725
+	1    0    0    1   
 $EndComp
 $Comp
 L wyostat:R R15
@@ -957,37 +941,13 @@ Wire Wire Line
 Connection ~ 7675 3850
 Wire Wire Line
 	7675 3850 8025 3850
-Wire Wire Line
-	10125 800  10125 2025
-Wire Wire Line
-	10125 4725 9900 4725
-Wire Wire Line
-	10125 800  10475 800 
 Connection ~ 9550 4725
 Wire Wire Line
 	9550 3375 9900 3375
 Connection ~ 9550 3375
-Connection ~ 10125 3375
-Wire Wire Line
-	10125 3375 10125 4725
 Wire Wire Line
 	9550 2025 9900 2025
 Connection ~ 9550 2025
-Connection ~ 10125 2025
-Wire Wire Line
-	10125 2025 10125 3375
-Wire Wire Line
-	10225 700  10225 1050
-Wire Wire Line
-	10225 700  10475 700 
-Wire Wire Line
-	10225 3750 10475 3750
-Connection ~ 10225 2400
-Wire Wire Line
-	10225 2400 10225 3750
-Connection ~ 10225 1050
-Wire Wire Line
-	10225 1050 10225 2400
 Wire Notes Line
 	6925 575  11125 575 
 Wire Notes Line
@@ -1127,14 +1087,14 @@ $EndComp
 $Comp
 L wyostat:Conn_01x02 J13
 U 1 1 5AD09F0B
-P 775 6675
-F 0 "J13" H 775 6800 50  0000 C CNN
-F 1 "AC_IN" H 775 6475 50  0000 C CNN
-F 2 "wyostat_fp:TerminalBlock_Pheonix_MPT-2.54mm_2pol" H 775 6675 50  0001 C CNN
-F 3 "~" H 775 6675 50  0001 C CNN
-F 4 "Value" H 775 6675 50  0001 C CNN "manf#"
-	1    775  6675
-	-1   0    0    1   
+P 775 6575
+F 0 "J13" H 775 6700 50  0000 C CNN
+F 1 "AC_IN" H 775 6375 50  0000 C CNN
+F 2 "wyostat_fp:TerminalBlock_Pheonix_MPT-2.54mm_2pol" H 775 6575 50  0001 C CNN
+F 3 "~" H 775 6575 50  0001 C CNN
+F 4 "Value" H 775 6575 50  0001 C CNN "manf#"
+	1    775  6575
+	-1   0    0    -1  
 $EndComp
 $Comp
 L wyostat:C_NP C9
@@ -1244,16 +1204,11 @@ F 5 "-" V 9900 1750 50  0001 C CNN "DNP"
 $EndComp
 Wire Wire Line
 	9900 1250 9900 1150
-Connection ~ 9900 1150
-Wire Wire Line
-	9900 1150 10475 1150
 Wire Wire Line
 	9900 1550 9900 1600
 Wire Wire Line
 	9900 1900 9900 2025
 Connection ~ 9900 2025
-Wire Wire Line
-	9900 2025 10125 2025
 $Comp
 L wyostat:C_NP C3
 U 1 1 5AE133E2
@@ -1284,12 +1239,7 @@ Wire Wire Line
 	9900 2900 9900 2950
 Wire Wire Line
 	9900 3250 9900 3375
-Connection ~ 9900 2500
-Wire Wire Line
-	9900 2500 10475 2500
 Connection ~ 9900 3375
-Wire Wire Line
-	9900 3375 10125 3375
 $Comp
 L wyostat:C_NP C5
 U 1 1 5AE1E610
@@ -1320,9 +1270,6 @@ Wire Wire Line
 	9900 4250 9900 4300
 Wire Wire Line
 	9900 4600 9900 4725
-Connection ~ 9900 3850
-Wire Wire Line
-	9900 3850 10475 3850
 Connection ~ 9900 4725
 Wire Wire Line
 	9900 4725 9550 4725
@@ -1441,19 +1388,6 @@ NoConn ~ 3125 7075
 Wire Wire Line
 	3725 7275 3725 7325
 Wire Wire Line
-	4325 7075 4525 7075
-$Comp
-L wyostat:Conn_01x01 J14
-U 1 1 5AB874BA
-P 4725 7075
-F 0 "J14" H 4725 7175 50  0000 C CNN
-F 1 "~RST" H 4725 6950 50  0000 C CNN
-F 2 "wyostat_fp:Pin_Header_Straight_1x01" H 4725 7075 50  0001 C CNN
-F 3 "" H 4725 7075 50  0001 C CNN
-	1    4725 7075
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
 	4325 6675 4400 6675
 Wire Wire Line
 	4400 6675 4400 7325
@@ -1463,14 +1397,12 @@ Connection ~ 3725 7325
 Wire Wire Line
 	4325 6475 4475 6475
 Wire Wire Line
-	4475 6475 4475 7475
+	4475 6475 4475 7625
 Wire Wire Line
-	4475 7475 2650 7475
-Wire Wire Line
-	2525 7225 2525 7475
+	2525 7225 2525 7625
 Text Label 2125 7325 0    40   ~ 0
 GND
-Text Label 2825 7325 0    40   ~ 0
+Text Label 3100 7325 0    40   ~ 0
 GND
 $Comp
 L wyostat:GND #PWR02
@@ -1486,19 +1418,19 @@ $EndComp
 $Comp
 L wyostat:GNDREF #PWR03
 U 1 1 5ABDBAC8
-P 2650 7550
-F 0 "#PWR03" H 2650 7300 50  0001 C CNN
-F 1 "GNDREF" H 2475 7550 50  0000 C CNN
-F 2 "" H 2650 7550 50  0001 C CNN
-F 3 "" H 2650 7550 50  0001 C CNN
-	1    2650 7550
+P 5100 7500
+F 0 "#PWR03" H 5100 7250 50  0001 C CNN
+F 1 "GNDREF" H 5275 7500 50  0000 C CNN
+F 2 "" H 5100 7500 50  0001 C CNN
+F 3 "" H 5100 7500 50  0001 C CNN
+	1    5100 7500
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4975 7225 4975 7475
+	4975 7225 4975 7400
 Wire Wire Line
-	4975 7475 4475 7475
-Connection ~ 4475 7475
+	4975 7625 4475 7625
+Connection ~ 4475 7625
 $Comp
 L wyostat:L L1
 U 1 1 5ABFE4F8
@@ -1539,16 +1471,7 @@ F 3 "" H 2300 7075 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2750 7325 2650 7400
-Wire Wire Line
-	2650 7400 2650 7475
-Connection ~ 2650 7475
-Wire Wire Line
-	2650 7475 2525 7475
-Wire Wire Line
 	2075 7600 2075 7325
-Wire Wire Line
-	2650 7550 2650 7475
 Text Notes 1550 7575 0    40   ~ 0
 Connect\nGNDREF to GND\nat VCC capacitor
 Text Notes 600  6075 0    40   ~ 8
@@ -8527,7 +8450,6 @@ Wire Wire Line
 Wire Wire Line
 	2975 7325 2750 7325
 Connection ~ 2975 7325
-Connection ~ 2750 7325
 Wire Notes Line
 	5375 6000 575  6000
 Wire Notes Line
@@ -8569,4 +8491,138 @@ Wire Notes Line
 	5375 5900 575  5900
 Text Notes 700  5875 0    50   ~ 0
 250 V AC MAX.
+NoConn ~ 4325 7075
+Wire Wire Line
+	10475 700  10225 700 
+Wire Wire Line
+	10300 800  10300 1925
+Wire Wire Line
+	10300 800  10475 800 
+Wire Wire Line
+	10300 1925 10475 1925
+Text Label 10325 1925 0    40   ~ 0
+NEUT
+Wire Wire Line
+	10300 1925 10300 3275
+Wire Wire Line
+	10300 3275 10475 3275
+Connection ~ 10300 1925
+Text Label 10325 3275 0    40   ~ 0
+NEUT
+Text Label 10325 4625 0    40   ~ 0
+NEUT
+Wire Wire Line
+	10300 3275 10300 4625
+Wire Wire Line
+	10300 4625 10475 4625
+Connection ~ 10300 3275
+Wire Wire Line
+	9900 2025 10475 2025
+Wire Wire Line
+	9900 3375 10475 3375
+Wire Wire Line
+	9900 4725 10475 4725
+Wire Wire Line
+	9900 1150 10225 1150
+Connection ~ 9900 1150
+Connection ~ 10225 1150
+Wire Wire Line
+	10225 700  10225 1150
+Wire Wire Line
+	9900 2500 10225 2500
+Connection ~ 9900 2500
+Connection ~ 10225 2500
+Wire Wire Line
+	10225 1150 10225 2500
+Wire Wire Line
+	10225 3850 9900 3850
+Connection ~ 9900 3850
+Wire Wire Line
+	10225 2500 10225 3850
+Text Notes 1400 4450 0    40   ~ 8
+INPUT POWER\n\nInput Power sources are :\na. Micro USB 5V to Wemos Lolin\nb. 28 V AC converted to 5 V via switching regulator\nc. 115 V AC converted to 5 V via wall wart or switching regulator\n\nWhen using option "b" or "c", the micro USB cable\nMUST be removed to prevent power conflicts.
+Text Label 2750 6675 0    40   ~ 0
+VCC
+Text Label 2975 6875 0    40   ~ 0
+SS
+Text Label 4350 6275 0    40   ~ 0
+LX
+Text Label 4325 7075 0    40   ~ 0
+R
+Text Label 2750 6275 0    40   ~ 0
+40VDC
+Wire Wire Line
+	2525 7625 2750 7625
+Wire Wire Line
+	5100 7500 5100 7400
+Wire Wire Line
+	5100 7400 4975 7400
+Connection ~ 4975 7400
+Wire Wire Line
+	4975 7400 4975 7625
+$Comp
+L wyostat:Jumper_NC_Small JP4
+U 1 1 5AE9DEF9
+P 2750 7475
+F 0 "JP4" V 2705 7552 50  0000 L CNN
+F 1 "GND" V 2795 7552 50  0000 L CNN
+F 2 "wyostat_fp:LED_0402" H 2750 7475 50  0001 C CNN
+F 3 "" H 2750 7475 50  0001 C CNN
+	1    2750 7475
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2750 7375 2750 7325
+Connection ~ 2750 7325
+Wire Wire Line
+	2750 7575 2750 7625
+Connection ~ 2750 7625
+Wire Wire Line
+	2750 7625 4475 7625
+Text Label 3100 7625 0    40   ~ 0
+GNDREF
+$Comp
+L wyostat:SCREW SC1
+U 1 1 5AED1CEA
+P 11000 5300
+F 0 "SC1" H 11085 5300 40  0000 L CNN
+F 1 "SCREW" H 11000 5400 40  0001 C CNN
+F 2 "" H 11000 5300 60  0000 C CNN
+F 3 "" H 11000 5300 60  0000 C CNN
+	1    11000 5300
+	1    0    0    -1  
+$EndComp
+$Comp
+L wyostat:SCREW SC2
+U 1 1 5AED2014
+P 11000 5600
+F 0 "SC2" H 11085 5600 40  0000 L CNN
+F 1 "SCREW" H 11000 5700 40  0001 C CNN
+F 2 "" H 11000 5600 60  0000 C CNN
+F 3 "" H 11000 5600 60  0000 C CNN
+	1    11000 5600
+	1    0    0    -1  
+$EndComp
+$Comp
+L wyostat:SCREW SC3
+U 1 1 5AED2111
+P 11000 5900
+F 0 "SC3" H 11085 5900 40  0000 L CNN
+F 1 "SCREW" H 11000 6000 40  0001 C CNN
+F 2 "" H 11000 5900 60  0000 C CNN
+F 3 "" H 11000 5900 60  0000 C CNN
+	1    11000 5900
+	1    0    0    -1  
+$EndComp
+$Comp
+L wyostat:SCREW SC4
+U 1 1 5AED2331
+P 11000 6200
+F 0 "SC4" H 11085 6200 40  0000 L CNN
+F 1 "SCREW" H 11000 6300 40  0001 C CNN
+F 2 "" H 11000 6200 60  0000 C CNN
+F 3 "" H 11000 6200 60  0000 C CNN
+	1    11000 6200
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
