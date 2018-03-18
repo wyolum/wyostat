@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 1
+Sheet 1 2
 Title "WYOSTAT"
 Date "2018-03-12"
 Rev "rev 1"
@@ -14,7 +14,7 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-Text Notes 9225 7350 0    50   ~ 0
+Text Notes 9400 7525 0    50   ~ 0
 BOM :\n1. ESP32 : Wemos Lolin\n2. Opto : MOC3063SR2M\n3. Triac : BT134-600E,127 (TH)\n         : BTA204S-600E,118 (SMD)\n4. LED : LTST-C193KGKT-5A\n5. Bridge Rectifier : MDB6S\n6. PTC Fuse : 0ZCF0075AF2C\n7. DC-DC Converter : MAX17502\n8. 10nF/120V AC : LDEIB2100KA0N00\n9. 47nF/63V AC : LDEEB2470KA0N00\n10. Inductor L1 : ELL-8TP220MB\n11. 100uF/50V Elco : HHXC500ARA101MJA0G\n                      : EMZA630ADA101MJA0G
 $Comp
 L wyostat:MOC3063M U1
@@ -33,7 +33,7 @@ U 1 1 5AA6EF22
 P 9550 1400
 F 0 "Q1" H 9575 1525 50  0000 L CNB
 F 1 "BT136-600" V 9600 975 40  0000 L CNN
-F 2 "SMD_Packages:DPAK-2" H 9750 1325 50  0001 L CIN
+F 2 "wyostat_fp:DPAK-2" H 9750 1325 50  0001 L CIN
 F 3 "" H 9550 1400 50  0000 L CNN
 	1    9550 1400
 	1    0    0    -1  
@@ -215,7 +215,7 @@ U 1 1 5AA791A8
 P 9550 2750
 F 0 "Q2" H 9575 2875 50  0000 L CNB
 F 1 "BT136-600" V 9600 2300 40  0000 L CNN
-F 2 "SMD_Packages:DPAK-2" H 9750 2675 50  0001 L CIN
+F 2 "wyostat_fp:DPAK-2" H 9750 2675 50  0001 L CIN
 F 3 "" H 9550 2750 50  0000 L CNN
 	1    9550 2750
 	1    0    0    -1  
@@ -344,7 +344,7 @@ U 1 1 5AA7ACCB
 P 9550 4100
 F 0 "Q3" H 9575 4225 50  0000 L CNB
 F 1 "BT136-600" V 9600 3650 40  0000 L CNN
-F 2 "SMD_Packages:DPAK-2" H 9750 4025 50  0001 L CIN
+F 2 "wyostat_fp:DPAK-2" H 9750 4025 50  0001 L CIN
 F 3 "" H 9550 4100 50  0000 L CNN
 	1    9550 4100
 	1    0    0    -1  
@@ -680,116 +680,6 @@ Wire Wire Line
 	5975 1975 6475 1975
 Wire Wire Line
 	5475 1975 5975 1975
-Text Notes 4850 4925 0    40   ~ 0
-Native SPI pins are (clk, mosi, miso, cs):\nSPI1: 6, 8, 7, 11\nHSPI: 14,13,12,15\nVSPI: 18,23,19, 5\nIf using native pins max SPI clock can be set to 80 MHZ.\nOnly HSPI & VSPI are supported by esp-idf driver.
-$Comp
-L wyostat:Conn_02x03_Odd_Even J9
-U 1 1 5AA958CA
-P 5675 4125
-F 0 "J9" H 5725 4400 50  0000 C CNB
-F 1 "SPI" H 5725 4325 40  0000 C CNN
-F 2 "wyostat_fp:Pin_Header_Straight_2x03" H 5675 4125 50  0001 C CNN
-F 3 "~" H 5675 4125 50  0001 C CNN
-	1    5675 4125
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	5475 4025 5175 4025
-Wire Wire Line
-	5175 4125 5475 4125
-Wire Wire Line
-	5475 4225 5175 4225
-Wire Wire Line
-	5975 4225 6050 4225
-Wire Wire Line
-	6275 4125 5975 4125
-Wire Wire Line
-	5975 4025 6050 4025
-Text Label 5175 4025 0    50   ~ 10
-MISO
-Text Label 6275 4025 2    50   ~ 10
-3V3
-Text Label 6275 4125 2    50   ~ 10
-MOSI
-Text Label 6275 4225 2    50   ~ 10
-GND
-Text Label 5175 4125 0    50   ~ 10
-SCK
-Text Label 5175 4225 0    50   ~ 10
-RST
-$Comp
-L wyostat:Conn_01x01 J6
-U 1 1 5AA958E1
-P 4975 4025
-F 0 "J6" H 4875 3875 50  0001 C CNN
-F 1 "MISO" H 4875 3875 50  0001 C CNN
-F 2 "wyostat_fp:Pin_Header_Straight_1x01" H 4975 4025 50  0001 C CNN
-F 3 "~" H 4975 4025 50  0001 C CNN
-	1    4975 4025
-	-1   0    0    1   
-$EndComp
-$Comp
-L wyostat:Conn_01x01 J8
-U 1 1 5AA958E8
-P 4975 4125
-F 0 "J8" H 4875 3975 50  0001 C CNN
-F 1 "SCK" H 4875 3975 50  0001 C CNN
-F 2 "wyostat_fp:Pin_Header_Straight_1x01" H 4975 4125 50  0001 C CNN
-F 3 "~" H 4975 4125 50  0001 C CNN
-F 4 "mfr_pn" H 4975 4125 50  0001 C CNN "manf#"
-	1    4975 4125
-	-1   0    0    1   
-$EndComp
-$Comp
-L wyostat:Conn_01x01 J11
-U 1 1 5AA958EF
-P 4975 4225
-F 0 "J11" H 4875 4075 50  0001 C CNN
-F 1 "RST" H 4875 4075 50  0001 C CNN
-F 2 "wyostat_fp:Pin_Header_Straight_1x01" H 4975 4225 50  0001 C CNN
-F 3 "~" H 4975 4225 50  0001 C CNN
-F 4 "mfr_pn" H 4975 4225 50  0001 C CNN "manf#"
-	1    4975 4225
-	-1   0    0    1   
-$EndComp
-$Comp
-L wyostat:Conn_01x01 J12
-U 1 1 5AA958F6
-P 6475 4225
-F 0 "J12" H 6375 4075 50  0001 C CNN
-F 1 "GND" H 6375 4075 50  0001 C CNN
-F 2 "wyostat_fp:Pin_Header_Straight_1x01" H 6475 4225 50  0001 C CNN
-F 3 "~" H 6475 4225 50  0001 C CNN
-F 4 "mfr_pn" H 6475 4225 50  0001 C CNN "manf#"
-	1    6475 4225
-	1    0    0    -1  
-$EndComp
-$Comp
-L wyostat:Conn_01x01 J10
-U 1 1 5AA958FD
-P 6475 4125
-F 0 "J10" H 6375 3975 50  0001 C CNN
-F 1 "MOSI" H 6375 3975 50  0001 C CNN
-F 2 "wyostat_fp:Pin_Header_Straight_1x01" H 6475 4125 50  0001 C CNN
-F 3 "~" H 6475 4125 50  0001 C CNN
-F 4 "mfr_pn" H 6475 4125 50  0001 C CNN "manf#"
-	1    6475 4125
-	1    0    0    -1  
-$EndComp
-$Comp
-L wyostat:Conn_01x01 J7
-U 1 1 5AA95904
-P 6475 4025
-F 0 "J7" H 6375 3875 50  0001 C CNN
-F 1 "3V3" H 6375 3875 50  0001 C CNN
-F 2 "wyostat_fp:Pin_Header_Straight_1x01" H 6475 4025 50  0001 C CNN
-F 3 "~" H 6475 4025 50  0001 C CNN
-F 4 "mfr_pn" H 6475 4025 50  0001 C CNN "manf#"
-	1    6475 4025
-	1    0    0    -1  
-$EndComp
-Text Notes 4850 4500 0    40   ~ 0
-SPI header with breakout pins.\nConnect with wire to appropriate\npins on ESP32
 Wire Notes Line
 	4825 575  6825 575 
 Wire Notes Line
@@ -826,12 +716,6 @@ Wire Wire Line
 Text Notes 4925 3650 0    40   ~ 0
 I2C interface for external\nconnections to sensors etc.\n
 Wire Notes Line
-	4825 3775 6825 3775
-Wire Notes Line
-	6825 4975 4825 4975
-Text Notes 4850 3850 0    40   ~ 8
-SPI HEADER
-Wire Notes Line
 	4825 2175 6825 2175
 Wire Notes Line
 	6825 2175 6825 3675
@@ -841,17 +725,6 @@ Wire Notes Line
 	4825 3675 4825 2175
 Text Notes 4850 2250 0    40   ~ 8
 I2C HEADER
-$Comp
-L wyostat:C_NP C8
-U 1 1 5AA9593A
-P 6675 4125
-F 0 "C8" H 6700 4000 50  0000 L CNB
-F 1 "100nF" V 6725 4200 40  0000 L CNN
-F 2 "wyostat_fp:C_0805" H 6675 4125 60  0001 C CNN
-F 3 "" H 6675 4125 60  0000 C CNN
-	1    6675 4125
-	1    0    0    -1  
-$EndComp
 $Comp
 L wyostat:C_NP C7
 U 1 1 5AA95948
@@ -871,24 +744,6 @@ Wire Wire Line
 	4950 3150 4950 3275
 Text Label 4950 3275 0    50   ~ 10
 GND
-Wire Wire Line
-	6675 3975 6675 3875
-Wire Wire Line
-	6675 3875 6050 3875
-Wire Wire Line
-	6050 3875 6050 4025
-Connection ~ 6050 4025
-Wire Wire Line
-	6050 4025 6275 4025
-Wire Wire Line
-	6050 4225 6050 4375
-Wire Wire Line
-	6050 4375 6675 4375
-Wire Wire Line
-	6675 4375 6675 4275
-Connection ~ 6050 4225
-Wire Wire Line
-	6050 4225 6275 4225
 Connection ~ 7675 1150
 Wire Wire Line
 	7675 1150 8025 1150
@@ -1402,10 +1257,8 @@ Wire Wire Line
 Connection ~ 4975 6875
 Wire Wire Line
 	4975 6875 4975 6925
-Wire Wire Line
-	4975 6275 5300 6275
 Connection ~ 4975 6275
-Text Label 5300 6275 2    50   ~ 10
+Text Label 6425 6275 2    50   ~ 10
 5V_IN1
 $Comp
 L wyostat:C_POL C10
@@ -1413,7 +1266,7 @@ U 1 1 5AC6A2AA
 P 2300 7075
 F 0 "C10" H 2325 6975 50  0000 L CNB
 F 1 "100uF,50V" V 2350 7200 40  0000 L CNN
-F 2 "Capacitors_SMD:CP_Elec_10x10" H 2300 7075 60  0001 C CNN
+F 2 "wyostat_fp:CP_Elec_10x10" H 2300 7075 60  0001 C CNN
 F 3 "" H 2300 7075 60  0000 C CNN
 	1    2300 7075
 	1    0    0    -1  
@@ -1448,16 +1301,16 @@ NoConn ~ 1275 1250
 $Comp
 L wyostat:PWR_FLAG #FLG03
 U 1 1 5AECC9F1
-P 4975 6200
-F 0 "#FLG03" H 4975 6275 50  0001 C CNN
-F 1 "PWR_FLAG" H 4975 6350 40  0000 C CNN
-F 2 "" H 4975 6200 50  0001 C CNN
-F 3 "" H 4975 6200 50  0001 C CNN
-	1    4975 6200
+P 4975 6225
+F 0 "#FLG03" H 4975 6300 50  0001 C CNN
+F 1 "PWR_FLAG" H 4975 6375 40  0000 C CNN
+F 2 "" H 4975 6225 50  0001 C CNN
+F 3 "" H 4975 6225 50  0001 C CNN
+	1    4975 6225
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4975 6200 4975 6275
+	4975 6225 4975 6275
 $Comp
 L wyostat:PWR_FLAG #FLG01
 U 1 1 5AEE02D5
@@ -1486,8 +1339,6 @@ $EndComp
 Wire Wire Line
 	2775 775  2775 1025
 Connection ~ 2775 1025
-Text Notes 5400 6050 0    40   ~ 0
-DECIDE how to couple 5V_IN to 5V
 NoConn ~ 1675 1250
 NoConn ~ 1775 1250
 $Bitmap
@@ -8304,27 +8155,23 @@ Wire Wire Line
 	1925 6275 1925 6575
 Wire Wire Line
 	1925 6575 1875 6575
-Text Label 4525 5250 2    50   ~ 10
+Text Label 6425 5625 2    50   ~ 10
 5V_IN2
 $Comp
 L wyostat:Conn_01x04 J16
 U 1 1 5AF818EB
-P 4775 5550
-F 0 "J16" H 4775 5250 50  0000 C CNB
-F 1 "5V_SEL" V 4875 5500 50  0000 C CNN
-F 2 "wyostat_fp:Pin_Header_Straight_1x04" H 4775 5550 50  0001 C CNN
-F 3 "" H 4775 5550 50  0001 C CNN
-	1    4775 5550
+P 5900 5900
+F 0 "J16" H 5900 5600 50  0000 C CNB
+F 1 "5V_SEL" V 6000 5850 50  0000 C CNN
+F 2 "wyostat_fp:Pin_Header_Straight_1x04" H 5900 5900 50  0001 C CNN
+F 3 "" H 5900 5900 50  0001 C CNN
+	1    5900 5900
 	-1   0    0    -1  
 $EndComp
 Wire Notes Line
 	11125 575  11125 4975
 Wire Notes Line
 	6925 4975 6925 575 
-Wire Notes Line
-	6825 3775 6825 4975
-Wire Notes Line
-	4825 4975 4825 3775
 Wire Wire Line
 	3725 7325 2975 7325
 Wire Wire Line
@@ -8335,29 +8182,25 @@ Wire Notes Line
 Wire Notes Line
 	575  7700 5375 7700
 Wire Wire Line
-	4975 5450 5075 5450
+	6100 5800 6425 5800
 Wire Wire Line
-	5075 5450 5075 5350
+	6425 5800 6425 5625
 Wire Wire Line
-	5075 5350 4525 5350
+	6425 6275 6425 6100
 Wire Wire Line
-	4525 5350 4525 5250
+	6425 6100 6100 6100
 Wire Wire Line
-	5300 6275 5300 5750
+	6100 5900 6200 5900
 Wire Wire Line
-	5300 5750 4975 5750
+	6200 5900 6200 5950
 Wire Wire Line
-	4975 5550 5075 5550
+	6200 6000 6100 6000
 Wire Wire Line
-	5075 5550 5075 5600
+	6200 5950 6425 5950
+Connection ~ 6200 5950
 Wire Wire Line
-	5075 5650 4975 5650
-Wire Wire Line
-	5075 5600 5300 5600
-Connection ~ 5075 5600
-Wire Wire Line
-	5075 5600 5075 5650
-Text Label 5300 5600 2    50   ~ 10
+	6200 5950 6200 6000
+Text Label 6425 5950 2    50   ~ 10
 5V
 NoConn ~ 4325 7075
 Wire Wire Line
@@ -8401,8 +8244,8 @@ Wire Wire Line
 Connection ~ 9900 3850
 Wire Wire Line
 	10225 2500 10225 3850
-Text Notes 2650 3475 0    40   ~ 8
-INPUT POWER\n\nInput Power sources are :\na. Micro USB 5V to Wemos Lolin\nb. 28 V AC to 5 V DC via switching regulator\nc. 5 V via wall wart\n\nWhen using option "b" or "c", the micro USB cable\nMUST be removed to prevent power conflicts.
+Text Notes 2650 3600 0    40   ~ 8
+INPUT POWER\n\nInput Power sources are :\na. Micro USB 5V to Wemos Lolin\nb. 28 V AC to 5 V DC via switching regulator\nc. Micro USB on Wyostat (only Power, no Data)\n\nWhen using option "b" or "c", the micro USB cable\nMUST be removed to prevent power conflicts.\n\nWhen using option "a", the Power Selector Header\nmust be in OFF position.
 Text Label 2750 6675 0    50   ~ 10
 VCC
 Text Label 2975 6875 0    50   ~ 10
@@ -8446,45 +8289,45 @@ GNDREF
 $Comp
 L wyostat:SCREW SC1
 U 1 1 5AED1CEA
-P 11000 5300
-F 0 "SC1" H 11085 5300 40  0000 L CNN
-F 1 "SCREW" H 11000 5400 40  0001 C CNN
-F 2 "wyostat_fp:MountingHole_3.2mm_M3_Pad_Via" H 11000 5300 60  0001 C CNN
-F 3 "" H 11000 5300 60  0000 C CNN
-	1    11000 5300
+P 6575 6725
+F 0 "SC1" H 6660 6725 40  0000 L CNN
+F 1 "SCREW" H 6575 6825 40  0001 C CNN
+F 2 "wyostat_fp:MountingHole_3.2mm_M3_Pad_Via" H 6575 6725 60  0001 C CNN
+F 3 "" H 6575 6725 60  0000 C CNN
+	1    6575 6725
 	1    0    0    -1  
 $EndComp
 $Comp
 L wyostat:SCREW SC2
 U 1 1 5AED2014
-P 11000 5600
-F 0 "SC2" H 11085 5600 40  0000 L CNN
-F 1 "SCREW" H 11000 5700 40  0001 C CNN
-F 2 "wyostat_fp:MountingHole_3.2mm_M3_Pad_Via" H 11000 5600 60  0001 C CNN
-F 3 "" H 11000 5600 60  0000 C CNN
-	1    11000 5600
+P 6575 7025
+F 0 "SC2" H 6660 7025 40  0000 L CNN
+F 1 "SCREW" H 6575 7125 40  0001 C CNN
+F 2 "wyostat_fp:MountingHole_3.2mm_M3_Pad_Via" H 6575 7025 60  0001 C CNN
+F 3 "" H 6575 7025 60  0000 C CNN
+	1    6575 7025
 	1    0    0    -1  
 $EndComp
 $Comp
 L wyostat:SCREW SC3
 U 1 1 5AED2111
-P 11000 5900
-F 0 "SC3" H 11085 5900 40  0000 L CNN
-F 1 "SCREW" H 11000 6000 40  0001 C CNN
-F 2 "wyostat_fp:MountingHole_3.2mm_M3_Pad_Via" H 11000 5900 60  0001 C CNN
-F 3 "" H 11000 5900 60  0000 C CNN
-	1    11000 5900
+P 6575 7325
+F 0 "SC3" H 6660 7325 40  0000 L CNN
+F 1 "SCREW" H 6575 7425 40  0001 C CNN
+F 2 "wyostat_fp:MountingHole_3.2mm_M3_Pad_Via" H 6575 7325 60  0001 C CNN
+F 3 "" H 6575 7325 60  0000 C CNN
+	1    6575 7325
 	1    0    0    -1  
 $EndComp
 $Comp
 L wyostat:SCREW SC4
 U 1 1 5AED2331
-P 11000 6200
-F 0 "SC4" H 11085 6200 40  0000 L CNN
-F 1 "SCREW" H 11000 6300 40  0001 C CNN
-F 2 "wyostat_fp:MountingHole_3.2mm_M3_Pad_Via" H 11000 6200 60  0001 C CNN
-F 3 "" H 11000 6200 60  0000 C CNN
-	1    11000 6200
+P 6575 7625
+F 0 "SC4" H 6660 7625 40  0000 L CNN
+F 1 "SCREW" H 6575 7725 40  0001 C CNN
+F 2 "wyostat_fp:MountingHole_3.2mm_M3_Pad_Via" H 6575 7625 60  0001 C CNN
+F 3 "" H 6575 7625 60  0000 C CNN
+	1    6575 7625
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -8555,44 +8398,6 @@ F 4 "Value" H 2950 4425 50  0001 C CNN "manf#"
 	1    2950 4425
 	1    0    0    -1  
 $EndComp
-$Comp
-L wyostat:Diode_TVS D5
-U 1 1 5AAF3BD8
-P 2225 5350
-F 0 "D5" H 2475 5150 50  0000 R CNB
-F 1 "RClamp0854P.TCT" H 2925 5075 40  0000 R CNN
-F 2 "" H 2225 5350 50  0001 C CNN
-F 3 "" H 2225 5350 50  0001 C CNN
-F 4 "Value" H 2225 5350 50  0001 C CNN "manf#"
-	1    2225 5350
-	1    0    0    -1  
-$EndComp
-$Comp
-L wyostat:IND_CHOKE_CM L3
-U 1 1 5AAF3BDF
-P 2950 4750
-F 0 "L3" H 2850 4600 50  0000 C CNB
-F 1 "90E" H 3050 4600 40  0000 C CNN
-F 2 "wyostat_fp:C_0805" H 2950 4650 60  0001 C CNN
-F 3 "" H 2950 4650 60  0000 C CNN
-F 4 "Value" H 2950 4750 50  0001 C CNN "manf#"
-	1    2950 4750
-	1    0    0    1   
-$EndComp
-$Comp
-L wyostat:R R23
-U 1 1 5AAF3BE6
-P 2925 5050
-F 0 "R23" V 2825 5050 50  0000 C CNB
-F 1 "0E" V 2925 5050 40  0000 C CNN
-F 2 "wyostat_fp:R_0805" V 2855 5050 30  0001 C CNN
-F 3 "" H 2925 5050 30  0000 C CNN
-F 4 "Value" H 2925 5050 50  0001 C CNN "manf#"
-	1    2925 5050
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	2750 4650 2375 4650
 Wire Wire Line
 	1900 4650 1900 4700
 Wire Wire Line
@@ -8601,8 +8406,6 @@ Wire Wire Line
 	1200 4800 1900 4800
 Wire Wire Line
 	1900 4800 1900 4850
-Wire Wire Line
-	1900 4850 2275 4850
 Wire Wire Line
 	3150 4425 3325 4425
 Wire Wire Line
@@ -8614,7 +8417,7 @@ Wire Wire Line
 Wire Wire Line
 	1750 4600 1200 4600
 Wire Wire Line
-	2025 5100 2025 4425
+	2025 5275 2025 4425
 Connection ~ 2025 4425
 Wire Wire Line
 	2025 4425 1750 4425
@@ -8622,20 +8425,6 @@ Wire Wire Line
 	1200 4900 1825 4900
 Wire Wire Line
 	1825 4900 1825 5050
-Wire Wire Line
-	1825 5050 2175 5050
-Wire Wire Line
-	2175 5050 2175 5100
-Wire Wire Line
-	2275 5100 2275 4850
-Connection ~ 2275 4850
-Wire Wire Line
-	2275 4850 2750 4850
-Wire Wire Line
-	2375 5100 2375 4650
-Connection ~ 2375 4650
-Wire Wire Line
-	2375 4650 1900 4650
 Wire Wire Line
 	1200 5000 1750 5000
 Wire Wire Line
@@ -8665,11 +8454,11 @@ Wire Wire Line
 Wire Wire Line
 	1600 5300 1600 5625
 Wire Wire Line
-	2025 5600 2025 5625
+	2025 5575 2025 5625
 Wire Wire Line
 	3325 5575 3325 5625
 Wire Wire Line
-	3950 4850 3150 4850
+	3950 4850 3075 4850
 $Comp
 L power:GND #PWR0101
 U 1 1 5AAF3C1A
@@ -8714,12 +8503,7 @@ F 3 "" H 3325 5625 50  0001 C CNN
 	1    3325 5625
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	3325 4425 3950 4425
 Connection ~ 3325 4425
-Wire Wire Line
-	2775 5050 2175 5050
-Connection ~ 2175 5050
 Text Label 1750 4600 2    50   ~ 10
 USB+
 Text Label 2575 4650 0    50   ~ 10
@@ -8732,15 +8516,13 @@ Text Label 3950 4850 2    50   ~ 10
 USB_D+
 Text Label 3950 5050 2    50   ~ 10
 USB_ID
-NoConn ~ 2575 5250
-NoConn ~ 2575 5450
 Wire Wire Line
 	1175 5300 1000 5300
 Connection ~ 1000 5300
 Wire Wire Line
 	3075 5050 3950 5050
 Wire Wire Line
-	3150 4650 3950 4650
+	3075 4650 3950 4650
 Text Label 2575 5050 0    50   ~ 10
 ID
 Text Label 1750 5000 2    50   ~ 10
@@ -8806,4 +8588,98 @@ F 5 "DNP" H 9125 4300 40  0000 C CNN "DNP"
 $EndComp
 Text Notes 7650 1150 2    40   ~ 0
 5mA
+Wire Wire Line
+	1900 4650 2775 4650
+Wire Wire Line
+	1900 4850 2775 4850
+Wire Wire Line
+	1825 5050 2775 5050
+$Comp
+L wyostat:R R23
+U 1 1 5AAF3021
+P 2925 4650
+F 0 "R23" V 2825 4650 50  0000 C CNB
+F 1 "0E" V 2925 4650 40  0000 C CNN
+F 2 "wyostat_fp:R_0805" V 2855 4650 30  0001 C CNN
+F 3 "" H 2925 4650 30  0000 C CNN
+F 4 "Value" H 2925 4650 50  0001 C CNN "manf#"
+F 5 "DNP" V 2875 4825 40  0000 C CNN "DNP"
+	1    2925 4650
+	0    1    1    0   
+$EndComp
+$Comp
+L wyostat:1N5819 D5
+U 1 1 5AC2719C
+P 2025 5425
+F 0 "D5" V 1925 5450 50  0000 L CNB
+F 1 "CDSOD323-T05L" V 2025 5500 40  0000 L CNN
+F 2 "Diodes_SMD:D_SOD-323_HandSoldering" H 2025 5250 50  0001 C CNN
+F 3 "" H 2025 5425 50  0001 C CNN
+	1    2025 5425
+	0    1    1    0   
+$EndComp
+$Comp
+L wyostat:R R24
+U 1 1 5AC523B0
+P 2925 4850
+F 0 "R24" V 2825 4850 50  0000 C CNB
+F 1 "0E" V 2925 4850 40  0000 C CNN
+F 2 "wyostat_fp:R_0805" V 2855 4850 30  0001 C CNN
+F 3 "" H 2925 4850 30  0000 C CNN
+F 4 "Value" H 2925 4850 50  0001 C CNN "manf#"
+F 5 "DNP" V 2875 5025 40  0000 C CNN "DNP"
+	1    2925 4850
+	0    1    1    0   
+$EndComp
+$Comp
+L wyostat:R R25
+U 1 1 5AC52464
+P 2925 5050
+F 0 "R25" V 2825 5050 50  0000 C CNB
+F 1 "0E" V 2925 5050 40  0000 C CNN
+F 2 "wyostat_fp:R_0805" V 2855 5050 30  0001 C CNN
+F 3 "" H 2925 5050 30  0000 C CNN
+F 4 "Value" H 2925 5050 50  0001 C CNN "manf#"
+F 5 "DNP" V 2875 5225 40  0000 C CNN "DNP"
+	1    2925 5050
+	0    1    1    0   
+$EndComp
+Wire Notes Line
+	5375 5900 5375 4000
+Wire Notes Line
+	5375 4000 575  4000
+Wire Wire Line
+	6425 6275 4975 6275
+Wire Wire Line
+	5025 5625 5025 4425
+Wire Wire Line
+	5025 5625 6425 5625
+Wire Wire Line
+	3325 4425 5025 4425
+$Sheet
+S 9750 5300 1350 700 
+U 5AE47A99
+F0 "rtc_ds3231" 40
+F1 "rtc_ds3231.sch" 40
+F2 "3V3" I L 9750 5500 40 
+F3 "GND" I L 9750 5800 40 
+F4 "SDA" I L 9750 5600 40 
+F5 "SCL" I L 9750 5700 40 
+$EndSheet
+Wire Wire Line
+	9750 5500 9250 5500
+Wire Wire Line
+	9250 5600 9750 5600
+Wire Wire Line
+	9750 5700 9250 5700
+Wire Wire Line
+	9250 5800 9750 5800
+Text Label 9250 5800 0    50   ~ 10
+GND
+Text Label 9250 5500 0    50   ~ 10
+3V3
+Text Label 9250 5700 0    50   ~ 10
+SCL
+Text Label 9250 5600 0    50   ~ 10
+SDA
 $EndSCHEMATC
