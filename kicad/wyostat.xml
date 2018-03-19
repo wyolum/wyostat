@@ -2,7 +2,7 @@
 <export version="D">
   <design>
     <source>/home/samata/projects-git/wyostat/kicad/wyostat.sch</source>
-    <date>Wed Mar 14 23:12:33 2018</date>
+    <date>Tue Mar 20 00:43:16 2018</date>
     <tool>Eeschema no-vcs-found-67ccf76~61~ubuntu16.04.1</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -17,18 +17,31 @@
         <comment number="4" value=""/>
       </title_block>
     </sheet>
+    <sheet number="2" name="/rtc_ds3231/" tstamps="/5AE47A99/">
+      <title_block>
+        <title>KlokTHREEjr</title>
+        <company>www.wyolum.com</company>
+        <rev>rev 1</rev>
+        <date>2017-12-26</date>
+        <source>rtc_ds3231.sch</source>
+        <comment number="1" value="https://github.com/wyolum/KlokTHREEjr"/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
   </design>
   <components>
     <comp ref="U1">
       <value>MOC3063M</value>
-      <footprint>wyostat_fp:Optocoupler_6pin</footprint>
+      <footprint>wyostat_fp:Optocoupler_6pin_smd</footprint>
       <libsource lib="wyostat" part="MOC3063M"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AA6EEDE</tstamp>
     </comp>
     <comp ref="Q1">
-      <value>BT136-600</value>
-      <footprint>wyostat_fp:SOT126_SOT32_Housing_Horizontal</footprint>
+      <value>BTA204S</value>
+      <footprint>wyostat_fp:DPAK-2</footprint>
       <libsource lib="wyostat" part="BT136-600"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AA6EF22</tstamp>
@@ -44,18 +57,23 @@
       <tstamp>5AA71D8B</tstamp>
     </comp>
     <comp ref="R2">
-      <value>470</value>
+      <value>0E</value>
       <footprint>wyostat_fp:R_0805</footprint>
       <fields>
         <field name="manf#">Value</field>
+        <field name="DNP">-</field>
       </fields>
       <libsource lib="wyostat" part="R"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AA72195</tstamp>
     </comp>
     <comp ref="C2">
-      <value>47nF,100V</value>
-      <footprint>wyostat_fp:C_2220</footprint>
+      <value>47nF,63V</value>
+      <footprint>wyostat_fp:C_1210</footprint>
+      <fields>
+        <field name="manf#">Value</field>
+        <field name="DNP">DNP</field>
+      </fields>
       <libsource lib="wyostat" part="C_NP"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AA72200</tstamp>
@@ -98,7 +116,7 @@
       <tstamp>5AA72CD7</tstamp>
     </comp>
     <comp ref="J1">
-      <value>PWR_In</value>
+      <value>24 V AC IN</value>
       <footprint>wyostat_fp:TerminalBlock_Pheonix_MPT-2.54mm_2pol</footprint>
       <fields>
         <field name="manf#">Value</field>
@@ -107,7 +125,7 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AA72EFC</tstamp>
     </comp>
-    <comp ref="U2">
+    <comp ref="U4">
       <value>Wemos-Lolin</value>
       <footprint>wyostat_fp:Wemos_Lolin</footprint>
       <libsource lib="wyostat" part="Wemos-Lolin"/>
@@ -124,21 +142,21 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AA73EE6</tstamp>
     </comp>
-    <comp ref="U3">
+    <comp ref="U2">
       <value>MOC3063M</value>
-      <footprint>wyostat_fp:Optocoupler_6pin</footprint>
+      <footprint>wyostat_fp:Optocoupler_6pin_smd</footprint>
       <libsource lib="wyostat" part="MOC3063M"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AA791A2</tstamp>
     </comp>
     <comp ref="Q2">
-      <value>BT136-600</value>
-      <footprint>wyostat_fp:SOT126_SOT32_Housing_Horizontal</footprint>
+      <value>BTA204S</value>
+      <footprint>wyostat_fp:DPAK-2</footprint>
       <libsource lib="wyostat" part="BT136-600"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AA791A8</tstamp>
     </comp>
-    <comp ref="R11">
+    <comp ref="R7">
       <value>360</value>
       <footprint>wyostat_fp:R_0805</footprint>
       <fields>
@@ -147,23 +165,6 @@
       <libsource lib="wyostat" part="R"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AA791AE</tstamp>
-    </comp>
-    <comp ref="R12">
-      <value>470</value>
-      <footprint>wyostat_fp:R_0805</footprint>
-      <fields>
-        <field name="manf#">Value</field>
-      </fields>
-      <libsource lib="wyostat" part="R"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5AA791B7</tstamp>
-    </comp>
-    <comp ref="C5">
-      <value>47nF,100V</value>
-      <footprint>wyostat_fp:C_2220</footprint>
-      <libsource lib="wyostat" part="C_NP"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5AA791BD</tstamp>
     </comp>
     <comp ref="J3">
       <value>OUT2</value>
@@ -175,7 +176,7 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AA791CF</tstamp>
     </comp>
-    <comp ref="R13">
+    <comp ref="R9">
       <value>200</value>
       <footprint>wyostat_fp:R_0805</footprint>
       <fields>
@@ -202,7 +203,7 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AA791E3</tstamp>
     </comp>
-    <comp ref="R14">
+    <comp ref="R10">
       <value>300</value>
       <footprint>wyostat_fp:R_0805</footprint>
       <fields>
@@ -212,21 +213,21 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AA791EC</tstamp>
     </comp>
-    <comp ref="U4">
+    <comp ref="U3">
       <value>MOC3063M</value>
-      <footprint>wyostat_fp:Optocoupler_6pin</footprint>
+      <footprint>wyostat_fp:Optocoupler_6pin_smd</footprint>
       <libsource lib="wyostat" part="MOC3063M"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AA7ACC5</tstamp>
     </comp>
     <comp ref="Q3">
-      <value>BT136-600</value>
-      <footprint>wyostat_fp:SOT126_SOT32_Housing_Horizontal</footprint>
+      <value>BTA204S</value>
+      <footprint>wyostat_fp:DPAK-2</footprint>
       <libsource lib="wyostat" part="BT136-600"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AA7ACCB</tstamp>
     </comp>
-    <comp ref="R17">
+    <comp ref="R13">
       <value>360</value>
       <footprint>wyostat_fp:R_0805</footprint>
       <fields>
@@ -236,24 +237,7 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AA7ACD1</tstamp>
     </comp>
-    <comp ref="R18">
-      <value>470</value>
-      <footprint>wyostat_fp:R_0805</footprint>
-      <fields>
-        <field name="manf#">Value</field>
-      </fields>
-      <libsource lib="wyostat" part="R"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5AA7ACDA</tstamp>
-    </comp>
-    <comp ref="C8">
-      <value>47nF,100V</value>
-      <footprint>wyostat_fp:C_2220</footprint>
-      <libsource lib="wyostat" part="C_NP"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5AA7ACE0</tstamp>
-    </comp>
-    <comp ref="J7">
+    <comp ref="J4">
       <value>OUT3</value>
       <footprint>wyostat_fp:TerminalBlock_Pheonix_MPT-2.54mm_2pol</footprint>
       <fields>
@@ -263,7 +247,7 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AA7ACF2</tstamp>
     </comp>
-    <comp ref="R19">
+    <comp ref="R15">
       <value>200</value>
       <footprint>wyostat_fp:R_0805</footprint>
       <fields>
@@ -290,7 +274,7 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AA7AD06</tstamp>
     </comp>
-    <comp ref="R20">
+    <comp ref="R16">
       <value>300</value>
       <footprint>wyostat_fp:R_0805</footprint>
       <fields>
@@ -300,14 +284,14 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AA7AD0F</tstamp>
     </comp>
-    <comp ref="R7">
+    <comp ref="R21">
       <value>10k</value>
       <footprint>wyostat_fp:R_0805</footprint>
       <libsource lib="wyostat" part="R"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AA95731</tstamp>
     </comp>
-    <comp ref="R8">
+    <comp ref="R22">
       <value>10k</value>
       <footprint>wyostat_fp:R_0805</footprint>
       <libsource lib="wyostat" part="R"/>
@@ -328,14 +312,14 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AA957F2</tstamp>
     </comp>
-    <comp ref="R5">
+    <comp ref="R19">
       <value>10k</value>
       <footprint>wyostat_fp:R_0805</footprint>
       <libsource lib="wyostat" part="R"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AA9581A</tstamp>
     </comp>
-    <comp ref="R6">
+    <comp ref="R20">
       <value>10k</value>
       <footprint>wyostat_fp:R_0805</footprint>
       <libsource lib="wyostat" part="R"/>
@@ -356,85 +340,14 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AA9583D</tstamp>
     </comp>
-    <comp ref="J9">
-      <value>SPI</value>
-      <footprint>wyostat_fp:Pin_Header_Straight_2x03</footprint>
-      <libsource lib="wyostat" part="Conn_02x03_Odd_Even"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5AA958CA</tstamp>
-    </comp>
     <comp ref="J5">
-      <value>MISO</value>
-      <footprint>wyostat_fp:Pin_Header_Straight_1x01</footprint>
-      <libsource lib="wyostat" part="Conn_01x01"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5AA958E1</tstamp>
-    </comp>
-    <comp ref="J8">
-      <value>SCK</value>
-      <footprint>wyostat_fp:Pin_Header_Straight_1x01</footprint>
-      <fields>
-        <field name="manf#">mfr_pn</field>
-      </fields>
-      <libsource lib="wyostat" part="Conn_01x01"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5AA958E8</tstamp>
-    </comp>
-    <comp ref="J11">
-      <value>RST</value>
-      <footprint>wyostat_fp:Pin_Header_Straight_1x01</footprint>
-      <fields>
-        <field name="manf#">mfr_pn</field>
-      </fields>
-      <libsource lib="wyostat" part="Conn_01x01"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5AA958EF</tstamp>
-    </comp>
-    <comp ref="J12">
-      <value>GND</value>
-      <footprint>wyostat_fp:Pin_Header_Straight_1x01</footprint>
-      <fields>
-        <field name="manf#">mfr_pn</field>
-      </fields>
-      <libsource lib="wyostat" part="Conn_01x01"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5AA958F6</tstamp>
-    </comp>
-    <comp ref="J10">
-      <value>MOSI</value>
-      <footprint>wyostat_fp:Pin_Header_Straight_1x01</footprint>
-      <fields>
-        <field name="manf#">mfr_pn</field>
-      </fields>
-      <libsource lib="wyostat" part="Conn_01x01"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5AA958FD</tstamp>
-    </comp>
-    <comp ref="J6">
-      <value>3V3</value>
-      <footprint>wyostat_fp:Pin_Header_Straight_1x01</footprint>
-      <fields>
-        <field name="manf#">mfr_pn</field>
-      </fields>
-      <libsource lib="wyostat" part="Conn_01x01"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5AA95904</tstamp>
-    </comp>
-    <comp ref="J4">
       <value>I2C_ext1</value>
       <footprint>wyostat_fp:Pin_Header_Straight_1x04</footprint>
       <libsource lib="wyostat" part="Conn_01x04"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AA95913</tstamp>
     </comp>
-    <comp ref="C6">
-      <value>100nF</value>
-      <footprint>wyostat_fp:C_0805</footprint>
-      <libsource lib="wyostat" part="C_NP"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5AA9593A</tstamp>
-    </comp>
-    <comp ref="C3">
+    <comp ref="C7">
       <value>100nF</value>
       <footprint>wyostat_fp:C_0805</footprint>
       <libsource lib="wyostat" part="C_NP"/>
@@ -469,19 +382,12 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AD09BBB</tstamp>
     </comp>
-    <comp ref="J13">
-      <value>AC_IN</value>
-      <footprint>wyostat_fp:TerminalBlock_Pheonix_MPT-2.54mm_2pol</footprint>
-      <fields>
-        <field name="manf#">Value</field>
-      </fields>
-      <libsource lib="wyostat" part="Conn_01x02"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5AD09F0B</tstamp>
-    </comp>
     <comp ref="C9">
-      <value>100nF</value>
+      <value>100nF,100V</value>
       <footprint>wyostat_fp:C_0805</footprint>
+      <fields>
+        <field name="manf#">mfr_pn</field>
+      </fields>
       <libsource lib="wyostat" part="C_NP"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AD1470B</tstamp>
@@ -493,44 +399,47 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AD147F9</tstamp>
     </comp>
-    <comp ref="R9">
+    <comp ref="R5">
       <value>360</value>
       <footprint>wyostat_fp:R_0805</footprint>
       <fields>
-        <field name="DNP">DNP</field>
+        <field name="manf#">Value</field>
+        <field name="DNP">-</field>
       </fields>
       <libsource lib="wyostat" part="R"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AD3EB0D</tstamp>
     </comp>
-    <comp ref="R16">
+    <comp ref="R12">
       <value>360</value>
       <footprint>wyostat_fp:R_0805</footprint>
       <fields>
-        <field name="DNP">DNP</field>
+        <field name="manf#">Value</field>
+        <field name="DNP">-</field>
       </fields>
       <libsource lib="wyostat" part="R"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AD5434F</tstamp>
     </comp>
-    <comp ref="R21">
+    <comp ref="R17">
       <value>360</value>
       <footprint>wyostat_fp:R_0805</footprint>
       <fields>
-        <field name="DNP">DNP</field>
+        <field name="manf#">Value</field>
+        <field name="DNP">-</field>
       </fields>
       <libsource lib="wyostat" part="R"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AD54583</tstamp>
     </comp>
     <comp ref="C1">
-      <value>10nF,100V</value>
-      <footprint>wyostat_fp:C_2220</footprint>
+      <value>10nF,120V</value>
+      <footprint>wyostat_fp:C_1210</footprint>
       <libsource lib="wyostat" part="C_NP"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5ADF342F</tstamp>
     </comp>
-    <comp ref="R10">
+    <comp ref="R6">
       <value>39</value>
       <footprint>wyostat_fp:R_0805</footprint>
       <fields>
@@ -541,14 +450,14 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5ADF3508</tstamp>
     </comp>
-    <comp ref="C4">
-      <value>10nF,100V</value>
-      <footprint>wyostat_fp:C_2220</footprint>
+    <comp ref="C3">
+      <value>10nF,120V</value>
+      <footprint>wyostat_fp:C_1210</footprint>
       <libsource lib="wyostat" part="C_NP"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AE133E2</tstamp>
     </comp>
-    <comp ref="R15">
+    <comp ref="R11">
       <value>39</value>
       <footprint>wyostat_fp:R_0805</footprint>
       <fields>
@@ -559,14 +468,14 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AE133E9</tstamp>
     </comp>
-    <comp ref="C7">
-      <value>10nF,100V</value>
-      <footprint>wyostat_fp:C_2220</footprint>
+    <comp ref="C5">
+      <value>10nF,120V</value>
+      <footprint>wyostat_fp:C_1210</footprint>
       <libsource lib="wyostat" part="C_NP"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AE1E610</tstamp>
     </comp>
-    <comp ref="R22">
+    <comp ref="R18">
       <value>39</value>
       <footprint>wyostat_fp:R_0805</footprint>
       <fields>
@@ -615,13 +524,6 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AB290FF</tstamp>
     </comp>
-    <comp ref="J14">
-      <value>~RST</value>
-      <footprint>wyostat_fp:Pin_Header_Straight_1x01</footprint>
-      <libsource lib="wyostat" part="Conn_01x01"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5AB874BA</tstamp>
-    </comp>
     <comp ref="L1">
       <value>22uH</value>
       <footprint>wyostat_fp:Inductor_ELL8TP</footprint>
@@ -634,13 +536,348 @@
     </comp>
     <comp ref="C10">
       <value>100uF,50V</value>
-      <footprint>wyostat_fp:C_2220</footprint>
+      <footprint>wyostat_fp:CP_Elec_10x10</footprint>
       <libsource lib="wyostat" part="C_POL"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5AC6A2AA</tstamp>
     </comp>
+    <comp ref="J16">
+      <value>5V_SEL</value>
+      <footprint>wyostat_fp:Pin_Header_Straight_1x04</footprint>
+      <libsource lib="wyostat" part="Conn_01x04"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AF818EB</tstamp>
+    </comp>
+    <comp ref="JP4">
+      <value>GND</value>
+      <footprint>wyostat_fp:LED_0402</footprint>
+      <libsource lib="wyostat" part="Jumper_NC_Small"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AE9DEF9</tstamp>
+    </comp>
+    <comp ref="SC1">
+      <value>SCREW</value>
+      <footprint>wyostat_fp:MountingHole_3.2mm_M3_Pad_Via</footprint>
+      <libsource lib="wyostat" part="SCREW"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AED1CEA</tstamp>
+    </comp>
+    <comp ref="SC2">
+      <value>SCREW</value>
+      <footprint>wyostat_fp:MountingHole_3.2mm_M3_Pad_Via</footprint>
+      <libsource lib="wyostat" part="SCREW"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AED2014</tstamp>
+    </comp>
+    <comp ref="SC3">
+      <value>SCREW</value>
+      <footprint>wyostat_fp:MountingHole_3.2mm_M3_Pad_Via</footprint>
+      <libsource lib="wyostat" part="SCREW"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AED2111</tstamp>
+    </comp>
+    <comp ref="SC4">
+      <value>SCREW</value>
+      <footprint>wyostat_fp:MountingHole_3.2mm_M3_Pad_Via</footprint>
+      <libsource lib="wyostat" part="SCREW"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AED2331</tstamp>
+    </comp>
+    <comp ref="J13">
+      <value>USB_microAB</value>
+      <footprint>wyostat_fp:USB_Micro-B_Molex-105017-0001</footprint>
+      <fields>
+        <field name="manf#">Value</field>
+      </fields>
+      <libsource lib="wyostat" part="USB_microAB"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AAF3BBC</tstamp>
+    </comp>
+    <comp ref="C15">
+      <value>4.7uF</value>
+      <footprint>wyostat_fp:C_0805</footprint>
+      <fields>
+        <field name="manf#">Value</field>
+      </fields>
+      <libsource lib="wyostat" part="C_NP"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AAF3BC3</tstamp>
+    </comp>
+    <comp ref="L4">
+      <value>330E</value>
+      <footprint>wyostat_fp:R_0805</footprint>
+      <fields>
+        <field name="manf#">Value</field>
+      </fields>
+      <libsource lib="wyostat" part="IND_FERRITE_BEAD"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AAF3BCA</tstamp>
+    </comp>
+    <comp ref="L2">
+      <value>330E</value>
+      <footprint>wyostat_fp:R_0805</footprint>
+      <fields>
+        <field name="manf#">Value</field>
+      </fields>
+      <libsource lib="wyostat" part="IND_FERRITE_BEAD"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AAF3BD1</tstamp>
+    </comp>
+    <comp ref="R8">
+      <value>0E</value>
+      <footprint>wyostat_fp:R_0805</footprint>
+      <fields>
+        <field name="manf#">Value</field>
+        <field name="DNP">-</field>
+      </fields>
+      <libsource lib="wyostat" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5B29D57C</tstamp>
+    </comp>
+    <comp ref="C4">
+      <value>47nF,63V</value>
+      <footprint>wyostat_fp:C_1210</footprint>
+      <fields>
+        <field name="manf#">Value</field>
+        <field name="DNP">DNP</field>
+      </fields>
+      <libsource lib="wyostat" part="C_NP"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5B29D7BF</tstamp>
+    </comp>
+    <comp ref="R14">
+      <value>0E</value>
+      <footprint>wyostat_fp:R_0805</footprint>
+      <fields>
+        <field name="manf#">Value</field>
+        <field name="DNP">-</field>
+      </fields>
+      <libsource lib="wyostat" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5B29DED2</tstamp>
+    </comp>
+    <comp ref="C6">
+      <value>47nF,63V</value>
+      <footprint>wyostat_fp:C_1210</footprint>
+      <fields>
+        <field name="manf#">Value</field>
+        <field name="DNP">DNP</field>
+      </fields>
+      <libsource lib="wyostat" part="C_NP"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5B29E29F</tstamp>
+    </comp>
+    <comp ref="R23">
+      <value>0E</value>
+      <footprint>wyostat_fp:R_0805</footprint>
+      <fields>
+        <field name="manf#">Value</field>
+        <field name="DNP">DNP</field>
+      </fields>
+      <libsource lib="wyostat" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AAF3021</tstamp>
+    </comp>
+    <comp ref="D5">
+      <value>CDSOD323-T05L</value>
+      <footprint>Diodes_SMD:D_SOD-323_HandSoldering</footprint>
+      <libsource lib="wyostat" part="1N5819"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC2719C</tstamp>
+    </comp>
+    <comp ref="R24">
+      <value>0E</value>
+      <footprint>wyostat_fp:R_0805</footprint>
+      <fields>
+        <field name="manf#">Value</field>
+        <field name="DNP">DNP</field>
+      </fields>
+      <libsource lib="wyostat" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC523B0</tstamp>
+    </comp>
+    <comp ref="R25">
+      <value>0E</value>
+      <footprint>wyostat_fp:R_0805</footprint>
+      <fields>
+        <field name="manf#">Value</field>
+        <field name="DNP">DNP</field>
+      </fields>
+      <libsource lib="wyostat" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC52464</tstamp>
+    </comp>
+    <comp ref="G3">
+      <value>KiCad</value>
+      <footprint>wyostat_fp:KiCad-Logo2_6mm_SilkScreen</footprint>
+      <fields>
+        <field name="manf#">Value</field>
+      </fields>
+      <libsource lib="wyostat" part="KiCad"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC0C01C</tstamp>
+    </comp>
+    <comp ref="G1">
+      <value>LOGO_WL</value>
+      <footprint>wyostat_fp:Logo-WL3</footprint>
+      <fields>
+        <field name="manf#">Value</field>
+      </fields>
+      <libsource lib="wyostat" part="LOGO_WL"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC0C12D</tstamp>
+    </comp>
+    <comp ref="G2">
+      <value>OSHW</value>
+      <footprint>wyostat_fp:OSHW_6mm</footprint>
+      <fields>
+        <field name="manf#">Value</field>
+      </fields>
+      <libsource lib="wyostat" part="OSHW"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC0C24A</tstamp>
+    </comp>
+    <comp ref="J6">
+      <value>RH</value>
+      <footprint>wyostat_fp:pad_rect_smd</footprint>
+      <libsource lib="wyostat" part="Conn_01x01"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AB1854D</tstamp>
+    </comp>
+    <comp ref="J7">
+      <value>RC</value>
+      <footprint>wyostat_fp:pad_rect_smd</footprint>
+      <libsource lib="wyostat" part="Conn_01x01"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AB186B9</tstamp>
+    </comp>
+    <comp ref="J8">
+      <value>C</value>
+      <footprint>wyostat_fp:pad_rect_smd</footprint>
+      <libsource lib="wyostat" part="Conn_01x01"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AB18767</tstamp>
+    </comp>
+    <comp ref="J11">
+      <value>G</value>
+      <footprint>wyostat_fp:pad_rect_smd</footprint>
+      <libsource lib="wyostat" part="Conn_01x01"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AB8BFF5</tstamp>
+    </comp>
+    <comp ref="J9">
+      <value>Y1</value>
+      <footprint>wyostat_fp:pad_rect_smd</footprint>
+      <libsource lib="wyostat" part="Conn_01x01"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ABA94CF</tstamp>
+    </comp>
+    <comp ref="J10">
+      <value>Y2</value>
+      <footprint>wyostat_fp:pad_rect_smd</footprint>
+      <libsource lib="wyostat" part="Conn_01x01"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ABA96DB</tstamp>
+    </comp>
+    <comp ref="J12">
+      <value>W1</value>
+      <footprint>wyostat_fp:pad_rect_smd</footprint>
+      <libsource lib="wyostat" part="Conn_01x01"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AD0DEA5</tstamp>
+    </comp>
+    <comp ref="J14">
+      <value>W2</value>
+      <footprint>wyostat_fp:pad_rect_smd</footprint>
+      <libsource lib="wyostat" part="Conn_01x01"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AD0E58F</tstamp>
+    </comp>
+    <comp ref="R28">
+      <value>4K7</value>
+      <footprint>wyostat_fp:R_0805</footprint>
+      <libsource lib="KlokTHREEjr" part="R"/>
+      <sheetpath names="/rtc_ds3231/" tstamps="/5AE47A99/"/>
+      <tstamp>5A448924</tstamp>
+    </comp>
+    <comp ref="R26">
+      <value>10k</value>
+      <footprint>wyostat_fp:R_0805</footprint>
+      <libsource lib="KlokTHREEjr" part="R"/>
+      <sheetpath names="/rtc_ds3231/" tstamps="/5AE47A99/"/>
+      <tstamp>5A448933</tstamp>
+    </comp>
+    <comp ref="R27">
+      <value>10k</value>
+      <footprint>wyostat_fp:R_0805</footprint>
+      <libsource lib="KlokTHREEjr" part="R"/>
+      <sheetpath names="/rtc_ds3231/" tstamps="/5AE47A99/"/>
+      <tstamp>5A44893A</tstamp>
+    </comp>
+    <comp ref="U6">
+      <value>DS3231N</value>
+      <footprint>wyostat_fp:DS3231</footprint>
+      <libsource lib="KlokTHREEjr" part="DS3231N"/>
+      <sheetpath names="/rtc_ds3231/" tstamps="/5AE47A99/"/>
+      <tstamp>5A448948</tstamp>
+    </comp>
+    <comp ref="R29">
+      <value>4K7</value>
+      <footprint>wyostat_fp:R_0805</footprint>
+      <libsource lib="KlokTHREEjr" part="R"/>
+      <sheetpath names="/rtc_ds3231/" tstamps="/5AE47A99/"/>
+      <tstamp>5A44894F</tstamp>
+    </comp>
+    <comp ref="BT1">
+      <value>Batt_RTC</value>
+      <footprint>wyostat_fp:CR2032_SMD2</footprint>
+      <fields>
+        <field name="Digikey">BU2032SM-HD-GCT-ND </field>
+      </fields>
+      <libsource lib="KlokTHREEjr" part="Batt_RTC"/>
+      <sheetpath names="/rtc_ds3231/" tstamps="/5AE47A99/"/>
+      <tstamp>5A448957</tstamp>
+    </comp>
+    <comp ref="C8">
+      <value>100nF</value>
+      <footprint>wyostat_fp:C_0805</footprint>
+      <libsource lib="KlokTHREEjr" part="C_NP"/>
+      <sheetpath names="/rtc_ds3231/" tstamps="/5AE47A99/"/>
+      <tstamp>5A613CC0</tstamp>
+    </comp>
+    <comp ref="TP1">
+      <value>~RST</value>
+      <footprint>wyostat_fp:Pin_Header_Straight_1x01</footprint>
+      <libsource lib="KlokTHREEjr" part="Conn_01x01"/>
+      <sheetpath names="/rtc_ds3231/" tstamps="/5AE47A99/"/>
+      <tstamp>5A48EA43</tstamp>
+    </comp>
+    <comp ref="TP2">
+      <value>SQR</value>
+      <footprint>wyostat_fp:Pin_Header_Straight_1x01</footprint>
+      <libsource lib="KlokTHREEjr" part="Conn_01x01"/>
+      <sheetpath names="/rtc_ds3231/" tstamps="/5AE47A99/"/>
+      <tstamp>5A95B66E</tstamp>
+    </comp>
+    <comp ref="TP3">
+      <value>32kHz</value>
+      <footprint>wyostat_fp:Pin_Header_Straight_1x01</footprint>
+      <libsource lib="KlokTHREEjr" part="Conn_01x01"/>
+      <sheetpath names="/rtc_ds3231/" tstamps="/5AE47A99/"/>
+      <tstamp>5A95B721</tstamp>
+    </comp>
   </components>
   <libparts>
+    <libpart lib="KlokTHREEjr" part="Batt_RTC">
+      <fields>
+        <field name="Reference">BT</field>
+        <field name="Value">Batt_RTC</field>
+      </fields>
+      <pins>
+        <pin num="1" name="+" type="passive"/>
+        <pin num="2" name="-" type="passive"/>
+      </pins>
+    </libpart>
     <libpart lib="wyostat" part="C_NP">
       <footprints>
         <fp>SM*</fp>
@@ -716,21 +953,28 @@
         <pin num="4" name="Pin_4" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="wyostat" part="Conn_02x03_Odd_Even">
-      <footprints>
-        <fp>Connector*:*_2x??_*</fp>
-      </footprints>
+    <libpart lib="KlokTHREEjr" part="DS3231N">
       <fields>
-        <field name="Reference">J</field>
-        <field name="Value">Conn_02x03_Odd_Even</field>
+        <field name="Reference">U</field>
+        <field name="Value">DS3231N</field>
       </fields>
       <pins>
-        <pin num="1" name="Pin_1" type="passive"/>
-        <pin num="2" name="Pin_2" type="passive"/>
-        <pin num="3" name="Pin_3" type="passive"/>
-        <pin num="4" name="Pin_4" type="passive"/>
-        <pin num="5" name="Pin_5" type="passive"/>
-        <pin num="6" name="Pin_6" type="passive"/>
+        <pin num="1" name="32KHz" type="output"/>
+        <pin num="2" name="Vcc" type="power_in"/>
+        <pin num="3" name="!(INT)/SQR" type="output"/>
+        <pin num="4" name="!(Reset)" type="BiDi"/>
+        <pin num="5" name="NC" type="passive"/>
+        <pin num="6" name="NC" type="passive"/>
+        <pin num="7" name="NC" type="passive"/>
+        <pin num="8" name="NC" type="passive"/>
+        <pin num="9" name="NC" type="passive"/>
+        <pin num="10" name="NC" type="passive"/>
+        <pin num="11" name="NC" type="passive"/>
+        <pin num="12" name="NC" type="passive"/>
+        <pin num="13" name="GND" type="power_in"/>
+        <pin num="14" name="Vbat" type="power_in"/>
+        <pin num="15" name="SDA" type="BiDi"/>
+        <pin num="16" name="SCL" type="input"/>
       </pins>
     </libpart>
     <libpart lib="wyostat" part="DiodeBridge">
@@ -745,6 +989,16 @@
         <pin num="4" name="~" type="passive"/>
       </pins>
     </libpart>
+    <libpart lib="wyostat" part="IND_FERRITE_BEAD">
+      <fields>
+        <field name="Reference">L</field>
+        <field name="Value">IND_FERRITE_BEAD</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
     <libpart lib="wyostat" part="Jumper_NC_Small">
       <fields>
         <field name="Reference">JP</field>
@@ -754,6 +1008,12 @@
         <pin num="1" name="1" type="passive"/>
         <pin num="2" name="2" type="passive"/>
       </pins>
+    </libpart>
+    <libpart lib="wyostat" part="KiCad">
+      <fields>
+        <field name="Reference">#G</field>
+        <field name="Value">KiCad</field>
+      </fields>
     </libpart>
     <libpart lib="wyostat" part="L">
       <description>Inductor</description>
@@ -798,6 +1058,12 @@
         <pin num="1" name="A" type="passive"/>
         <pin num="2" name="K" type="passive"/>
       </pins>
+    </libpart>
+    <libpart lib="wyostat" part="LOGO_WL">
+      <fields>
+        <field name="Reference">#G</field>
+        <field name="Value">LOGO_WL</field>
+      </fields>
     </libpart>
     <libpart lib="wyostat" part="MAX17502FATB+T">
       <footprints>
@@ -859,6 +1125,12 @@
         <pin num="6" name="~" type="passive"/>
       </pins>
     </libpart>
+    <libpart lib="wyostat" part="OSHW">
+      <fields>
+        <field name="Reference">#G</field>
+        <field name="Value">OSHW</field>
+      </fields>
+    </libpart>
     <libpart lib="wyostat" part="Polyfuse">
       <footprints>
         <fp>*polyfuse*</fp>
@@ -887,6 +1159,38 @@
         <pin num="1" name="~" type="passive"/>
         <pin num="2" name="~" type="passive"/>
       </pins>
+    </libpart>
+    <libpart lib="wyostat" part="SB120">
+      <aliases>
+        <alias>SB130</alias>
+        <alias>SB140</alias>
+        <alias>SB150</alias>
+        <alias>SB160</alias>
+        <alias>1N5817</alias>
+        <alias>1N5818</alias>
+        <alias>1N5819</alias>
+      </aliases>
+      <description>20V 1A Schottky Barrier Rectifier Diode, DO-41</description>
+      <docs>http://www.diodes.com/_files/datasheets/ds23022.pdf</docs>
+      <footprints>
+        <fp>D*SOD81*</fp>
+        <fp>D*DO?41*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">SB120</field>
+        <field name="Footprint">Diode_THT:D_DO-41_SOD81_Horizontal_RM10</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="wyostat" part="SCREW">
+      <fields>
+        <field name="Reference">SC</field>
+        <field name="Value">SCREW</field>
+      </fields>
     </libpart>
     <libpart lib="wyostat" part="SW-SPST-M">
       <fields>
@@ -925,6 +1229,23 @@
         <pin num="3" name="G" type="input"/>
       </pins>
     </libpart>
+    <libpart lib="wyostat" part="USB_microAB">
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">USB_microAB</field>
+      </fields>
+      <pins>
+        <pin num="1" name="5V" type="power_out"/>
+        <pin num="2" name="D-" type="BiDi"/>
+        <pin num="3" name="D+" type="BiDi"/>
+        <pin num="4" name="ID" type="passive"/>
+        <pin num="5" name="GND" type="power_out"/>
+        <pin num="S1" name="~" type="passive"/>
+        <pin num="S2" name="~" type="passive"/>
+        <pin num="S3" name="~" type="passive"/>
+        <pin num="S4" name="~" type="passive"/>
+      </pins>
+    </libpart>
     <libpart lib="wyostat" part="Wemos-Lolin">
       <fields>
         <field name="Reference">U</field>
@@ -961,349 +1282,419 @@
     </libpart>
   </libparts>
   <libraries>
+    <library logical="KlokTHREEjr">
+      <uri>/home/samata/projects-git/wyostat/kicad/wyostat_sch_libs/KlokTHREEjr.lib</uri>
+    </library>
     <library logical="wyostat">
       <uri>/home/samata/projects-git/wyostat/kicad/wyostat_sch_libs/wyostat.lib</uri>
     </library>
   </libraries>
   <nets>
-    <net code="1" name="/5V">
-      <node ref="U2" pin="17"/>
-      <node ref="U2" pin="16"/>
+    <net code="1" name="Net-(U4-Pad5)">
+      <node ref="U4" pin="5"/>
     </net>
-    <net code="2" name="Net-(D4-Pad3)">
-      <node ref="D4" pin="3"/>
-      <node ref="J13" pin="2"/>
+    <net code="2" name="Net-(U4-Pad11)">
+      <node ref="U4" pin="11"/>
     </net>
-    <net code="3" name="Net-(JP2-Pad2)">
-      <node ref="R13" pin="1"/>
-      <node ref="JP2" pin="2"/>
+    <net code="3" name="Net-(U4-Pad12)">
+      <node ref="U4" pin="12"/>
     </net>
-    <net code="4" name="Net-(JP3-Pad2)">
-      <node ref="R19" pin="1"/>
-      <node ref="JP3" pin="2"/>
-    </net>
-    <net code="5" name="GND">
-      <node ref="C11" pin="2"/>
-      <node ref="C3" pin="2"/>
-      <node ref="U5" pin="9"/>
-      <node ref="JP1" pin="1"/>
-      <node ref="U2" pin="18"/>
-      <node ref="C6" pin="2"/>
-      <node ref="U2" pin="15"/>
-      <node ref="U2" pin="14"/>
-      <node ref="R7" pin="2"/>
-      <node ref="C13" pin="2"/>
-      <node ref="J4" pin="4"/>
-      <node ref="C10" pin="2"/>
-      <node ref="U5" pin="11"/>
-      <node ref="U5" pin="1"/>
-      <node ref="C12" pin="2"/>
-      <node ref="R4" pin="1"/>
-      <node ref="JP2" pin="1"/>
-      <node ref="R20" pin="1"/>
-      <node ref="J12" pin="1"/>
-      <node ref="JP3" pin="1"/>
-      <node ref="D4" pin="2"/>
-      <node ref="R14" pin="1"/>
-      <node ref="R5" pin="2"/>
-      <node ref="R6" pin="2"/>
-      <node ref="C14" pin="2"/>
-      <node ref="C9" pin="2"/>
-      <node ref="J9" pin="6"/>
-      <node ref="R8" pin="2"/>
-    </net>
-    <net code="6" name="Net-(C1-Pad2)">
-      <node ref="R10" pin="2"/>
-      <node ref="C1" pin="2"/>
-    </net>
-    <net code="7" name="Net-(Q1-Pad3)">
-      <node ref="R9" pin="2"/>
-      <node ref="Q1" pin="3"/>
-      <node ref="U1" pin="4"/>
-    </net>
-    <net code="8" name="/SDA">
-      <node ref="J4" pin="2"/>
-    </net>
-    <net code="9" name="/SCL">
-      <node ref="J4" pin="1"/>
-    </net>
-    <net code="10" name="/SW_I">
-      <node ref="R6" pin="1"/>
-      <node ref="S2" pin="2"/>
-      <node ref="S2" pin="4"/>
-      <node ref="U2" pin="5"/>
-    </net>
-    <net code="11" name="/SW_D">
-      <node ref="R7" pin="1"/>
-      <node ref="S3" pin="4"/>
-      <node ref="U2" pin="6"/>
-      <node ref="S3" pin="2"/>
-    </net>
-    <net code="12" name="/IN1">
-      <node ref="U2" pin="8"/>
-      <node ref="U1" pin="1"/>
-      <node ref="D1" pin="1"/>
-    </net>
-    <net code="13" name="/IN2">
-      <node ref="U3" pin="1"/>
-      <node ref="U2" pin="9"/>
-      <node ref="D2" pin="1"/>
-    </net>
-    <net code="14" name="/IN3">
-      <node ref="U2" pin="10"/>
-      <node ref="D3" pin="1"/>
+    <net code="4" name="Net-(U4-Pad1)">
       <node ref="U4" pin="1"/>
     </net>
-    <net code="15" name="/SW_E">
-      <node ref="S1" pin="4"/>
-      <node ref="R5" pin="1"/>
-      <node ref="U2" pin="2"/>
+    <net code="5" name="Net-(U4-Pad20)">
+      <node ref="U4" pin="20"/>
+    </net>
+    <net code="6" name="Net-(U4-Pad6)">
+      <node ref="U4" pin="6"/>
+    </net>
+    <net code="7" name="/SW_I">
+      <node ref="S2" pin="4"/>
+      <node ref="S2" pin="2"/>
+      <node ref="U4" pin="10"/>
+      <node ref="R20" pin="1"/>
+    </net>
+    <net code="8" name="/SW_E">
       <node ref="S1" pin="2"/>
+      <node ref="S1" pin="4"/>
+      <node ref="R19" pin="1"/>
+      <node ref="U4" pin="9"/>
     </net>
-    <net code="16" name="Net-(JP1-Pad2)">
-      <node ref="JP1" pin="2"/>
-      <node ref="R3" pin="1"/>
-    </net>
-    <net code="17" name="Net-(L1-Pad1)">
-      <node ref="L1" pin="1"/>
-      <node ref="U5" pin="10"/>
-    </net>
-    <net code="18" name="Net-(J14-Pad1)">
-      <node ref="U5" pin="8"/>
-      <node ref="J14" pin="1"/>
-    </net>
-    <net code="19" name="Net-(U2-Pad3)">
-      <node ref="U2" pin="3"/>
-    </net>
-    <net code="20" name="Net-(U2-Pad1)">
-      <node ref="U2" pin="1"/>
-    </net>
-    <net code="21" name="/5V_IN">
+    <net code="9" name="/5V_IN1">
+      <node ref="J16" pin="4"/>
       <node ref="C14" pin="1"/>
       <node ref="L1" pin="2"/>
       <node ref="U5" pin="5"/>
     </net>
-    <net code="22" name="/3V3">
-      <node ref="U2" pin="19"/>
-      <node ref="C6" pin="1"/>
-      <node ref="C3" pin="1"/>
-      <node ref="U2" pin="13"/>
-      <node ref="S4" pin="3"/>
-      <node ref="S4" pin="1"/>
-      <node ref="S3" pin="3"/>
-      <node ref="S3" pin="1"/>
-      <node ref="S2" pin="3"/>
-      <node ref="S1" pin="3"/>
-      <node ref="S1" pin="1"/>
-      <node ref="S2" pin="1"/>
-      <node ref="J9" pin="2"/>
-      <node ref="J4" pin="3"/>
-      <node ref="J6" pin="1"/>
+    <net code="10" name="Net-(U4-Pad26)">
+      <node ref="U4" pin="26"/>
     </net>
-    <net code="23" name="Net-(U2-Pad12)">
-      <node ref="U2" pin="12"/>
+    <net code="11" name="Net-(U4-Pad23)">
+      <node ref="U4" pin="23"/>
     </net>
-    <net code="24" name="Net-(U2-Pad4)">
-      <node ref="U2" pin="4"/>
+    <net code="12" name="Net-(U4-Pad22)">
+      <node ref="U4" pin="22"/>
     </net>
-    <net code="25" name="/SW_M">
-      <node ref="S4" pin="2"/>
-      <node ref="R8" pin="1"/>
-      <node ref="S4" pin="4"/>
-      <node ref="U2" pin="7"/>
+    <net code="13" name="Net-(U4-Pad21)">
+      <node ref="U4" pin="21"/>
     </net>
-    <net code="26" name="Net-(U2-Pad26)">
-      <node ref="U2" pin="26"/>
+    <net code="14" name="/5V">
+      <node ref="J16" pin="3"/>
+      <node ref="J16" pin="2"/>
+      <node ref="U4" pin="16"/>
+      <node ref="U4" pin="17"/>
     </net>
-    <net code="27" name="Net-(U2-Pad25)">
-      <node ref="U2" pin="25"/>
+    <net code="15" name="/R">
+      <node ref="U5" pin="8"/>
     </net>
-    <net code="28" name="Net-(U2-Pad24)">
-      <node ref="U2" pin="24"/>
+    <net code="16" name="/SCL">
+      <node ref="J5" pin="1"/>
+      <node ref="U4" pin="4"/>
+      <node ref="R28" pin="2"/>
+      <node ref="U6" pin="16"/>
     </net>
-    <net code="29" name="Net-(U2-Pad23)">
-      <node ref="U2" pin="23"/>
+    <net code="17" name="/SDA">
+      <node ref="U6" pin="15"/>
+      <node ref="R29" pin="2"/>
+      <node ref="U4" pin="3"/>
+      <node ref="J5" pin="2"/>
     </net>
-    <net code="30" name="Net-(U2-Pad22)">
-      <node ref="U2" pin="22"/>
-    </net>
-    <net code="31" name="Net-(U2-Pad21)">
-      <node ref="U2" pin="21"/>
-    </net>
-    <net code="32" name="Net-(U2-Pad20)">
-      <node ref="U2" pin="20"/>
-    </net>
-    <net code="33" name="Net-(U2-Pad11)">
-      <node ref="U2" pin="11"/>
-    </net>
-    <net code="34" name="Net-(D4-Pad4)">
+    <net code="18" name="Net-(D4-Pad4)">
       <node ref="F1" pin="1"/>
       <node ref="D4" pin="4"/>
     </net>
-    <net code="35" name="Net-(F1-Pad2)">
+    <net code="19" name="/24Vac-H">
       <node ref="F1" pin="2"/>
-      <node ref="J13" pin="1"/>
+      <node ref="J6" pin="1"/>
+      <node ref="Q1" pin="1"/>
+      <node ref="R14" pin="1"/>
+      <node ref="R2" pin="1"/>
+      <node ref="C1" pin="1"/>
+      <node ref="Q2" pin="1"/>
+      <node ref="R8" pin="1"/>
+      <node ref="C5" pin="1"/>
+      <node ref="J1" pin="1"/>
+      <node ref="Q3" pin="1"/>
+      <node ref="C3" pin="1"/>
     </net>
-    <net code="36" name="Net-(C4-Pad2)">
-      <node ref="C4" pin="2"/>
-      <node ref="R15" pin="2"/>
+    <net code="20" name="Net-(C1-Pad2)">
+      <node ref="C1" pin="2"/>
+      <node ref="R6" pin="2"/>
     </net>
-    <net code="37" name="Net-(C7-Pad2)">
-      <node ref="R22" pin="2"/>
-      <node ref="C7" pin="2"/>
+    <net code="21" name="Net-(C3-Pad2)">
+      <node ref="R11" pin="2"/>
+      <node ref="C3" pin="2"/>
     </net>
-    <net code="38" name="Net-(C13-Pad1)">
-      <node ref="U5" pin="6"/>
+    <net code="22" name="Net-(C5-Pad2)">
+      <node ref="R18" pin="2"/>
+      <node ref="C5" pin="2"/>
+    </net>
+    <net code="23" name="/SS">
       <node ref="C13" pin="1"/>
+      <node ref="U5" pin="6"/>
     </net>
-    <net code="39" name="Net-(C12-Pad1)">
-      <node ref="C12" pin="1"/>
-      <node ref="U5" pin="4"/>
-    </net>
-    <net code="40" name="Net-(U5-Pad7)">
+    <net code="24" name="Net-(U5-Pad7)">
       <node ref="U5" pin="7"/>
     </net>
-    <net code="41" name="Net-(C10-Pad1)">
-      <node ref="C9" pin="1"/>
-      <node ref="D4" pin="1"/>
-      <node ref="C10" pin="1"/>
-      <node ref="C11" pin="1"/>
-      <node ref="U5" pin="3"/>
-      <node ref="U5" pin="2"/>
+    <net code="25" name="/VCC">
+      <node ref="U5" pin="4"/>
+      <node ref="C12" pin="1"/>
     </net>
-    <net code="42" name="Net-(C5-Pad1)">
-      <node ref="R12" pin="2"/>
-      <node ref="R11" pin="1"/>
-      <node ref="C5" pin="1"/>
+    <net code="26" name="/USB_D+">
+      <node ref="R24" pin="1"/>
     </net>
-    <net code="43" name="Net-(U3-Pad3)">
-      <node ref="U3" pin="3"/>
+    <net code="27" name="/USB_ID">
+      <node ref="R25" pin="1"/>
     </net>
-    <net code="44" name="Net-(U3-Pad5)">
-      <node ref="U3" pin="5"/>
+    <net code="28" name="/USB_D-">
+      <node ref="R23" pin="1"/>
     </net>
-    <net code="45" name="Net-(R11-Pad2)">
-      <node ref="R11" pin="2"/>
-      <node ref="U3" pin="6"/>
+    <net code="29" name="/D-">
+      <node ref="J13" pin="2"/>
+      <node ref="R23" pin="2"/>
     </net>
-    <net code="46" name="Net-(D2-Pad2)">
-      <node ref="R13" pin="2"/>
-      <node ref="D2" pin="2"/>
+    <net code="30" name="/Y2">
+      <node ref="J10" pin="1"/>
     </net>
-    <net code="47" name="Net-(Q2-Pad3)">
-      <node ref="Q2" pin="3"/>
-      <node ref="U3" pin="4"/>
-      <node ref="R16" pin="2"/>
-    </net>
-    <net code="48" name="/OUT2">
-      <node ref="R12" pin="1"/>
-      <node ref="Q2" pin="1"/>
-      <node ref="C4" pin="1"/>
-      <node ref="J3" pin="2"/>
-    </net>
-    <net code="49" name="Net-(Q3-Pad3)">
-      <node ref="U4" pin="4"/>
-      <node ref="Q3" pin="3"/>
-      <node ref="R21" pin="2"/>
-    </net>
-    <net code="50" name="Net-(C8-Pad1)">
-      <node ref="R17" pin="1"/>
-      <node ref="R18" pin="2"/>
-      <node ref="C8" pin="1"/>
-    </net>
-    <net code="51" name="Net-(R17-Pad2)">
-      <node ref="U4" pin="6"/>
-      <node ref="R17" pin="2"/>
-    </net>
-    <net code="52" name="/OUT3">
-      <node ref="Q3" pin="1"/>
-      <node ref="R18" pin="1"/>
-      <node ref="C7" pin="1"/>
-      <node ref="J7" pin="2"/>
-    </net>
-    <net code="53" name="Net-(R14-Pad2)">
-      <node ref="R14" pin="2"/>
-      <node ref="U3" pin="2"/>
-    </net>
-    <net code="54" name="Net-(U4-Pad3)">
-      <node ref="U4" pin="3"/>
-    </net>
-    <net code="55" name="Net-(U4-Pad5)">
-      <node ref="U4" pin="5"/>
-    </net>
-    <net code="56" name="Net-(C2-Pad1)">
-      <node ref="R2" pin="2"/>
-      <node ref="C2" pin="1"/>
-      <node ref="R1" pin="1"/>
-    </net>
-    <net code="57" name="Net-(D1-Pad2)">
-      <node ref="D1" pin="2"/>
-      <node ref="R3" pin="2"/>
-    </net>
-    <net code="58" name="Net-(U1-Pad3)">
-      <node ref="U1" pin="3"/>
-    </net>
-    <net code="59" name="Net-(U1-Pad5)">
-      <node ref="U1" pin="5"/>
-    </net>
-    <net code="60" name="Net-(R1-Pad2)">
-      <node ref="U1" pin="6"/>
-      <node ref="R1" pin="2"/>
-    </net>
-    <net code="61" name="/LINE">
+    <net code="31" name="/Rc">
       <node ref="J7" pin="1"/>
-      <node ref="J3" pin="1"/>
-      <node ref="J1" pin="1"/>
-      <node ref="J2" pin="1"/>
     </net>
-    <net code="62" name="/OUT1">
-      <node ref="J2" pin="2"/>
-      <node ref="R2" pin="1"/>
-      <node ref="Q1" pin="1"/>
-      <node ref="C1" pin="1"/>
+    <net code="32" name="/W2">
+      <node ref="J14" pin="1"/>
     </net>
-    <net code="63" name="Net-(R4-Pad2)">
+    <net code="33" name="/3V3">
+      <node ref="U6" pin="2"/>
+      <node ref="R28" pin="1"/>
+      <node ref="R26" pin="1"/>
+      <node ref="R27" pin="1"/>
+      <node ref="R29" pin="1"/>
+      <node ref="J5" pin="3"/>
+      <node ref="U4" pin="13"/>
+      <node ref="S2" pin="3"/>
+      <node ref="S2" pin="1"/>
+      <node ref="S1" pin="3"/>
+      <node ref="S1" pin="1"/>
+      <node ref="U4" pin="19"/>
+      <node ref="S4" pin="3"/>
+      <node ref="C7" pin="1"/>
+      <node ref="S3" pin="1"/>
+      <node ref="S3" pin="3"/>
+      <node ref="S4" pin="1"/>
+    </net>
+    <net code="34" name="GND">
+      <node ref="J5" pin="4"/>
+      <node ref="U5" pin="11"/>
+      <node ref="U5" pin="1"/>
+      <node ref="C7" pin="2"/>
+      <node ref="R20" pin="2"/>
+      <node ref="C13" pin="2"/>
+      <node ref="R19" pin="2"/>
+      <node ref="U4" pin="14"/>
+      <node ref="U4" pin="15"/>
+      <node ref="R21" pin="2"/>
+      <node ref="R22" pin="2"/>
+      <node ref="C8" pin="2"/>
+      <node ref="R16" pin="1"/>
+      <node ref="D5" pin="2"/>
+      <node ref="C14" pin="2"/>
+      <node ref="JP1" pin="1"/>
+      <node ref="R4" pin="1"/>
+      <node ref="JP3" pin="1"/>
+      <node ref="JP2" pin="1"/>
+      <node ref="U5" pin="9"/>
+      <node ref="U4" pin="18"/>
+      <node ref="C11" pin="2"/>
+      <node ref="C9" pin="2"/>
+      <node ref="D4" pin="2"/>
+      <node ref="C12" pin="2"/>
+      <node ref="U6" pin="10"/>
+      <node ref="U6" pin="11"/>
+      <node ref="U6" pin="12"/>
+      <node ref="U6" pin="5"/>
+      <node ref="L4" pin="2"/>
+      <node ref="J13" pin="5"/>
+      <node ref="JP4" pin="2"/>
+      <node ref="C15" pin="2"/>
+      <node ref="JP4" pin="1"/>
+      <node ref="U6" pin="6"/>
+      <node ref="R10" pin="1"/>
+      <node ref="BT1" pin="2"/>
+      <node ref="U6" pin="7"/>
+      <node ref="U6" pin="8"/>
+      <node ref="U6" pin="9"/>
+      <node ref="C10" pin="2"/>
+      <node ref="U6" pin="13"/>
+    </net>
+    <net code="35" name="/D+">
+      <node ref="R24" pin="2"/>
+      <node ref="J13" pin="3"/>
+    </net>
+    <net code="36" name="/ID">
+      <node ref="R25" pin="2"/>
+      <node ref="J13" pin="4"/>
+    </net>
+    <net code="37" name="/LX">
+      <node ref="U5" pin="10"/>
+      <node ref="L1" pin="1"/>
+    </net>
+    <net code="38" name="/40VDC">
+      <node ref="U5" pin="2"/>
+      <node ref="D4" pin="1"/>
+      <node ref="C9" pin="1"/>
+      <node ref="U5" pin="3"/>
+      <node ref="C11" pin="1"/>
+      <node ref="C10" pin="1"/>
+    </net>
+    <net code="39" name="Net-(J13-PadS1)">
+      <node ref="J13" pin="S4"/>
+      <node ref="J13" pin="S3"/>
+      <node ref="L4" pin="1"/>
+      <node ref="J13" pin="S2"/>
+      <node ref="J13" pin="S1"/>
+    </net>
+    <net code="40" name="/5V_IN2">
+      <node ref="J16" pin="1"/>
+      <node ref="C15" pin="1"/>
+      <node ref="L2" pin="2"/>
+    </net>
+    <net code="41" name="/USB+">
+      <node ref="J13" pin="1"/>
+      <node ref="D5" pin="1"/>
+      <node ref="L2" pin="1"/>
+    </net>
+    <net code="42" name="Net-(R4-Pad2)">
       <node ref="R4" pin="2"/>
       <node ref="U1" pin="2"/>
     </net>
-    <net code="64" name="/NEUT">
-      <node ref="R16" pin="1"/>
-      <node ref="Q1" pin="2"/>
-      <node ref="Q2" pin="2"/>
+    <net code="43" name="Net-(R13-Pad2)">
+      <node ref="R13" pin="2"/>
+      <node ref="U3" pin="6"/>
+    </net>
+    <net code="44" name="Net-(Q2-Pad3)">
+      <node ref="U2" pin="4"/>
+      <node ref="Q2" pin="3"/>
+      <node ref="R12" pin="2"/>
+    </net>
+    <net code="45" name="Net-(U3-Pad3)">
+      <node ref="U3" pin="3"/>
+    </net>
+    <net code="46" name="Net-(U3-Pad5)">
+      <node ref="U3" pin="5"/>
+    </net>
+    <net code="47" name="Net-(Q3-Pad3)">
+      <node ref="Q3" pin="3"/>
+      <node ref="R17" pin="2"/>
+      <node ref="U3" pin="4"/>
+    </net>
+    <net code="48" name="Net-(C6-Pad1)">
+      <node ref="R14" pin="2"/>
+      <node ref="R13" pin="1"/>
+      <node ref="C6" pin="1"/>
+    </net>
+    <net code="49" name="Net-(D2-Pad2)">
+      <node ref="R9" pin="2"/>
+      <node ref="D2" pin="2"/>
+    </net>
+    <net code="50" name="Net-(R10-Pad2)">
+      <node ref="U2" pin="2"/>
+      <node ref="R10" pin="2"/>
+    </net>
+    <net code="51" name="/SW_D">
       <node ref="R21" pin="1"/>
-      <node ref="C2" pin="2"/>
-      <node ref="R10" pin="1"/>
-      <node ref="R9" pin="1"/>
-      <node ref="R22" pin="1"/>
-      <node ref="Q3" pin="2"/>
-      <node ref="C8" pin="2"/>
-      <node ref="R15" pin="1"/>
-      <node ref="J1" pin="2"/>
-      <node ref="C5" pin="2"/>
+      <node ref="S3" pin="2"/>
+      <node ref="U4" pin="8"/>
+      <node ref="S3" pin="4"/>
     </net>
-    <net code="65" name="/MOSI">
-      <node ref="J10" pin="1"/>
-      <node ref="J9" pin="4"/>
-    </net>
-    <net code="66" name="/RST">
-      <node ref="J9" pin="5"/>
-      <node ref="J11" pin="1"/>
-    </net>
-    <net code="67" name="/MISO">
-      <node ref="J5" pin="1"/>
-      <node ref="J9" pin="1"/>
-    </net>
-    <net code="68" name="/SCK">
-      <node ref="J8" pin="1"/>
-      <node ref="J9" pin="3"/>
-    </net>
-    <net code="69" name="Net-(D3-Pad2)">
-      <node ref="R19" pin="2"/>
+    <net code="52" name="Net-(D3-Pad2)">
+      <node ref="R15" pin="2"/>
       <node ref="D3" pin="2"/>
     </net>
-    <net code="70" name="Net-(R20-Pad2)">
-      <node ref="R20" pin="2"/>
+    <net code="53" name="/IN3">
+      <node ref="D3" pin="1"/>
       <node ref="U4" pin="2"/>
+      <node ref="U3" pin="1"/>
+    </net>
+    <net code="54" name="Net-(R16-Pad2)">
+      <node ref="U3" pin="2"/>
+      <node ref="R16" pin="2"/>
+    </net>
+    <net code="55" name="Net-(JP1-Pad2)">
+      <node ref="R3" pin="1"/>
+      <node ref="JP1" pin="2"/>
+    </net>
+    <net code="56" name="Net-(D1-Pad2)">
+      <node ref="R3" pin="2"/>
+      <node ref="D1" pin="2"/>
+    </net>
+    <net code="57" name="/24Vac-C">
+      <node ref="J2" pin="2"/>
+      <node ref="J1" pin="2"/>
+      <node ref="J8" pin="1"/>
+      <node ref="J3" pin="2"/>
+      <node ref="J4" pin="2"/>
+      <node ref="D4" pin="3"/>
+    </net>
+    <net code="58" name="/IN1">
+      <node ref="U1" pin="1"/>
+      <node ref="D1" pin="1"/>
+      <node ref="U4" pin="24"/>
+    </net>
+    <net code="59" name="Net-(U1-Pad3)">
+      <node ref="U1" pin="3"/>
+    </net>
+    <net code="60" name="Net-(U1-Pad5)">
+      <node ref="U1" pin="5"/>
+    </net>
+    <net code="61" name="Net-(R1-Pad2)">
+      <node ref="R1" pin="2"/>
+      <node ref="U1" pin="6"/>
+    </net>
+    <net code="62" name="Net-(C2-Pad1)">
+      <node ref="R2" pin="2"/>
+      <node ref="R1" pin="1"/>
+      <node ref="C2" pin="1"/>
+    </net>
+    <net code="63" name="Net-(R7-Pad2)">
+      <node ref="U2" pin="6"/>
+      <node ref="R7" pin="2"/>
+    </net>
+    <net code="64" name="/IN2">
+      <node ref="D2" pin="1"/>
+      <node ref="U4" pin="25"/>
+      <node ref="U2" pin="1"/>
+    </net>
+    <net code="65" name="Net-(U2-Pad3)">
+      <node ref="U2" pin="3"/>
+    </net>
+    <net code="66" name="Net-(U2-Pad5)">
+      <node ref="U2" pin="5"/>
+    </net>
+    <net code="67" name="Net-(C4-Pad1)">
+      <node ref="R7" pin="1"/>
+      <node ref="R8" pin="2"/>
+      <node ref="C4" pin="1"/>
+    </net>
+    <net code="68" name="Net-(JP2-Pad2)">
+      <node ref="R9" pin="1"/>
+      <node ref="JP2" pin="2"/>
+    </net>
+    <net code="69" name="Net-(JP3-Pad2)">
+      <node ref="JP3" pin="2"/>
+      <node ref="R15" pin="1"/>
+    </net>
+    <net code="70" name="Net-(Q1-Pad3)">
+      <node ref="U1" pin="4"/>
+      <node ref="Q1" pin="3"/>
+      <node ref="R5" pin="2"/>
+    </net>
+    <net code="71" name="/OUT2">
+      <node ref="Q2" pin="2"/>
+      <node ref="C4" pin="2"/>
+      <node ref="R11" pin="1"/>
+      <node ref="R12" pin="1"/>
+      <node ref="J3" pin="1"/>
+      <node ref="J11" pin="1"/>
+    </net>
+    <net code="72" name="/OUT3">
+      <node ref="R17" pin="1"/>
+      <node ref="Q3" pin="2"/>
+      <node ref="C6" pin="2"/>
+      <node ref="J12" pin="1"/>
+      <node ref="J4" pin="1"/>
+      <node ref="R18" pin="1"/>
+    </net>
+    <net code="73" name="/OUT1">
+      <node ref="J9" pin="1"/>
+      <node ref="R5" pin="1"/>
+      <node ref="J2" pin="1"/>
+      <node ref="Q1" pin="2"/>
+      <node ref="C2" pin="2"/>
+      <node ref="R6" pin="1"/>
+    </net>
+    <net code="74" name="/SW_M">
+      <node ref="U4" pin="7"/>
+      <node ref="R22" pin="1"/>
+      <node ref="S4" pin="4"/>
+      <node ref="S4" pin="2"/>
+    </net>
+    <net code="75" name="/rtc_ds3231/32kHz">
+      <node ref="R27" pin="2"/>
+      <node ref="U6" pin="1"/>
+      <node ref="TP3" pin="1"/>
+    </net>
+    <net code="76" name="/rtc_ds3231/SQR">
+      <node ref="R26" pin="2"/>
+      <node ref="U6" pin="3"/>
+      <node ref="TP2" pin="1"/>
+    </net>
+    <net code="77" name="/rtc_ds3231/BAT">
+      <node ref="BT1" pin="1"/>
+      <node ref="C8" pin="1"/>
+      <node ref="U6" pin="14"/>
+    </net>
+    <net code="78" name="/rtc_ds3231/RESET">
+      <node ref="U6" pin="4"/>
+      <node ref="TP1" pin="1"/>
     </net>
   </nets>
 </export>
