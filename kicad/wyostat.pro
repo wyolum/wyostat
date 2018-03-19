@@ -1,4 +1,4 @@
-update=Tue Mar 13 01:16:22 2018
+update=Mon Mar 19 17:32:04 2018
 version=1
 last_client=kicad
 [general]
@@ -37,7 +37,7 @@ PageLayoutDescrFile=
 PlotDirectoryName=wyostat_pdf/
 SubpartIdSeparator=0
 SubpartFirstId=65
-NetFmtName=
+NetFmtName=Pcbnew
 SpiceAjustPassiveValues=0
 LabSize=40
 ERC_TestSimilarLabels=1

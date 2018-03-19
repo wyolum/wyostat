@@ -14,7 +14,7 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-Text Notes 9400 7525 0    50   ~ 0
+Text Notes 5450 7725 0    50   ~ 0
 BOM :\n1. ESP32 : Wemos Lolin\n2. Opto : MOC3063SR2M\n3. Triac : BT134-600E,127 (TH)\n         : BTA204S-600E,118 (SMD)\n4. LED : LTST-C193KGKT-5A\n5. Bridge Rectifier : MDB6S\n6. PTC Fuse : 0ZCF0075AF2C\n7. DC-DC Converter : MAX17502\n8. 10nF/120V AC : LDEIB2100KA0N00\n9. 47nF/63V AC : LDEEB2470KA0N00\n10. Inductor L1 : ELL-8TP220MB\n11. 100uF/50V Elco : HHXC500ARA101MJA0G\n                      : EMZA630ADA101MJA0G
 $Comp
 L wyostat:MOC3063M U1
@@ -22,7 +22,7 @@ U 1 1 5AA6EEDE
 P 8325 1250
 F 0 "U1" H 8325 1450 50  0000 C CNB
 F 1 "MOC3063M" H 8325 1050 50  0000 C CNN
-F 2 "wyostat_fp:Optocoupler_6pin" H 8125 1050 50  0001 L CIN
+F 2 "wyostat_fp:Optocoupler_6pin_smd" H 8125 1050 50  0001 L CIN
 F 3 "" H 8290 1250 50  0001 L CNN
 	1    8325 1250
 	1    0    0    -1  
@@ -204,7 +204,7 @@ U 1 1 5AA791A2
 P 8325 2600
 F 0 "U2" H 8325 2800 50  0000 C CNB
 F 1 "MOC3063M" H 8325 2400 50  0000 C CNN
-F 2 "wyostat_fp:Optocoupler_6pin" H 8125 2400 50  0001 L CIN
+F 2 "wyostat_fp:Optocoupler_6pin_smd" H 8125 2400 50  0001 L CIN
 F 3 "" H 8290 2600 50  0001 L CNN
 	1    8325 2600
 	1    0    0    -1  
@@ -333,7 +333,7 @@ U 1 1 5AA7ACC5
 P 8325 3950
 F 0 "U3" H 8325 4150 50  0000 C CNB
 F 1 "MOC3063M" H 8325 3750 50  0000 C CNN
-F 2 "wyostat_fp:Optocoupler_6pin" H 8125 3750 50  0001 L CIN
+F 2 "wyostat_fp:Optocoupler_6pin_smd" H 8125 3750 50  0001 L CIN
 F 3 "" H 8290 3950 50  0001 L CNN
 	1    8325 3950
 	1    0    0    -1  
@@ -766,9 +766,9 @@ Wire Notes Line
 	11125 4975 6925 4975
 Text Notes 6950 650  0    40   ~ 8
 TRIAC outputs
-Text Label 2225 1125 0    50   ~ 10
-SW_E
 Text Label 2225 1025 0    50   ~ 10
+SW_E
+Text Label 2225 1125 0    50   ~ 10
 SW_I
 Text Label 2225 925  0    50   ~ 10
 SW_D
@@ -8289,45 +8289,45 @@ GNDREF
 $Comp
 L wyostat:SCREW SC1
 U 1 1 5AED1CEA
-P 6575 6725
-F 0 "SC1" H 6660 6725 40  0000 L CNN
-F 1 "SCREW" H 6575 6825 40  0001 C CNN
-F 2 "wyostat_fp:MountingHole_3.2mm_M3_Pad_Via" H 6575 6725 60  0001 C CNN
-F 3 "" H 6575 6725 60  0000 C CNN
-	1    6575 6725
+P 10775 5325
+F 0 "SC1" H 10860 5325 40  0000 L CNN
+F 1 "SCREW" H 10775 5425 40  0001 C CNN
+F 2 "wyostat_fp:MountingHole_3.2mm_M3_Pad_Via" H 10775 5325 60  0001 C CNN
+F 3 "" H 10775 5325 60  0000 C CNN
+	1    10775 5325
 	1    0    0    -1  
 $EndComp
 $Comp
 L wyostat:SCREW SC2
 U 1 1 5AED2014
-P 6575 7025
-F 0 "SC2" H 6660 7025 40  0000 L CNN
-F 1 "SCREW" H 6575 7125 40  0001 C CNN
-F 2 "wyostat_fp:MountingHole_3.2mm_M3_Pad_Via" H 6575 7025 60  0001 C CNN
-F 3 "" H 6575 7025 60  0000 C CNN
-	1    6575 7025
+P 10775 5625
+F 0 "SC2" H 10860 5625 40  0000 L CNN
+F 1 "SCREW" H 10775 5725 40  0001 C CNN
+F 2 "wyostat_fp:MountingHole_3.2mm_M3_Pad_Via" H 10775 5625 60  0001 C CNN
+F 3 "" H 10775 5625 60  0000 C CNN
+	1    10775 5625
 	1    0    0    -1  
 $EndComp
 $Comp
 L wyostat:SCREW SC3
 U 1 1 5AED2111
-P 6575 7325
-F 0 "SC3" H 6660 7325 40  0000 L CNN
-F 1 "SCREW" H 6575 7425 40  0001 C CNN
-F 2 "wyostat_fp:MountingHole_3.2mm_M3_Pad_Via" H 6575 7325 60  0001 C CNN
-F 3 "" H 6575 7325 60  0000 C CNN
-	1    6575 7325
+P 10775 5925
+F 0 "SC3" H 10860 5925 40  0000 L CNN
+F 1 "SCREW" H 10775 6025 40  0001 C CNN
+F 2 "wyostat_fp:MountingHole_3.2mm_M3_Pad_Via" H 10775 5925 60  0001 C CNN
+F 3 "" H 10775 5925 60  0000 C CNN
+	1    10775 5925
 	1    0    0    -1  
 $EndComp
 $Comp
 L wyostat:SCREW SC4
 U 1 1 5AED2331
-P 6575 7625
-F 0 "SC4" H 6660 7625 40  0000 L CNN
-F 1 "SCREW" H 6575 7725 40  0001 C CNN
-F 2 "wyostat_fp:MountingHole_3.2mm_M3_Pad_Via" H 6575 7625 60  0001 C CNN
-F 3 "" H 6575 7625 60  0000 C CNN
-	1    6575 7625
+P 10775 6225
+F 0 "SC4" H 10860 6225 40  0000 L CNN
+F 1 "SCREW" H 10775 6325 40  0001 C CNN
+F 2 "wyostat_fp:MountingHole_3.2mm_M3_Pad_Via" H 10775 6225 60  0001 C CNN
+F 3 "" H 10775 6225 60  0000 C CNN
+	1    10775 6225
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -8657,29 +8657,75 @@ Wire Wire Line
 Wire Wire Line
 	3325 4425 5025 4425
 $Sheet
-S 9750 5300 1350 700 
+S 7375 5425 625  675 
 U 5AE47A99
 F0 "rtc_ds3231" 40
 F1 "rtc_ds3231.sch" 40
-F2 "3V3" I L 9750 5500 40 
-F3 "GND" I L 9750 5800 40 
-F4 "SDA" I L 9750 5600 40 
-F5 "SCL" I L 9750 5700 40 
+F2 "3V3" I L 7375 5625 40 
+F3 "GND" I L 7375 5925 40 
+F4 "SDA" I L 7375 5725 40 
+F5 "SCL" I L 7375 5825 40 
 $EndSheet
 Wire Wire Line
-	9750 5500 9250 5500
+	7375 5625 7125 5625
 Wire Wire Line
-	9250 5600 9750 5600
+	7125 5725 7375 5725
 Wire Wire Line
-	9750 5700 9250 5700
+	7375 5825 7125 5825
 Wire Wire Line
-	9250 5800 9750 5800
-Text Label 9250 5800 0    50   ~ 10
+	7125 5925 7375 5925
+Text Label 7125 5925 0    50   ~ 10
 GND
-Text Label 9250 5500 0    50   ~ 10
+Text Label 7125 5625 0    50   ~ 10
 3V3
-Text Label 9250 5700 0    50   ~ 10
+Text Label 7125 5825 0    50   ~ 10
 SCL
-Text Label 9250 5600 0    50   ~ 10
+Text Label 7125 5725 0    50   ~ 10
 SDA
+Wire Notes Line
+	8125 5075 8125 6275
+Wire Notes Line
+	8125 6275 6925 6275
+Wire Notes Line
+	6925 6275 6925 5075
+Wire Notes Line
+	6925 5075 8125 5075
+Text Notes 6975 5175 0    40   ~ 8
+I2C RTC
+$Comp
+L wyostat:KiCad G3
+U 1 1 5AC0C01C
+P 10425 7050
+F 0 "G3" H 10425 6782 60  0001 C CNN
+F 1 "KiCad" H 10425 7318 60  0001 C CNN
+F 2 "wyostat_fp:KiCad-Logo2_6mm_SilkScreen" H 10425 7050 60  0001 C CNN
+F 3 "" H 10425 7050 60  0001 C CNN
+F 4 "Value" H 10425 7050 50  0001 C CNN "manf#"
+	1    10425 7050
+	1    0    0    -1  
+$EndComp
+$Comp
+L wyostat:LOGO_WL G1
+U 1 1 5AC0C12D
+P 7175 6875
+F 0 "G1" H 7175 6739 60  0001 C CNN
+F 1 "LOGO_WL" H 7175 7011 60  0001 C CNN
+F 2 "wyostat_fp:Logo-WL3" H 7175 6875 60  0001 C CNN
+F 3 "" H 7175 6875 60  0001 C CNN
+F 4 "Value" H 7175 6875 50  0001 C CNN "manf#"
+	1    7175 6875
+	1    0    0    -1  
+$EndComp
+$Comp
+L wyostat:OSHW G2
+U 1 1 5AC0C24A
+P 9250 6975
+F 0 "G2" H 9250 6925 40  0001 C CNN
+F 1 "OSHW" H 9250 7075 40  0001 C CNN
+F 2 "wyostat_fp:OSHW_6mm" H 9250 6975 60  0001 C CNN
+F 3 "" H 9250 6975 60  0000 C CNN
+F 4 "Value" H 9250 6975 50  0001 C CNN "manf#"
+	1    9250 6975
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
