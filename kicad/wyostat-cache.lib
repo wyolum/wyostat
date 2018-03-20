@@ -1,11 +1,11 @@
 EESchema-LIBRARY Version 2.4
 #encoding utf-8
 #
-# KlokTHREEjr:Batt_RTC
+# KlokTHREEjr_Batt_RTC
 #
-DEF KlokTHREEjr:Batt_RTC BT 0 0 Y Y 1 F N
+DEF KlokTHREEjr_Batt_RTC BT 0 0 Y Y 1 F N
 F0 "BT" 0 200 40 H V C CNN
-F1 "KlokTHREEjr:Batt_RTC" 0 -190 40 H V C CNN
+F1 "KlokTHREEjr_Batt_RTC" 0 -190 40 H V C CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 DRAW
@@ -18,11 +18,11 @@ X - 2 200 0 150 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# KlokTHREEjr:C_NP
+# KlokTHREEjr_C_NP
 #
-DEF KlokTHREEjr:C_NP C 0 10 N N 1 F N
+DEF KlokTHREEjr_C_NP C 0 10 N N 1 F N
 F0 "C" -100 100 40 H V L CNN
-F1 "KlokTHREEjr:C_NP" 0 -150 40 H V L CNN
+F1 "KlokTHREEjr_C_NP" 0 -150 40 H V L CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 $FPLIST
@@ -38,11 +38,11 @@ X - 2 0 -150 100 U 40 40 1 1 P
 ENDDRAW
 ENDDEF
 #
-# KlokTHREEjr:Conn_01x01
+# KlokTHREEjr_Conn_01x01
 #
-DEF KlokTHREEjr:Conn_01x01 J 0 40 Y N 1 F N
+DEF KlokTHREEjr_Conn_01x01 J 0 40 Y N 1 F N
 F0 "J" 0 100 50 H V C CNN
-F1 "KlokTHREEjr:Conn_01x01" 0 -100 50 H V C CNN
+F1 "KlokTHREEjr_Conn_01x01" 0 -100 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -60,11 +60,11 @@ X Pin_1 1 -200 0 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# KlokTHREEjr:DS3231N
+# KlokTHREEjr_DS3231N
 #
-DEF KlokTHREEjr:DS3231N U 0 40 Y Y 1 F N
+DEF KlokTHREEjr_DS3231N U 0 40 Y Y 1 F N
 F0 "U" -575 625 40 H V C CNN
-F1 "KlokTHREEjr:DS3231N" -475 550 40 H V C CNN
+F1 "KlokTHREEjr_DS3231N" -475 550 40 H V C CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 DRAW
@@ -88,11 +88,11 @@ X NC 9 900 -450 300 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# KlokTHREEjr:GND
+# KlokTHREEjr_GND
 #
-DEF ~KlokTHREEjr:GND #PWR 0 0 Y Y 1 F P
+DEF ~KlokTHREEjr_GND #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 0 30 H I C CNN
-F1 "KlokTHREEjr:GND" 0 -75 30 H I C CNN
+F1 "KlokTHREEjr_GND" 0 -75 30 H I C CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 DRAW
@@ -101,11 +101,11 @@ X GND 1 0 0 0 U 30 30 1 1 W N
 ENDDRAW
 ENDDEF
 #
-# KlokTHREEjr:PWR_FLAG
+# KlokTHREEjr_PWR_FLAG
 #
-DEF KlokTHREEjr:PWR_FLAG #FLG 0 0 N N 1 F P
+DEF KlokTHREEjr_PWR_FLAG #FLG 0 0 N N 1 F P
 F0 "#FLG" 0 275 30 H I C CNN
-F1 "KlokTHREEjr:PWR_FLAG" 0 230 30 H V C CNN
+F1 "KlokTHREEjr_PWR_FLAG" 0 230 30 H V C CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 DRAW
@@ -115,11 +115,11 @@ X pwr 1 0 0 0 U 20 20 0 0 w
 ENDDRAW
 ENDDEF
 #
-# KlokTHREEjr:R
+# KlokTHREEjr_R
 #
-DEF KlokTHREEjr:R R 0 0 N Y 1 F N
+DEF KlokTHREEjr_R R 0 0 N Y 1 F N
 F0 "R" 80 0 50 V V C CNN
-F1 "KlokTHREEjr:R" 0 0 50 V V C CNN
+F1 "KlokTHREEjr_R" 0 0 50 V V C CNN
 F2 "" -70 0 30 V V C CNN
 F3 "" 0 0 30 H V C CNN
 $FPLIST
@@ -133,24 +133,24 @@ X ~ 2 0 -150 50 U 60 60 1 1 P
 ENDDRAW
 ENDDEF
 #
-# power:GND
+# power_GND
 #
-DEF power:GND #PWR 0 0 Y Y 1 F P
-F0 "#PWR" 0 -250 50 H I C CNN
-F1 "power:GND" 0 -150 50 H V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
+DEF power_GND #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 0 -250 60 H I C CNN
+F1 "power_GND" 0 -150 60 H V C CNN
+F2 "" 0 0 60 H V C CNN
+F3 "" 0 0 60 H V C CNN
 DRAW
 P 6 0 1 0 0 0 0 -50 50 -50 0 -100 -50 -50 0 -50 N
 X GND 1 0 0 0 D 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
-# wyostat:1N5819
+# wyostat_1N5819
 #
-DEF wyostat:1N5819 D 0 40 N N 1 F N
+DEF wyostat_1N5819 D 0 40 N N 1 F N
 F0 "D" 0 100 50 H V C CNN
-F1 "wyostat:1N5819" 0 -100 50 H V C CNN
+F1 "wyostat_1N5819" 0 -100 50 H V C CNN
 F2 "Diode_THT:D_DO-41_SOD81_Horizontal_RM10" 0 -175 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 ALIAS SB130 SB140 SB150 SB160 1N5817 1N5818 1N5819
@@ -166,11 +166,11 @@ X A 2 150 0 100 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# wyostat:BT136-600
+# wyostat_BT136-600
 #
-DEF wyostat:BT136-600 Q 0 0 N N 1 F N
+DEF wyostat_BT136-600 Q 0 0 N N 1 F N
 F0 "Q" 200 75 50 H V L CNN
-F1 "wyostat:BT136-600" 200 0 50 H V L CNN
+F1 "wyostat_BT136-600" 200 0 50 H V L CNN
 F2 "TO_SOT_Packages_THT:TO-220_Neutral123_Vertical" 200 -75 50 H I L CIN
 F3 "" 0 0 50 H V L CNN
 ALIAS TIC206 BT138-600 BT138-800 TIC216 BT136-500 BT136-600 BT136-800 BT139-600
@@ -189,11 +189,11 @@ X G 3 -150 -100 100 R 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #
-# wyostat:C_NP
+# wyostat_C_NP
 #
-DEF wyostat:C_NP C 0 10 N N 1 F N
+DEF wyostat_C_NP C 0 10 N N 1 F N
 F0 "C" -100 100 40 H V L CNN
-F1 "wyostat:C_NP" 0 -150 40 H V L CNN
+F1 "wyostat_C_NP" 0 -150 40 H V L CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 $FPLIST
@@ -209,11 +209,11 @@ X - 2 0 -150 100 U 40 40 1 1 P
 ENDDRAW
 ENDDEF
 #
-# wyostat:C_POL
+# wyostat_C_POL
 #
-DEF wyostat:C_POL C 0 10 N N 1 F N
+DEF wyostat_C_POL C 0 10 N N 1 F N
 F0 "C" -100 100 40 H V L CNN
-F1 "wyostat:C_POL" 0 -150 40 H V L CNN
+F1 "wyostat_C_POL" 0 -150 40 H V L CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 $FPLIST
@@ -230,11 +230,11 @@ X - 2 0 -150 100 U 40 40 1 1 P
 ENDDRAW
 ENDDEF
 #
-# wyostat:Conn_01x01
+# wyostat_Conn_01x01
 #
-DEF wyostat:Conn_01x01 J 0 40 Y N 1 F N
+DEF wyostat_Conn_01x01 J 0 40 Y N 1 F N
 F0 "J" 0 100 50 H V C CNN
-F1 "wyostat:Conn_01x01" 0 -100 50 H V C CNN
+F1 "wyostat_Conn_01x01" 0 -100 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -252,11 +252,11 @@ X Pin_1 1 -200 0 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# wyostat:Conn_01x02
+# wyostat_Conn_01x02
 #
-DEF wyostat:Conn_01x02 J 0 40 Y N 1 F N
+DEF wyostat_Conn_01x02 J 0 40 Y N 1 F N
 F0 "J" 0 100 50 H V C CNN
-F1 "wyostat:Conn_01x02" 0 -200 50 H V C CNN
+F1 "wyostat_Conn_01x02" 0 -200 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -271,11 +271,11 @@ X Pin_2 2 -200 -100 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# wyostat:Conn_01x04
+# wyostat_Conn_01x04
 #
-DEF wyostat:Conn_01x04 J 0 40 Y N 1 F N
+DEF wyostat_Conn_01x04 J 0 40 Y N 1 F N
 F0 "J" 0 200 50 H V C CNN
-F1 "wyostat:Conn_01x04" 0 -300 50 H V C CNN
+F1 "wyostat_Conn_01x04" 0 -300 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -294,11 +294,11 @@ X Pin_4 4 -200 -200 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# wyostat:DiodeBridge
+# wyostat_DiodeBridge
 #
-DEF wyostat:DiodeBridge D 0 40 Y Y 1 F N
+DEF wyostat_DiodeBridge D 0 40 Y Y 1 F N
 F0 "D" -125 250 40 H V C CNN
-F1 "wyostat:DiodeBridge" 0 -250 40 H V C CNN
+F1 "wyostat_DiodeBridge" 0 -250 40 H V C CNN
 F2 "" 0 0 40 H I C CNN
 F3 "" 0 0 40 H I C CNN
 DRAW
@@ -345,11 +345,11 @@ X ~ 4 -250 50 100 R 40 40 1 1 P
 ENDDRAW
 ENDDEF
 #
-# wyostat:GND
+# wyostat_GND
 #
-DEF ~wyostat:GND #PWR 0 0 Y Y 1 F P
+DEF ~wyostat_GND #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 0 30 H I C CNN
-F1 "wyostat:GND" 0 -75 30 H I C CNN
+F1 "wyostat_GND" 0 -75 30 H I C CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 DRAW
@@ -358,11 +358,11 @@ X GND 1 0 0 0 U 30 30 1 1 W N
 ENDDRAW
 ENDDEF
 #
-# wyostat:GNDREF
+# wyostat_GNDREF
 #
-DEF wyostat:GNDREF #PWR 0 0 Y Y 1 F P
+DEF wyostat_GNDREF #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 -250 50 H I C CNN
-F1 "wyostat:GNDREF" 0 -150 50 H V C CNN
+F1 "wyostat_GNDREF" 0 -150 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
@@ -374,11 +374,11 @@ X GNDREF 1 0 0 0 D 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
-# wyostat:IND_FERRITE_BEAD
+# wyostat_IND_FERRITE_BEAD
 #
-DEF wyostat:IND_FERRITE_BEAD L 0 40 N Y 1 F N
+DEF wyostat_IND_FERRITE_BEAD L 0 40 N Y 1 F N
 F0 "L" -35 90 40 H V L CNN
-F1 "wyostat:IND_FERRITE_BEAD" -185 -95 40 H V L CNN
+F1 "wyostat_IND_FERRITE_BEAD" -185 -95 40 H V L CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" -35 90 60 H V C CNN
 DRAW
@@ -394,11 +394,11 @@ X ~ 2 200 0 50 L 40 40 1 1 P
 ENDDRAW
 ENDDEF
 #
-# wyostat:Jumper_NC_Small
+# wyostat_Jumper_NC_Small
 #
-DEF wyostat:Jumper_NC_Small JP 0 30 N N 1 F N
+DEF wyostat_Jumper_NC_Small JP 0 30 N N 1 F N
 F0 "JP" 0 80 50 H V C CNN
-F1 "wyostat:Jumper_NC_Small" 10 -60 50 H V C CNN
+F1 "wyostat_Jumper_NC_Small" 10 -60 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
@@ -410,11 +410,11 @@ X 2 2 100 0 40 L 50 50 0 1 P
 ENDDRAW
 ENDDEF
 #
-# wyostat:KiCad
+# wyostat_KiCad
 #
-DEF ~wyostat:KiCad #G 0 40 Y Y 1 F N
+DEF ~wyostat_KiCad #G 0 40 Y Y 1 F N
 F0 "#G" 0 -268 60 H I C CNN
-F1 "wyostat:KiCad" 0 268 60 H I C CNN
+F1 "wyostat_KiCad" 0 268 60 H I C CNN
 F2 "" 0 0 60 H I C CNN
 F3 "" 0 0 60 H I C CNN
 DRAW
@@ -428,11 +428,11 @@ P 146 0 0 1 287 -239 298 -237 308 -233 318 -228 329 -221 337 -217 340 -215 341 -
 ENDDRAW
 ENDDEF
 #
-# wyostat:L
+# wyostat_L
 #
-DEF wyostat:L L 0 40 N N 1 F N
+DEF wyostat_L L 0 40 N N 1 F N
 F0 "L" -50 0 50 V V C CNN
-F1 "wyostat:L" 75 0 50 V V C CNN
+F1 "wyostat_L" 75 0 50 V V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -451,11 +451,11 @@ X 2 2 0 -150 50 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# wyostat:LED
+# wyostat_LED
 #
-DEF wyostat:LED D 0 40 N N 1 F N
+DEF wyostat_LED D 0 40 N N 1 F N
 F0 "D" 0 100 40 H V C CNN
-F1 "wyostat:LED" 0 -100 40 H V C CNN
+F1 "wyostat_LED" 0 -100 40 H V C CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 F4 "LED SS 5MM 625NM RED DIFF" 0 200 60 H I L CNN
@@ -485,11 +485,11 @@ X K 2 150 0 100 L 40 40 1 1 P
 ENDDRAW
 ENDDEF
 #
-# wyostat:LOGO_WL
+# wyostat_LOGO_WL
 #
-DEF ~wyostat:LOGO_WL #G 0 40 Y Y 1 F N
+DEF ~wyostat_LOGO_WL #G 0 40 Y Y 1 F N
 F0 "#G" 0 -136 60 H I C CNN
-F1 "wyostat:LOGO_WL" 0 136 60 H I C CNN
+F1 "wyostat_LOGO_WL" 0 136 60 H I C CNN
 F2 "" 0 0 60 H I C CNN
 F3 "" 0 0 60 H I C CNN
 DRAW
@@ -501,11 +501,11 @@ P 314 0 0 1 41 -75 41 -68 40 -66 38 -64 36 -60 32 -55 31 -54 26 -47 21 -42 17 -3
 ENDDRAW
 ENDDEF
 #
-# wyostat:MAX17502FATB+T
+# wyostat_MAX17502FATB+T
 #
-DEF wyostat:MAX17502FATB+T U 0 10 Y Y 1 F N
+DEF wyostat_MAX17502FATB+T U 0 10 Y Y 1 F N
 F0 "U" -450 550 60 H V C CNB
-F1 "wyostat:MAX17502FATB+T" 100 550 60 H V C CNB
+F1 "wyostat_MAX17502FATB+T" 100 550 60 H V C CNB
 F2 "TDFN 10" 0 290 50 H I C CNN
 F3 "" -800 150 60 H V C CNN
 F4 "mfr_pn" 0 0 40 H I C CNN "manf#"
@@ -531,11 +531,11 @@ X GND 9 600 0 100 L 50 50 1 0 W
 ENDDRAW
 ENDDEF
 #
-# wyostat:MOC3063M
+# wyostat_MOC3063M
 #
-DEF wyostat:MOC3063M U 0 40 Y Y 1 F N
+DEF wyostat_MOC3063M U 0 40 Y Y 1 F N
 F0 "U" -200 200 50 H V L CNN
-F1 "wyostat:MOC3063M" 0 200 50 H V L CNN
+F1 "wyostat_MOC3063M" 0 200 50 H V L CNN
 F2 "" -200 -200 50 H I L CIN
 F3 "" -35 0 50 H I L CNN
 ALIAS MOC3032M MOC3033M MOC3041M MOC3042M MOC3043M MOC3081M MOC3082M MOC3083M MOC3061M MOC3062M MOC3063M MOC3162M MOC3163M
@@ -580,11 +580,11 @@ X ~ 6 300 100 100 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# wyostat:OSHW
+# wyostat_OSHW
 #
-DEF ~wyostat:OSHW #G 0 0 N N 1 F N
+DEF ~wyostat_OSHW #G 0 0 N N 1 F N
 F0 "#G" 0 -50 40 H I C CNN
-F1 "wyostat:OSHW" 0 100 40 H I C CNN
+F1 "wyostat_OSHW" 0 100 40 H I C CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 DRAW
@@ -609,11 +609,11 @@ P 696 0 0 1 168 -121 171 -119 179 -111 184 -107 189 -101 194 -96 200 -91 205 -86
 ENDDRAW
 ENDDEF
 #
-# wyostat:PWR_FLAG
+# wyostat_PWR_FLAG
 #
-DEF wyostat:PWR_FLAG #FLG 0 0 N N 1 F P
+DEF wyostat_PWR_FLAG #FLG 0 0 N N 1 F P
 F0 "#FLG" 0 275 30 H I C CNN
-F1 "wyostat:PWR_FLAG" 0 230 30 H V C CNN
+F1 "wyostat_PWR_FLAG" 0 230 30 H V C CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 DRAW
@@ -623,11 +623,11 @@ X pwr 1 0 0 0 U 20 20 0 0 w
 ENDDRAW
 ENDDEF
 #
-# wyostat:Polyfuse
+# wyostat_Polyfuse
 #
-DEF wyostat:Polyfuse F 0 0 N Y 1 F N
+DEF wyostat_Polyfuse F 0 0 N Y 1 F N
 F0 "F" -100 0 50 V V C CNN
-F1 "wyostat:Polyfuse" 100 0 50 V V C CNN
+F1 "wyostat_Polyfuse" 100 0 50 V V C CNN
 F2 "" 50 -200 50 H I L CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -643,11 +643,11 @@ X ~ 2 0 -150 50 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# wyostat:R
+# wyostat_R
 #
-DEF wyostat:R R 0 0 N Y 1 F N
+DEF wyostat_R R 0 0 N Y 1 F N
 F0 "R" 100 0 40 V V C CNN
-F1 "wyostat:R" 0 0 40 V V C CNN
+F1 "wyostat_R" 0 0 40 V V C CNN
 F2 "" -70 0 50 V I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -661,11 +661,11 @@ X ~ 2 0 -150 50 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# wyostat:SCREW
+# wyostat_SCREW
 #
-DEF ~wyostat:SCREW SC 0 0 N N 1 F N
+DEF ~wyostat_SCREW SC 0 0 N N 1 F N
 F0 "SC" 0 -100 40 H V C CNN
-F1 "wyostat:SCREW" 0 100 40 H I C CNN
+F1 "wyostat_SCREW" 0 100 40 H I C CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 DRAW
@@ -673,11 +673,11 @@ C 0 0 50 0 1 20 f
 ENDDRAW
 ENDDEF
 #
-# wyostat:SW-SPST-M
+# wyostat_SW-SPST-M
 #
-DEF wyostat:SW-SPST-M S 0 40 N Y 1 F N
+DEF wyostat_SW-SPST-M S 0 40 N Y 1 F N
 F0 "S" 0 -175 40 H V C CNB
-F1 "wyostat:SW-SPST-M" 0 -100 40 H V C CNB
+F1 "wyostat_SW-SPST-M" 0 -100 40 H V C CNB
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 DRAW
@@ -697,11 +697,11 @@ X ~ 4 150 -50 70 L 40 40 1 1 P
 ENDDRAW
 ENDDEF
 #
-# wyostat:USB_microAB
+# wyostat_USB_microAB
 #
-DEF wyostat:USB_microAB J 0 40 Y Y 1 F N
+DEF wyostat_USB_microAB J 0 40 Y Y 1 F N
 F0 "J" 100 350 50 H V C CNN
-F1 "wyostat:USB_microAB" -150 0 50 V V C CNN
+F1 "wyostat_USB_microAB" -150 0 50 V V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
@@ -734,11 +734,11 @@ X ~ S4 0 -400 100 U 40 40 1 1 P
 ENDDRAW
 ENDDEF
 #
-# wyostat:Wemos-Lolin
+# wyostat_Wemos-Lolin
 #
-DEF wyostat:Wemos-Lolin U 0 40 Y Y 1 F N
+DEF wyostat_Wemos-Lolin U 0 40 Y Y 1 F N
 F0 "U" 1150 550 50 H V C CNN
-F1 "wyostat:Wemos-Lolin" 800 550 50 H V C CNN
+F1 "wyostat_Wemos-Lolin" 800 550 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW

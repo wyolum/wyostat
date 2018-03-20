@@ -1,14 +1,15 @@
-### Module positions - created on Tue Mar 20 01:27:36 2018 ###
-### Printed by Pcbnew version kicad no-vcs-found-67ccf76~61~ubuntu16.04.1
+### Module positions - created on Tue Mar 20 14:35:24 2018 ###
+### Printed by Pcbnew version kicad 5.0.0-rc2-dev-unknown-9e8bcbe~62~ubuntu16.04.1
 ## Unit = mm, Angle = deg.
 ## Side : bottom
-# Ref     Val       Package                PosX       PosY       Rot  Side
-J6        RH        pad_rect_smd        55.8800   -68.0720    0.0000  bottom
-J7        RC        pad_rect_smd       106.6800   -68.0720    0.0000  bottom
-J8        C         pad_rect_smd        55.8800   -76.7080    0.0000  bottom
-J9        Y1        pad_rect_smd       106.6800   -85.8520    0.0000  bottom
-J10       Y2        pad_rect_smd       106.6800   -94.4880    0.0000  bottom
-J11       G         pad_rect_smd       106.6800   -76.7080    0.0000  bottom
-J12       W1        pad_rect_smd        55.8800   -85.8520    0.0000  bottom
-J14       W2        pad_rect_smd        55.8800   -94.4880    0.0000  bottom
+# Ref     Val       Package                  PosX       PosY       Rot  Side
+J6        RH        pad_rect_smd          55.8800   -68.0720   -0.0000  bottom
+J7        RC        pad_rect_smd         106.6800   -68.0720   -0.0000  bottom
+J8        C         pad_rect_smd          55.8800   -76.7080   -0.0000  bottom
+J9        Y1        pad_rect_smd         106.6800   -85.8520   -0.0000  bottom
+J10       Y2        pad_rect_smd         106.6800   -94.4880   -0.0000  bottom
+J11       G         pad_rect_smd         106.6800   -76.7080   -0.0000  bottom
+J12       W1        pad_rect_smd          55.8800   -85.8520   -0.0000  bottom
+J14       W2        pad_rect_smd          55.8800   -94.4880   -0.0000  bottom
+Logo4     logo_snb  logo-skull_n_bones    81.2800   -81.2800  180.0000  bottom
 ## End

@@ -1,51 +1,35 @@
-Cmp-Mod V01 Created by PcbNew   date = Tue Mar 20 01:28:36 2018
+Cmp-Mod V01 Created by PcbNew   date = Tue Mar 20 14:35:02 2018
 
 BeginCmp
-TimeStamp = 5AAA76B4
-Path = /5B29E29F
-Reference = C6;
-ValeurCmp = 47nF,63V;
-IdModule  = wyostat_fp:C_1210;
+TimeStamp = 5ACE83ED
+Path = /5AC0C24A
+Reference = Logo2;
+ValeurCmp = OSHW;
+IdModule  = wyostat_fp:logo-OSHW_6mm;
 EndCmp
 
 BeginCmp
-TimeStamp = 5AB4DEDB
-Path = /5B29D7BF
-Reference = C4;
-ValeurCmp = 47nF,63V;
-IdModule  = wyostat_fp:C_1210;
+TimeStamp = 5ACE8402
+Path = /5AC0C01C
+Reference = Logo3;
+ValeurCmp = KiCad;
+IdModule  = wyostat_fp:logo-kicad_6mm_SilkScreen;
 EndCmp
 
 BeginCmp
-TimeStamp = 5AABE41F
-Path = /5AA72200
-Reference = C2;
-ValeurCmp = 47nF,63V;
-IdModule  = wyostat_fp:C_1210;
+TimeStamp = 5ACE83E8
+Path = /5AC0C12D
+Reference = Logo1;
+ValeurCmp = LOGO_WL;
+IdModule  = wyostat_fp:logo-WL3;
 EndCmp
 
 BeginCmp
-TimeStamp = 5AB4DEA8
-Path = /5ADF342F
-Reference = C1;
-ValeurCmp = 10nF,120V;
-IdModule  = wyostat_fp:C_1210;
-EndCmp
-
-BeginCmp
-TimeStamp = 5AB4DECA
-Path = /5AE133E2
-Reference = C3;
-ValeurCmp = 10nF,120V;
-IdModule  = wyostat_fp:C_1210;
-EndCmp
-
-BeginCmp
-TimeStamp = 5AB4DEEC
-Path = /5AE1E610
-Reference = C5;
-ValeurCmp = 10nF,120V;
-IdModule  = wyostat_fp:C_1210;
+TimeStamp = 5AB0F99C
+Path = /5AB3F94C
+Reference = Logo4;
+ValeurCmp = logo_snb;
+IdModule  = wyostat_fp:logo-skull_n_bones;
 EndCmp
 
 BeginCmp
@@ -110,6 +94,54 @@ Path = /5AB1854D
 Reference = J6;
 ValeurCmp = RH;
 IdModule  = wyostat_fp:pad_rect_smd;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AAA76B4
+Path = /5B29E29F
+Reference = C6;
+ValeurCmp = 47nF,63V;
+IdModule  = wyostat_fp:C_1210;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AB4DEDB
+Path = /5B29D7BF
+Reference = C4;
+ValeurCmp = 47nF,63V;
+IdModule  = wyostat_fp:C_1210;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AABE41F
+Path = /5AA72200
+Reference = C2;
+ValeurCmp = 47nF,63V;
+IdModule  = wyostat_fp:C_1210;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AB4DEA8
+Path = /5ADF342F
+Reference = C1;
+ValeurCmp = 10nF,120V;
+IdModule  = wyostat_fp:C_1210;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AB4DECA
+Path = /5AE133E2
+Reference = C3;
+ValeurCmp = 10nF,120V;
+IdModule  = wyostat_fp:C_1210;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AB4DEEC
+Path = /5AE1E610
+Reference = C5;
+ValeurCmp = 10nF,120V;
+IdModule  = wyostat_fp:C_1210;
 EndCmp
 
 BeginCmp
@@ -553,7 +585,7 @@ IdModule  = wyostat_fp:USB_Micro-B_Molex-105017-0001;
 EndCmp
 
 BeginCmp
-TimeStamp = 5AB4E393
+TimeStamp = 5AB0C710
 Path = /5AA6EEDE
 Reference = U1;
 ValeurCmp = MOC3063M;
@@ -726,30 +758,6 @@ Path = /5AED2331
 Reference = SC4;
 ValeurCmp = SCREW;
 IdModule  = wyostat_fp:MountingHole_3.2mm_M3_Pad_Via;
-EndCmp
-
-BeginCmp
-TimeStamp = 5ACE83E8
-Path = /5AC0C12D
-Reference = G1;
-ValeurCmp = LOGO_WL;
-IdModule  = wyostat_fp:Logo-WL3;
-EndCmp
-
-BeginCmp
-TimeStamp = 5ACE83ED
-Path = /5AC0C24A
-Reference = G2;
-ValeurCmp = OSHW;
-IdModule  = wyostat_fp:OSHW_6mm;
-EndCmp
-
-BeginCmp
-TimeStamp = 5ACE8402
-Path = /5AC0C01C
-Reference = G3;
-ValeurCmp = KiCad;
-IdModule  = wyostat_fp:KiCad-Logo2_6mm_SilkScreen;
 EndCmp
 
 BeginCmp
