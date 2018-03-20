@@ -1,36 +1,4 @@
-Cmp-Mod V01 Created by PcbNew   date = Tue Mar 20 14:35:02 2018
-
-BeginCmp
-TimeStamp = 5ACE83ED
-Path = /5AC0C24A
-Reference = Logo2;
-ValeurCmp = OSHW;
-IdModule  = wyostat_fp:logo-OSHW_6mm;
-EndCmp
-
-BeginCmp
-TimeStamp = 5ACE8402
-Path = /5AC0C01C
-Reference = Logo3;
-ValeurCmp = KiCad;
-IdModule  = wyostat_fp:logo-kicad_6mm_SilkScreen;
-EndCmp
-
-BeginCmp
-TimeStamp = 5ACE83E8
-Path = /5AC0C12D
-Reference = Logo1;
-ValeurCmp = LOGO_WL;
-IdModule  = wyostat_fp:logo-WL3;
-EndCmp
-
-BeginCmp
-TimeStamp = 5AB0F99C
-Path = /5AB3F94C
-Reference = Logo4;
-ValeurCmp = logo_snb;
-IdModule  = wyostat_fp:logo-skull_n_bones;
-EndCmp
+Cmp-Mod V01 Created by PcbNew   date = Tue Mar 20 21:24:02 2018
 
 BeginCmp
 TimeStamp = 5AD96D2B
@@ -94,6 +62,38 @@ Path = /5AB1854D
 Reference = J6;
 ValeurCmp = RH;
 IdModule  = wyostat_fp:pad_rect_smd;
+EndCmp
+
+BeginCmp
+TimeStamp = 5ACE83ED
+Path = /5AC0C24A
+Reference = Logo2;
+ValeurCmp = OSHW;
+IdModule  = wyostat_fp:logo-OSHW_6mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5ACE8402
+Path = /5AC0C01C
+Reference = Logo3;
+ValeurCmp = KiCad;
+IdModule  = wyostat_fp:logo-kicad_6mm_SilkScreen;
+EndCmp
+
+BeginCmp
+TimeStamp = 5ACE83E8
+Path = /5AC0C12D
+Reference = Logo1;
+ValeurCmp = LOGO_WL;
+IdModule  = wyostat_fp:logo-WL3;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AB0F99C
+Path = /5AB3F94C
+Reference = Logo4;
+ValeurCmp = logo_snb;
+IdModule  = wyostat_fp:logo-skull_n_bones;
 EndCmp
 
 BeginCmp
@@ -774,6 +774,14 @@ Path = /5AC2719C
 Reference = D5;
 ValeurCmp = CDSOD323-T05L;
 IdModule  = Diodes_SMD:D_SOD-323_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AC55208
+Path = 
+Reference = G***;
+ValeurCmp = LOGO;
+IdModule  = wyostat_fp:logo-warning;
 EndCmp
 
 EndListe
