@@ -1,0 +1,10 @@
+Ref,Val,Package,PosX,PosY,Rot,Side
+"J6","RH","pad_rect_smd",57.150000,-68.072000,0.000000,bottom
+"J7","RC","pad_rect_smd",105.410000,-68.072000,0.000000,bottom
+"J8","C","pad_rect_smd",57.150000,-76.708000,0.000000,bottom
+"J9","Y1","pad_rect_smd",105.410000,-85.852000,0.000000,bottom
+"J10","Y2","pad_rect_smd",105.410000,-94.488000,0.000000,bottom
+"J11","G","pad_rect_smd",105.410000,-76.708000,0.000000,bottom
+"J12","W1","pad_rect_smd",57.150000,-85.852000,0.000000,bottom
+"J14","W2","pad_rect_smd",57.150000,-94.488000,0.000000,bottom
+"Logo4","logo_snb","logo-skull_n_bones",81.280000,-81.280000,180.000000,bottom

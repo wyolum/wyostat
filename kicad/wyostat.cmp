@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by PcbNew   date = Tue Mar 20 21:24:02 2018
+Cmp-Mod V01 Created by PcbNew   date = Sat Mar 24 16:49:57 2018
 
 BeginCmp
 TimeStamp = 5AD96D2B
@@ -17,7 +17,7 @@ IdModule  = wyostat_fp:pad_rect_smd;
 EndCmp
 
 BeginCmp
-TimeStamp = 5AD96CEC
+TimeStamp = 5AB62371
 Path = /5ABA96DB
 Reference = J10;
 ValeurCmp = Y2;
@@ -25,7 +25,7 @@ IdModule  = wyostat_fp:pad_rect_smd;
 EndCmp
 
 BeginCmp
-TimeStamp = 5AD96CD1
+TimeStamp = 5AB622CC
 Path = /5AB186B9
 Reference = J7;
 ValeurCmp = RC;
@@ -33,7 +33,7 @@ IdModule  = wyostat_fp:pad_rect_smd;
 EndCmp
 
 BeginCmp
-TimeStamp = 5AD96CAD
+TimeStamp = 5AB6233A
 Path = /5ABA94CF
 Reference = J9;
 ValeurCmp = Y1;
@@ -41,7 +41,7 @@ IdModule  = wyostat_fp:pad_rect_smd;
 EndCmp
 
 BeginCmp
-TimeStamp = 5AD96C91
+TimeStamp = 5AB62303
 Path = /5AB8BFF5
 Reference = J11;
 ValeurCmp = G;
@@ -49,7 +49,7 @@ IdModule  = wyostat_fp:pad_rect_smd;
 EndCmp
 
 BeginCmp
-TimeStamp = 5AD96C76
+TimeStamp = 5AB6222F
 Path = /5AB18767
 Reference = J8;
 ValeurCmp = C;
@@ -57,7 +57,7 @@ IdModule  = wyostat_fp:pad_rect_smd;
 EndCmp
 
 BeginCmp
-TimeStamp = 5AD96BE3
+TimeStamp = 5AB62279
 Path = /5AB1854D
 Reference = J6;
 ValeurCmp = RH;
