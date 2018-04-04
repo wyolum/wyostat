@@ -15,93 +15,101 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L KlokTHREEjr:R R28
+L wyostat:R R28
 U 1 1 5A448924
 P 2525 2750
 F 0 "R28" H 2375 2750 50  0000 C CNB
 F 1 "4K7" V 2532 2751 40  0000 C CNN
 F 2 "wyostat_fp:R_0805" V 2455 2750 30  0001 C CNN
 F 3 "~" H 2525 2750 30  0000 C CNN
+F 4 "mfr_pn" H 2525 2750 50  0001 C CNN "manf#"
 	1    2525 2750
 	1    0    0    -1  
 $EndComp
 $Comp
-L KlokTHREEjr:GND #PWR017
+L wyostat:GND #PWR017
 U 1 1 5A44892B
 P 3675 4175
 F 0 "#PWR017" H 3675 4175 30  0001 C CNN
 F 1 "GND" H 3675 4105 30  0001 C CNN
 F 2 "" H 3675 4175 60  0000 C CNN
 F 3 "" H 3675 4175 60  0000 C CNN
+F 4 "mfr_pn" H 3675 4175 50  0001 C CNN "manf#"
 	1    3675 4175
 	1    0    0    -1  
 $EndComp
 $Comp
-L KlokTHREEjr:R R26
+L wyostat:R R26
 U 1 1 5A448933
 P 4900 2550
 F 0 "R26" H 4750 2550 50  0000 C CNB
 F 1 "10k" V 4907 2551 40  0000 C CNN
 F 2 "wyostat_fp:R_0805" V 4830 2550 30  0001 C CNN
 F 3 "~" H 4900 2550 30  0000 C CNN
+F 4 "mfr_pn" H 4900 2550 50  0001 C CNN "manf#"
 	1    4900 2550
 	1    0    0    -1  
 $EndComp
 $Comp
-L KlokTHREEjr:R R27
+L wyostat:R R27
 U 1 1 5A44893A
 P 5050 2550
 F 0 "R27" H 5200 2550 50  0000 C CNB
 F 1 "10k" V 5057 2551 40  0000 C CNN
 F 2 "wyostat_fp:R_0805" V 4980 2550 30  0001 C CNN
 F 3 "~" H 5050 2550 30  0000 C CNN
+F 4 "mfr_pn" H 5050 2550 50  0001 C CNN "manf#"
 	1    5050 2550
 	1    0    0    -1  
 $EndComp
 Text Label 4600 3000 0    50   ~ 10
 RESET
 $Comp
-L KlokTHREEjr:PWR_FLAG #FLG018
+L wyostat:PWR_FLAG #FLG018
 U 1 1 5A448942
 P 2000 2325
 F 0 "#FLG018" H 2000 2595 30  0001 C CNN
 F 1 "PWR_FLAG" H 2000 2555 30  0000 C CNN
 F 2 "" H 2000 2325 60  0000 C CNN
 F 3 "" H 2000 2325 60  0000 C CNN
+F 4 "mfr_pn" H 2000 2325 50  0001 C CNN "manf#"
 	1    2000 2325
 	1    0    0    -1  
 $EndComp
 $Comp
-L KlokTHREEjr:DS3231N U6
+L wyostat:DS3231N U6
 U 1 1 5A448948
 P 3675 3200
 F 0 "U6" H 3075 3825 50  0000 L CNB
 F 1 "DS3231N" H 3075 3750 40  0000 L CNN
 F 2 "wyostat_fp:DS3231" H 3675 3200 60  0001 C CNN
 F 3 "~" H 3675 3200 60  0000 C CNN
+F 4 "mfr_pn" H 3675 3200 50  0001 C CNN "manf#"
 	1    3675 3200
 	1    0    0    -1  
 $EndComp
 $Comp
-L KlokTHREEjr:R R29
+L wyostat:R R29
 U 1 1 5A44894F
 P 2675 2750
 F 0 "R29" H 2825 2750 50  0000 C CNB
 F 1 "4K7" V 2682 2751 40  0000 C CNN
 F 2 "wyostat_fp:R_0805" V 2605 2750 30  0001 C CNN
 F 3 "~" H 2675 2750 30  0000 C CNN
+F 4 "mfr_pn" H 2675 2750 50  0001 C CNN "manf#"
 	1    2675 2750
 	1    0    0    -1  
 $EndComp
 $Comp
-L KlokTHREEjr:Batt_RTC BT1
+L wyostat:Batt_RTC BT1
 U 1 1 5A448957
 P 2000 3200
 F 0 "BT1" V 1900 3125 50  0000 C CNB
 F 1 "Batt_RTC" H 2150 3125 40  0000 C CNN
 F 2 "wyostat_fp:CR2032_SMD2" H 2000 3200 60  0001 C CNN
 F 3 "" H 2000 3200 60  0000 C CNN
-F 4 "BU2032SM-HD-GCT-ND " H 2100 3500 60  0001 C CNN "Digikey"
+F 4 "mfr_pn" H 2000 3200 50  0001 C CNN "manf#"
+F 5 "BU2032SM-HD-GCT-ND " H 2100 3500 60  0001 C CNN "Digikey"
 	1    2000 3200
 	0    1    1    0   
 $EndComp
@@ -204,13 +212,14 @@ SDA
 Text HLabel 7775 5225 2    40   Input ~ 0
 SCL
 $Comp
-L KlokTHREEjr:C_NP C8
+L wyostat:C_NP C8
 U 1 1 5A613CC0
 P 2200 3175
 F 0 "C8" H 2303 3213 50  0000 L CNB
 F 1 "100nF" H 2303 3138 40  0000 L CNN
 F 2 "wyostat_fp:C_0805" H 2200 3175 60  0001 C CNN
 F 3 "" H 2200 3175 60  0000 C CNN
+F 4 "mfr_pn" H 2200 3175 50  0001 C CNN "manf#"
 	1    2200 3175
 	1    0    0    -1  
 $EndComp
@@ -253,13 +262,14 @@ Wire Wire Line
 Wire Wire Line
 	4625 4100 7775 4100
 $Comp
-L KlokTHREEjr:Conn_01x01 TP1
+L wyostat:Conn_01x01 TP1
 U 1 1 5A48EA43
 P 7750 3000
 F 0 "TP1" H 7825 3000 50  0000 L CNN
 F 1 "~RST" H 8000 3000 50  0000 L CNN
 F 2 "wyostat_fp:Pin_Header_Straight_1x01" H 7750 3000 50  0001 C CNN
 F 3 "~" H 7750 3000 50  0001 C CNN
+F 4 "mfr_pn" H 7750 3000 50  0001 C CNN "manf#"
 	1    7750 3000
 	1    0    0    -1  
 $EndComp
@@ -276,24 +286,26 @@ SDA
 Text Label 7225 5225 0    50   ~ 10
 SCL
 $Comp
-L KlokTHREEjr:Conn_01x01 TP2
+L wyostat:Conn_01x01 TP2
 U 1 1 5A95B66E
 P 7750 2850
 F 0 "TP2" H 7825 2850 50  0000 L CNN
 F 1 "SQR" H 8000 2850 50  0000 L CNN
 F 2 "wyostat_fp:Pin_Header_Straight_1x01" H 7750 2850 50  0001 C CNN
 F 3 "~" H 7750 2850 50  0001 C CNN
+F 4 "mfr_pn" H 7750 2850 50  0001 C CNN "manf#"
 	1    7750 2850
 	1    0    0    -1  
 $EndComp
 $Comp
-L KlokTHREEjr:Conn_01x01 TP3
+L wyostat:Conn_01x01 TP3
 U 1 1 5A95B721
 P 7750 3150
 F 0 "TP3" H 7825 3150 50  0000 L CNN
 F 1 "32kHz" H 8000 3150 50  0000 L CNN
 F 2 "wyostat_fp:Pin_Header_Straight_1x01" H 7750 3150 50  0001 C CNN
 F 3 "~" H 7750 3150 50  0001 C CNN
+F 4 "mfr_pn" H 7750 3150 50  0001 C CNN "manf#"
 	1    7750 3150
 	1    0    0    -1  
 $EndComp
