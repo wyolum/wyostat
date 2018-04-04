@@ -40,8 +40,9 @@ WiFiClientSecure client;
 // Setup the MQTT client class by passing in the WiFi client and MQTT server and login details.
 Adafruit_MQTT_Client mqtt(&client, AIO_SERVER, AIO_SERVERPORT, AIO_USERNAME, AIO_KEY);
 
-// io.adafruit.com SHA1 fingerprint
-const char* fingerprint = "26 96 1C 2A 51 07 FD 15 80 96 93 AE F7 32 CE B9 0D 01 55 C4";
+// io.adafruit.com SHA1 fingerprint. Current fingerprint can be verified via: 
+//   echo | openssl s_client -connect io.adafruit.com:443 |& openssl x509 -fingerprint -noout
+#define AIO_SSL_FINGERPRINT "77 00 54 2D DA E7 D8 03 27 31 23 99 EB 27 DB CB A5 4C 57 18"
 
 /****************************** Feeds ***************************************/
 
