@@ -6,16 +6,14 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 2
 Title "WYOSTAT"
-Date "2018-03-12"
+Date "2018-04-05"
 Rev "rev 1"
 Comp "WyoLum"
-Comment1 ""
+Comment1 "https://github.com/wyolum/wyostat"
 Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-Text Notes 5450 7725 0    50   ~ 0
-BOM :\n1. ESP32 : Wemos Lolin\n2. Opto : MOC3063SR2M\n3. Triac : BTA204S-600E,118 (SMD)\n4. LED : LTST-C193KGKT-5A\n5. Bridge Rectifier : MDB6S\n6. PTC Fuse : 0ZCF0075AF2C\n7. DC-DC Converter : MAX17502\n8. 10nF/120V AC : LDEIB2100KA0N00\n9. 47nF/63V AC : LDEEB2470KA0N00\n10. Inductor L1 : ELL-8TP220MB\n11. 100uF/50V Elco : HHXC500ARA101MJA0G\n                      : EMZA630ADA101MJA0G
 $Comp
 L wyostat:MOC3063M U1
 U 1 1 5AA6EEDE
@@ -106,7 +104,7 @@ L wyostat:Conn_01x02 J1
 U 1 1 5AA72EFC
 P 10925 700
 F 0 "J1" H 10900 500 50  0000 L CNB
-F 1 "24 V AC IN" H 10675 400 50  0000 L CNN
+F 1 "24 V AC IN" H 10350 550 50  0000 L CNN
 F 2 "wyostat_fp:TerminalBlock_Pheonix_MPT-2.54mm_2pol" H 10925 700 50  0001 C CNN
 F 3 "~" H 10925 700 50  0001 C CNN
 F 4 "Value" H 10925 700 50  0001 C CNN "manf#"
@@ -8013,7 +8011,7 @@ EndData
 $EndBitmap
 Text Notes 600  6250 0    50   ~ 0
 40 V AC MAX.\nISOLATED
-Text Notes 10600 1125 0    50   ~ 0
+Text Notes 10350 975  0    50   ~ 0
 40 V AC MAX
 Wire Wire Line
 	2175 1250 2175 1125
@@ -8120,7 +8118,7 @@ NoConn ~ 4325 7075
 Wire Wire Line
 	10725 700  10225 700 
 Wire Wire Line
-	10300 800  10300 900 
+	10300 800  10300 1375
 Wire Wire Line
 	10300 800  10725 800 
 Wire Wire Line
@@ -8146,20 +8144,18 @@ Wire Wire Line
 Connection ~ 9900 1150
 Connection ~ 10225 1150
 Wire Wire Line
-	10225 700  10225 1150
-Wire Wire Line
 	9900 2500 10225 2500
 Connection ~ 9900 2500
 Connection ~ 10225 2500
 Wire Wire Line
-	10225 1150 10225 2500
+	10225 1150 10225 1250
 Wire Wire Line
 	10225 3850 9900 3850
 Connection ~ 9900 3850
 Wire Wire Line
 	10225 2500 10225 3850
 Text Notes 2650 3600 0    40   ~ 8
-INPUT POWER\n\nInput Power sources are :\na. Micro USB 5V to Wemos Lolin\nb. 28 V AC to 5 V DC via switching regulator\nc. Micro USB on Wyostat (only Power, no Data)\n\nWhen using option "b" or "c", the micro USB cable\nMUST be removed to prevent power conflicts.\n\nWhen using option "a", the Power Selector Header\nmust be in OFF position.
+INPUT POWER\n\nInput Power sources are :\na. Micro USB 5V to Wemos Lolin\nb. 28 V AC to 5 V DC via switching regulator\nc. Micro USB on Wyostat (only Power, no Data)\n\nWhen using option "b" or "c", the micro USB cable\nMUST be removed to prevent power conflicts.\n\nWhen using option "a", the Power Selector Header\nJ16 must be in OFF position.
 Text Label 2750 6675 0    50   ~ 10
 VCC
 Text Label 2975 6875 0    50   ~ 10
@@ -8569,13 +8565,13 @@ $EndComp
 $Comp
 L wyostat:LOGO_WL Logo1
 U 1 1 5AC0C12D
-P 7175 6875
-F 0 "Logo1" H 7175 6739 60  0001 C CNN
-F 1 "LOGO_WL" H 7175 7011 60  0001 C CNN
-F 2 "wyostat_fp:logo-WL3" H 7175 6875 60  0001 C CNN
-F 3 "" H 7175 6875 60  0001 C CNN
-F 4 "Value" H 7175 6875 50  0001 C CNN "manf#"
-	1    7175 6875
+P 7175 6725
+F 0 "Logo1" H 7175 6589 60  0001 C CNN
+F 1 "LOGO_WL" H 7175 6861 60  0001 C CNN
+F 2 "wyostat_fp:logo-WL3" H 7175 6725 60  0001 C CNN
+F 3 "" H 7175 6725 60  0001 C CNN
+F 4 "Value" H 7175 6725 50  0001 C CNN "manf#"
+	1    7175 6725
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -8593,45 +8589,41 @@ $EndComp
 $Comp
 L wyostat:Conn_01x01 J6
 U 1 1 5AB1854D
-P 9925 700
-F 0 "J6" H 10200 700 50  0000 C CNN
-F 1 "RH" H 10050 700 50  0000 C CNB
-F 2 "wyostat_fp:pad_rect_smd" H 9925 700 50  0001 C CNN
-F 3 "" H 9925 700 50  0001 C CNN
-	1    9925 700 
-	-1   0    0    1   
+P 10925 1250
+F 0 "J6" H 10925 1350 50  0000 C CNN
+F 1 "RH" H 11050 1250 50  0000 C CNB
+F 2 "wyostat_fp:pad_rect_smd" H 10925 1250 50  0001 C CNN
+F 3 "" H 10925 1250 50  0001 C CNN
+	1    10925 1250
+	1    0    0    -1  
 $EndComp
 $Comp
 L wyostat:Conn_01x01 J7
 U 1 1 5AB186B9
-P 9925 800
-F 0 "J7" H 10200 800 50  0000 C CNN
-F 1 "RC" H 10050 800 50  0000 C CNB
-F 2 "wyostat_fp:pad_rect_smd" H 9925 800 50  0001 C CNN
-F 3 "" H 9925 800 50  0001 C CNN
-	1    9925 800 
+P 8800 5275
+F 0 "J7" H 9075 5275 50  0000 C CNN
+F 1 "RC" H 8925 5275 50  0000 C CNB
+F 2 "wyostat_fp:pad_rect_smd" H 8800 5275 50  0001 C CNN
+F 3 "" H 8800 5275 50  0001 C CNN
+	1    8800 5275
 	-1   0    0    1   
 $EndComp
 $Comp
 L wyostat:Conn_01x01 J8
 U 1 1 5AB18767
-P 9925 900
-F 0 "J8" H 10200 900 50  0000 C CNN
-F 1 "C" H 10025 900 50  0000 C CNB
-F 2 "wyostat_fp:pad_rect_smd" H 9925 900 50  0001 C CNN
-F 3 "" H 9925 900 50  0001 C CNN
-	1    9925 900 
-	-1   0    0    1   
+P 10925 1375
+F 0 "J8" H 10925 1275 50  0000 C CNN
+F 1 "C" H 11025 1375 50  0000 C CNB
+F 2 "wyostat_fp:pad_rect_smd" H 10925 1375 50  0001 C CNN
+F 3 "" H 10925 1375 50  0001 C CNN
+	1    10925 1375
+	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	10225 700  10125 700 
-Connection ~ 10225 700 
+	10725 1375 10300 1375
+Connection ~ 10300 1375
 Wire Wire Line
-	10125 900  10300 900 
-Connection ~ 10300 900 
-Wire Wire Line
-	10300 900  10300 1925
-NoConn ~ 10125 800 
+	10300 1375 10300 1925
 $Comp
 L wyostat:Conn_01x01 J11
 U 1 1 5AB8BFF5
@@ -8664,15 +8656,14 @@ $EndComp
 $Comp
 L wyostat:Conn_01x01 J10
 U 1 1 5ABA96DB
-P 10925 2650
-F 0 "J10" H 10875 2750 50  0000 L CNN
-F 1 "Y2" H 11000 2650 50  0000 L CNB
-F 2 "wyostat_fp:pad_rect_smd" H 10925 2650 50  0001 C CNN
-F 3 "" H 10925 2650 50  0001 C CNN
-	1    10925 2650
-	1    0    0    -1  
+P 8800 5175
+F 0 "J10" H 9050 5175 50  0000 L CNN
+F 1 "Y2" H 8875 5175 50  0000 L CNB
+F 2 "wyostat_fp:pad_rect_smd" H 8800 5175 50  0001 C CNN
+F 3 "" H 8800 5175 50  0001 C CNN
+	1    8800 5175
+	-1   0    0    1   
 $EndComp
-NoConn ~ 10725 2650
 Wire Wire Line
 	10725 2375 10600 2375
 Wire Wire Line
@@ -8694,15 +8685,14 @@ $EndComp
 $Comp
 L wyostat:Conn_01x01 J14
 U 1 1 5AD0E58F
-P 10925 5275
-F 0 "J14" H 10875 5375 50  0000 L CNN
-F 1 "W2" H 11000 5275 50  0000 L CNB
-F 2 "wyostat_fp:pad_rect_smd" H 10925 5275 50  0001 C CNN
-F 3 "" H 10925 5275 50  0001 C CNN
-	1    10925 5275
-	1    0    0    -1  
+P 8800 5375
+F 0 "J14" H 9050 5375 50  0000 L CNN
+F 1 "W2" H 8875 5375 50  0000 L CNB
+F 2 "wyostat_fp:pad_rect_smd" H 8800 5375 50  0001 C CNN
+F 3 "" H 8800 5375 50  0001 C CNN
+	1    8800 5375
+	-1   0    0    1   
 $EndComp
-NoConn ~ 10725 5275
 Wire Wire Line
 	10725 5075 10575 5075
 Wire Wire Line
@@ -8710,14 +8700,12 @@ Wire Wire Line
 Connection ~ 10575 4725
 Wire Wire Line
 	10575 4725 10725 4725
-Text Label 10725 2650 2    40   ~ 0
+Text Label 9000 5175 0    40   ~ 0
 Y2
-Text Label 10725 5275 2    40   ~ 0
+Text Label 9000 5375 0    40   ~ 0
 W2
-Text Label 10125 800  0    40   ~ 0
-Rc
 $Bitmap
-Pos 8550 5875
+Pos 5750 7350
 Scale 1.000000
 Data
 89 50 4E 47 0D 0A 1A 0A 00 00 00 0D 49 48 44 52 00 00 00 AF 00 00 00 AF 08 02 00 00 00 04 F0 19 
@@ -9612,17 +9600,17 @@ $EndBitmap
 $Comp
 L wyostat:SCREW Logo4
 U 1 1 5AB3F94C
-P 8550 6100
-F 0 "Logo4" H 8635 6100 40  0000 L CNN
-F 1 "logo_snb" H 8550 6200 40  0001 C CNN
-F 2 "wyostat_fp:logo-skull_n_bones" H 8550 6100 60  0001 C CNN
-F 3 "" H 8550 6100 60  0000 C CNN
-F 4 "Value" H 8550 6100 50  0001 C CNN "manf#"
-	1    8550 6100
+P 5750 7650
+F 0 "Logo4" H 5835 7650 40  0000 L CNN
+F 1 "logo_snb" H 5750 7750 40  0001 C CNN
+F 2 "wyostat_fp:logo-skull_n_bones" H 5750 7650 60  0001 C CNN
+F 3 "" H 5750 7650 60  0000 C CNN
+F 4 "Value" H 5750 7650 50  0001 C CNN "manf#"
+	1    5750 7650
 	1    0    0    -1  
 $EndComp
-Text Notes 8850 6000 0    50   ~ 10
-24VAC MAX., ISOLATED\nDO NOT CONNECT 115VAC
+Text Notes 6050 7400 0    50   ~ 10
+24VAC MAX.,\nISOLATED\nDO NOT \nCONNECT 115VAC
 Wire Wire Line
 	8775 2025 9550 2025
 Wire Wire Line
@@ -9647,7 +9635,7 @@ Wire Wire Line
 Wire Wire Line
 	8775 2700 8625 2700
 $Bitmap
-Pos 5725 5325
+Pos 5725 6850
 Scale 1.000000
 Data
 89 50 4E 47 0D 0A 1A 0A 00 00 00 0D 49 48 44 52 00 00 00 70 00 00 00 70 08 02 00 00 00 49 82 63 
@@ -9793,17 +9781,45 @@ $EndBitmap
 $Comp
 L wyostat:SCREW Logo5
 U 1 1 5AE0052A
-P 5725 5075
-F 0 "Logo5" H 5650 5175 40  0000 L CNN
-F 1 "logo_warning" H 5725 5175 40  0001 C CNN
-F 2 "wyostat_fp:logo-warning" H 5725 5075 60  0001 C CNN
-F 3 "" H 5725 5075 60  0000 C CNN
-F 4 "Value" H 5725 5075 50  0001 C CNN "manf#"
-	1    5725 5075
+P 5725 6575
+F 0 "Logo5" H 5650 6675 40  0000 L CNN
+F 1 "logo_warning" H 5725 6675 40  0001 C CNN
+F 2 "wyostat_fp:logo-warning" H 5725 6575 60  0001 C CNN
+F 3 "" H 5725 6575 60  0000 C CNN
+F 4 "Value" H 5725 6575 50  0001 C CNN "manf#"
+	1    5725 6575
 	1    0    0    -1  
 $EndComp
 Text Label 6425 5625 2    50   ~ 10
 5V_USB
 Text Notes 5575 6125 0    40   ~ 0
 USB\n\nOFF\n\nEXT
+Wire Wire Line
+	10225 700  10225 1150
+Wire Wire Line
+	10725 1250 10225 1250
+Connection ~ 10225 1250
+Wire Wire Line
+	10225 1250 10225 2500
+Text Label 9000 5275 0    40   ~ 0
+RC
+$Comp
+L wyostat:Conn_01x03 J15
+U 1 1 5AD6DCBB
+P 9400 5275
+F 0 "J15" H 9375 5475 50  0000 L CNN
+F 1 "Conn_Spare" H 9475 5400 50  0000 L CNN
+F 2 "wyostat_fp:TerminalBlock_Pheonix_MPT-2.54mm_3pol" H 9400 5275 50  0001 C CNN
+F 3 "" H 9400 5275 50  0001 C CNN
+	1    9400 5275
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	9000 5175 9200 5175
+Wire Wire Line
+	9000 5275 9200 5275
+Wire Wire Line
+	9000 5375 9200 5375
+Text Notes 9475 5425 0    40   ~ 0
+Extra connection pads\nbrokenout to screw connector
 $EndSCHEMATC

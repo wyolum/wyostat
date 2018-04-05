@@ -1,4 +1,140 @@
-Cmp-Mod V01 Created by PcbNew   date = Sat Mar 24 16:49:57 2018
+Cmp-Mod V01 Created by PcbNew   date = Thu Apr  5 15:47:26 2018
+
+BeginCmp
+TimeStamp = 5AC6B10A
+Path = /5AD6DCBB
+Reference = J15;
+ValeurCmp = Conn_Spare;
+IdModule  = wyostat_fp:TerminalBlock_Pheonix_MPT-2.54mm_3pol;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AB4E030
+Path = /5AA726AC
+Reference = J2;
+ValeurCmp = OUT1;
+IdModule  = wyostat_fp:TerminalBlock_Pheonix_MPT-2.54mm_2pol;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AB4E01B
+Path = /5AA72EFC
+Reference = J1;
+ValeurCmp = 24 V AC IN;
+IdModule  = wyostat_fp:TerminalBlock_Pheonix_MPT-2.54mm_2pol;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AAA8E9C
+Path = /5AA791CF
+Reference = J3;
+ValeurCmp = OUT2;
+IdModule  = wyostat_fp:TerminalBlock_Pheonix_MPT-2.54mm_2pol;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AB4E05A
+Path = /5AA7ACF2
+Reference = J4;
+ValeurCmp = OUT3;
+IdModule  = wyostat_fp:TerminalBlock_Pheonix_MPT-2.54mm_2pol;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AAA7E24
+Path = /5AA95836
+Reference = S1;
+ValeurCmp = SW-ENTER;
+IdModule  = wyostat_fp:SW_SPST_FSM6JSMA;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AC9F95B
+Path = /5AA957EB
+Reference = S3;
+ValeurCmp = SW-DEC;
+IdModule  = wyostat_fp:SW_SPST_FSM6JSMA;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AB4E373
+Path = /5AA957F2
+Reference = S4;
+ValeurCmp = SW-MODE;
+IdModule  = wyostat_fp:SW_SPST_FSM6JSMA;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AB4E347
+Path = /5AA9583D
+Reference = S2;
+ValeurCmp = SW-INC;
+IdModule  = wyostat_fp:SW_SPST_FSM6JSMA;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AB4E1D8
+Path = /5AA72852
+Reference = R3;
+ValeurCmp = 200;
+IdModule  = wyostat_fp:R_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AB4E131
+Path = /5AC0D0E8
+Reference = JP1;
+ValeurCmp = LED_en;
+IdModule  = wyostat_fp:R_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AB4E146
+Path = /5AC99440
+Reference = JP2;
+ValeurCmp = LED_en;
+IdModule  = wyostat_fp:R_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AB4E15B
+Path = /5ACA1F7C
+Reference = JP3;
+ValeurCmp = LED_en;
+IdModule  = wyostat_fp:R_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AD8DCE4
+Path = /5AC2719C
+Reference = D5;
+ValeurCmp = CDSOD323-T05L;
+IdModule  = wyostat_fp:D_SOD-323_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AB0C710
+Path = /5AA6EEDE
+Reference = U1;
+ValeurCmp = MOC3063M;
+IdModule  = wyostat_fp:Optocoupler_6pin_smd;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AB4E271
+Path = /5AD5434F
+Reference = R12;
+ValeurCmp = 360;
+IdModule  = wyostat_fp:R_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = 5ACB36B3
+Path = /5AE47A99/5A448957
+Reference = BT1;
+ValeurCmp = Batt_RTC;
+IdModule  = wyostat_fp:CR2032_SMD2;
+EndCmp
 
 BeginCmp
 TimeStamp = 5AD96D2B
@@ -97,30 +233,6 @@ IdModule  = wyostat_fp:logo-skull_n_bones;
 EndCmp
 
 BeginCmp
-TimeStamp = 5AAA76B4
-Path = /5B29E29F
-Reference = C6;
-ValeurCmp = 47nF,63V;
-IdModule  = wyostat_fp:C_1210;
-EndCmp
-
-BeginCmp
-TimeStamp = 5AB4DEDB
-Path = /5B29D7BF
-Reference = C4;
-ValeurCmp = 47nF,63V;
-IdModule  = wyostat_fp:C_1210;
-EndCmp
-
-BeginCmp
-TimeStamp = 5AABE41F
-Path = /5AA72200
-Reference = C2;
-ValeurCmp = 47nF,63V;
-IdModule  = wyostat_fp:C_1210;
-EndCmp
-
-BeginCmp
 TimeStamp = 5AB4DEA8
 Path = /5ADF342F
 Reference = C1;
@@ -161,43 +273,11 @@ IdModule  = wyostat_fp:DPAK-2;
 EndCmp
 
 BeginCmp
-TimeStamp = 5AD8DD1D
+TimeStamp = 5ACFC43B
 Path = /5AA7ACCB
 Reference = Q3;
 ValeurCmp = BTA204S;
 IdModule  = wyostat_fp:DPAK-2;
-EndCmp
-
-BeginCmp
-TimeStamp = 5AAA7E24
-Path = /5AA95836
-Reference = S1;
-ValeurCmp = SW-ENTER;
-IdModule  = wyostat_fp:SW_SPST_CK_KSCx;
-EndCmp
-
-BeginCmp
-TimeStamp = 5AB4E347
-Path = /5AA9583D
-Reference = S2;
-ValeurCmp = SW-INC;
-IdModule  = wyostat_fp:SW_SPST_CK_KSCx;
-EndCmp
-
-BeginCmp
-TimeStamp = 5AC9F95B
-Path = /5AA957EB
-Reference = S3;
-ValeurCmp = SW-DEC;
-IdModule  = wyostat_fp:SW_SPST_CK_KSCx;
-EndCmp
-
-BeginCmp
-TimeStamp = 5AB4E373
-Path = /5AA957F2
-Reference = S4;
-ValeurCmp = SW-MODE;
-IdModule  = wyostat_fp:SW_SPST_CK_KSCx;
 EndCmp
 
 BeginCmp
@@ -230,14 +310,6 @@ Path = /5AA9A33C
 Reference = U5;
 ValeurCmp = MAX17502FATB+T;
 IdModule  = wyostat_fp:TDFN-10;
-EndCmp
-
-BeginCmp
-TimeStamp = 5ACB36B3
-Path = /5AE47A99/5A448957
-Reference = BT1;
-ValeurCmp = Batt_RTC;
-IdModule  = wyostat_fp:CR2032_SMD2;
 EndCmp
 
 BeginCmp
@@ -337,22 +409,6 @@ IdModule  = wyostat_fp:R_0805;
 EndCmp
 
 BeginCmp
-TimeStamp = 5AB4E1C7
-Path = /5AA72195
-Reference = R2;
-ValeurCmp = 0E;
-IdModule  = wyostat_fp:R_0805;
-EndCmp
-
-BeginCmp
-TimeStamp = 5AB4E1D8
-Path = /5AA72852
-Reference = R3;
-ValeurCmp = 200;
-IdModule  = wyostat_fp:R_0805;
-EndCmp
-
-BeginCmp
 TimeStamp = 5AB4E1E9
 Path = /5AA73EE6
 Reference = R4;
@@ -385,14 +441,6 @@ IdModule  = wyostat_fp:R_0805;
 EndCmp
 
 BeginCmp
-TimeStamp = 5AB4E22D
-Path = /5B29D57C
-Reference = R8;
-ValeurCmp = 0E;
-IdModule  = wyostat_fp:R_0805;
-EndCmp
-
-BeginCmp
 TimeStamp = 5AB4E23E
 Path = /5AA791D5
 Reference = R9;
@@ -417,26 +465,10 @@ IdModule  = wyostat_fp:R_0805;
 EndCmp
 
 BeginCmp
-TimeStamp = 5AB4E271
-Path = /5AD5434F
-Reference = R12;
-ValeurCmp = 360;
-IdModule  = wyostat_fp:R_0805;
-EndCmp
-
-BeginCmp
 TimeStamp = 5AB4E282
 Path = /5AA7ACD1
 Reference = R13;
 ValeurCmp = 360;
-IdModule  = wyostat_fp:R_0805;
-EndCmp
-
-BeginCmp
-TimeStamp = 5AB4E293
-Path = /5B29DED2
-Reference = R14;
-ValeurCmp = 0E;
 IdModule  = wyostat_fp:R_0805;
 EndCmp
 
@@ -585,14 +617,6 @@ IdModule  = wyostat_fp:USB_Micro-B_Molex-105017-0001;
 EndCmp
 
 BeginCmp
-TimeStamp = 5AB0C710
-Path = /5AA6EEDE
-Reference = U1;
-ValeurCmp = MOC3063M;
-IdModule  = wyostat_fp:Optocoupler_6pin_smd;
-EndCmp
-
-BeginCmp
 TimeStamp = 5AB4E3B3
 Path = /5AA791A2
 Reference = U2;
@@ -614,38 +638,6 @@ Path = /5AA95913
 Reference = J5;
 ValeurCmp = I2C_ext1;
 IdModule  = wyostat_fp:Pin_Header_Straight_1x04;
-EndCmp
-
-BeginCmp
-TimeStamp = 5AB4E030
-Path = /5AA726AC
-Reference = J2;
-ValeurCmp = OUT1;
-IdModule  = wyostat_fp:TerminalBlock_Pheonix_MPT-2.54mm_2pol;
-EndCmp
-
-BeginCmp
-TimeStamp = 5AB4E01B
-Path = /5AA72EFC
-Reference = J1;
-ValeurCmp = 24 V AC IN;
-IdModule  = wyostat_fp:TerminalBlock_Pheonix_MPT-2.54mm_2pol;
-EndCmp
-
-BeginCmp
-TimeStamp = 5AAA8E9C
-Path = /5AA791CF
-Reference = J3;
-ValeurCmp = OUT2;
-IdModule  = wyostat_fp:TerminalBlock_Pheonix_MPT-2.54mm_2pol;
-EndCmp
-
-BeginCmp
-TimeStamp = 5AB4E05A
-Path = /5AA7ACF2
-Reference = J4;
-ValeurCmp = OUT3;
-IdModule  = wyostat_fp:TerminalBlock_Pheonix_MPT-2.54mm_2pol;
 EndCmp
 
 BeginCmp
@@ -686,30 +678,6 @@ Path = /5AF818EB
 Reference = J16;
 ValeurCmp = 5V_SEL;
 IdModule  = wyostat_fp:Pin_Header_Straight_1x04;
-EndCmp
-
-BeginCmp
-TimeStamp = 5AB4E131
-Path = /5AC0D0E8
-Reference = JP1;
-ValeurCmp = LED_en;
-IdModule  = wyostat_fp:LED_0402;
-EndCmp
-
-BeginCmp
-TimeStamp = 5AB4E146
-Path = /5AC99440
-Reference = JP2;
-ValeurCmp = LED_en;
-IdModule  = wyostat_fp:LED_0402;
-EndCmp
-
-BeginCmp
-TimeStamp = 5AB4E15B
-Path = /5ACA1F7C
-Reference = JP3;
-ValeurCmp = LED_en;
-IdModule  = wyostat_fp:LED_0402;
 EndCmp
 
 BeginCmp
@@ -769,18 +737,10 @@ IdModule  = wyostat_fp:CP_Elec_10x10;
 EndCmp
 
 BeginCmp
-TimeStamp = 5AD8DCE4
-Path = /5AC2719C
-Reference = D5;
-ValeurCmp = CDSOD323-T05L;
-IdModule  = Diodes_SMD:D_SOD-323_HandSoldering;
-EndCmp
-
-BeginCmp
 TimeStamp = 5AC55208
-Path = 
-Reference = G***;
-ValeurCmp = LOGO;
+Path = /5AE0052A
+Reference = Logo5;
+ValeurCmp = logo_warning;
 IdModule  = wyostat_fp:logo-warning;
 EndCmp
 

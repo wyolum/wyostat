@@ -1,5 +1,5 @@
-### Module positions - created on Mon Mar 26 19:24:42 2018 ###
-### Printed by Pcbnew version kicad 5.0.0-rc2-dev-unknown-1cd6477~63~ubuntu16.04.1
+### Module positions - created on Thu Apr  5 15:47:57 2018 ###
+### Printed by Pcbnew version kicad 5.0.0-rc2-dev-unknown-c867de5~63~ubuntu17.10.1
 ## Unit = mm, Angle = deg.
 ## Side : bottom
 # Ref     Val       Package                  PosX       PosY       Rot  Side
@@ -11,5 +11,5 @@ J10       Y2        pad_rect_smd        -104.1400   -92.7100    0.0000  bottom
 J11       G         pad_rect_smd        -104.1400   -77.4700    0.0000  bottom
 J12       W1        pad_rect_smd         -58.4200   -85.0900    0.0000  bottom
 J14       W2        pad_rect_smd         -58.4200   -92.7100    0.0000  bottom
-Logo4     logo_snb  logo-skull_n_bones   -81.2800   -81.2800  180.0000  bottom
+Logo4     logo_snb  logo-skull_n_bones   -81.9150   -54.6100  180.0000  bottom
 ## End

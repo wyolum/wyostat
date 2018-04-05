@@ -5,11 +5,11 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 2 2
-Title "KlokTHREEjr"
-Date "2017-12-26"
+Title "WYOSTAT"
+Date "2018-04-05"
 Rev "rev 1"
-Comp "www.wyolum.com"
-Comment1 "https://github.com/wyolum/KlokTHREEjr"
+Comp "WyoLum"
+Comment1 "https://github.com/wyolum/wyostat"
 Comment2 ""
 Comment3 ""
 Comment4 ""
