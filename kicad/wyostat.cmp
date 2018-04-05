@@ -1,4 +1,36 @@
-Cmp-Mod V01 Created by PcbNew   date = Thu Apr  5 15:47:26 2018
+Cmp-Mod V01 Created by PcbNew   date = Thu Apr  5 23:01:48 2018
+
+BeginCmp
+TimeStamp = 5AF126E3
+Path = /5ACA4E5A
+Reference = J5;
+ValeurCmp = I2C_ext1;
+IdModule  = wyostat_fp:Pin_Header_TMP102_1x06;
+EndCmp
+
+BeginCmp
+TimeStamp = 5ACB3FC6
+Path = /5AE47A99/5A613CC0
+Reference = C8;
+ValeurCmp = 100nF;
+IdModule  = wyostat_fp:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = 5ACB36C4
+Path = /5AA95948
+Reference = C7;
+ValeurCmp = 100nF;
+IdModule  = wyostat_fp:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = 5ACB379E
+Path = /5AE47A99/5A448924
+Reference = R28;
+ValeurCmp = 4K7;
+IdModule  = wyostat_fp:R_0805;
+EndCmp
 
 BeginCmp
 TimeStamp = 5AC6B10A
@@ -332,16 +364,8 @@ BeginCmp
 TimeStamp = 5ACB37D6
 Path = /5AE47A99/5A95B721
 Reference = TP3;
-ValeurCmp = 32kHz;
+ValeurCmp = 32k;
 IdModule  = wyostat_fp:Pin_Header_Straight_1x01;
-EndCmp
-
-BeginCmp
-TimeStamp = 5ACB3FC6
-Path = /5AE47A99/5A613CC0
-Reference = C8;
-ValeurCmp = 100nF;
-IdModule  = wyostat_fp:C_0805;
 EndCmp
 
 BeginCmp
@@ -381,14 +405,6 @@ TimeStamp = 5AB625D4
 Path = /5AD147F9
 Reference = C14;
 ValeurCmp = 10uF;
-IdModule  = wyostat_fp:C_0805;
-EndCmp
-
-BeginCmp
-TimeStamp = 5ACB36C4
-Path = /5AA95948
-Reference = C7;
-ValeurCmp = 100nF;
 IdModule  = wyostat_fp:C_0805;
 EndCmp
 
@@ -593,14 +609,6 @@ IdModule  = wyostat_fp:R_0805;
 EndCmp
 
 BeginCmp
-TimeStamp = 5ACB379E
-Path = /5AE47A99/5A448924
-Reference = R28;
-ValeurCmp = 4K7;
-IdModule  = wyostat_fp:R_0805;
-EndCmp
-
-BeginCmp
 TimeStamp = 5ACB37AF
 Path = /5AE47A99/5A44894F
 Reference = R29;
@@ -630,14 +638,6 @@ Path = /5AA7ACC5
 Reference = U3;
 ValeurCmp = MOC3063M;
 IdModule  = wyostat_fp:Optocoupler_6pin_smd;
-EndCmp
-
-BeginCmp
-TimeStamp = 5AB4E06D
-Path = /5AA95913
-Reference = J5;
-ValeurCmp = I2C_ext1;
-IdModule  = wyostat_fp:Pin_Header_Straight_1x04;
 EndCmp
 
 BeginCmp

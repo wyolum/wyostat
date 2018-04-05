@@ -17,6 +17,12 @@ D 40V 1A Schottky Barrier Rectifier Diode, DO-41
 K diode Schottky
 $ENDCMP
 #
+$CMP Conn_01x06
+D Generic connector, single row, 01x06, script generated (kicad-library-utils/schlib/autogen/connector/)
+K connector
+F ~
+$ENDCMP
+#
 $CMP GNDREF
 D (reference supply) ground power-flag symbol
 K Power Flag Symbol

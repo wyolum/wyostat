@@ -616,33 +616,22 @@ Wire Notes Line
 	6825 2075 4825 2075
 Wire Notes Line
 	4825 2075 4825 575 
-$Comp
-L wyostat:Conn_01x04 J5
-U 1 1 5AA95913
-P 5850 2575
-F 0 "J5" H 5850 2775 50  0000 C CNB
-F 1 "I2C_ext1" H 5850 2275 40  0000 C CNN
-F 2 "wyostat_fp:Pin_Header_Straight_1x04" H 5850 2575 50  0001 C CNN
-F 3 "~" H 5850 2575 50  0001 C CNN
-	1    5850 2575
-	1    0    0    -1  
-$EndComp
-Text Label 5300 2575 0    50   ~ 10
+Text Label 6025 2675 0    50   ~ 10
 SDA
-Text Label 5300 2475 0    50   ~ 10
+Text Label 6025 2775 0    50   ~ 10
 SCL
-Text Label 5300 2675 0    50   ~ 10
+Text Label 6025 2575 0    50   ~ 10
 3V3
-Text Label 5300 2775 0    50   ~ 10
+Text Label 6025 2475 0    50   ~ 10
 GND
 Wire Wire Line
-	5650 2475 5300 2475
+	6375 2775 6025 2775
 Wire Wire Line
-	5300 2575 5650 2575
+	6025 2675 6375 2675
 Wire Wire Line
-	5300 2775 5650 2775
-Text Notes 4925 3650 0    40   ~ 0
-I2C interface for external\nconnections to sensors etc.\n
+	6025 2475 6375 2475
+Text Notes 4875 3625 0    40   ~ 0
+I2C interface for external\nconnections to sensors etc.\n\nSparkfun TMP102 breakout\nP/N : 13314\nhttps://www.sparkfun.com/products/13314
 Wire Notes Line
 	4825 2175 6825 2175
 Wire Notes Line
@@ -656,21 +645,21 @@ I2C HEADER
 $Comp
 L wyostat:C_NP C7
 U 1 1 5AA95948
-P 4950 3000
-F 0 "C7" H 4975 2900 50  0000 L CNB
-F 1 "100nF" V 5000 3100 40  0000 L CNN
-F 2 "wyostat_fp:C_0805" H 4950 3000 60  0001 C CNN
-F 3 "" H 4950 3000 60  0000 C CNN
-	1    4950 3000
+P 5675 2900
+F 0 "C7" H 5700 2800 50  0000 L CNB
+F 1 "100nF" V 5725 3000 40  0000 L CNN
+F 2 "wyostat_fp:C_0805" H 5675 2900 60  0001 C CNN
+F 3 "" H 5675 2900 60  0000 C CNN
+	1    5675 2900
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4950 2675 4950 2850
+	5675 2575 5675 2750
 Wire Wire Line
-	4950 2675 5650 2675
+	5675 2575 6375 2575
 Wire Wire Line
-	4950 3150 4950 3275
-Text Label 4950 3275 0    50   ~ 10
+	5675 3050 5675 3175
+Text Label 5675 3175 0    50   ~ 10
 GND
 Connection ~ 7675 1150
 Wire Wire Line
@@ -9822,4 +9811,25 @@ Wire Wire Line
 	9000 5375 9200 5375
 Text Notes 9475 5425 0    40   ~ 0
 Extra connection pads\nbrokenout to screw connector
+$Comp
+L wyostat:Conn_01x06 J5
+U 1 1 5ACA4E5A
+P 6575 2675
+F 0 "J5" H 6550 2975 50  0000 L CNB
+F 1 "I2C_ext1" H 6450 2250 40  0000 L CNN
+F 2 "wyostat_fp:Pin_Header_TMP102_1x06" H 6575 2675 50  0001 C CNN
+F 3 "~" H 6575 2675 50  0001 C CNN
+	1    6575 2675
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6375 2875 6025 2875
+Wire Wire Line
+	6375 2975 6025 2975
+Text Label 6025 2875 0    50   ~ 10
+ALT
+Text Label 6025 2975 0    50   ~ 10
+ADD0
+NoConn ~ 6025 2875
+NoConn ~ 6025 2975
 $EndSCHEMATC
