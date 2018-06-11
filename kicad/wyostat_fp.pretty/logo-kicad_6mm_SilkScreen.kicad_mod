@@ -1,4 +1,4 @@
-(module logo-kicad_6mm_SilkScreen (layer F.Cu) (tedit 0)
+(module logo-kicad_6mm_SilkScreen (layer F.Cu) (tedit 5B1EB50E)
   (descr "KiCad Logo")
   (tags "Logo KiCad")
   (attr virtual)
@@ -479,4 +479,5 @@
     (xy -6.050639 2.415817) (xy -6.053667 2.415808) (xy -6.129867 2.415822) (xy -6.275857 2.415822)
     (xy -6.27526 2.391851) (xy -6.270998 2.345055) (xy -6.26283 2.311778) (xy -6.249556 2.289759)
     (xy -6.229974 2.276739) (xy -6.202883 2.270457) (xy -6.167082 2.268653) (xy -6.121371 2.269066)) (layer F.SilkS) (width 0.01))
+  (fp_circle (center 0 0) (end -0.03 0) (layer F.CrtYd) (width 0.05))
 )

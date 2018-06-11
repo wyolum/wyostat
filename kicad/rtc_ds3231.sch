@@ -24,13 +24,13 @@ F 2 "wyostat_fp:R_0805" V 2455 2750 30  0001 C CNN
 F 3 "~" H 2525 2750 30  0000 C CNN
 F 4 "mfr_pn" H 2525 2750 50  0001 C CNN "manf#"
 	1    2525 2750
-	1    0    0    -1  
+	1    0    0    1   
 $EndComp
 $Comp
-L wyostat:GND #PWR017
+L wyostat:GND #PWR?
 U 1 1 5A44892B
 P 3675 4175
-F 0 "#PWR017" H 3675 4175 30  0001 C CNN
+F 0 "#PWR?" H 3675 4175 30  0001 C CNN
 F 1 "GND" H 3675 4105 30  0001 C CNN
 F 2 "" H 3675 4175 60  0000 C CNN
 F 3 "" H 3675 4175 60  0000 C CNN
@@ -65,10 +65,10 @@ $EndComp
 Text Label 4600 3000 0    50   ~ 10
 RESET
 $Comp
-L wyostat:PWR_FLAG #FLG018
+L wyostat:PWR_FLAG #FLG?
 U 1 1 5A448942
 P 2000 2325
-F 0 "#FLG018" H 2000 2595 30  0001 C CNN
+F 0 "#FLG?" H 2000 2595 30  0001 C CNN
 F 1 "PWR_FLAG" H 2000 2555 30  0000 C CNN
 F 2 "" H 2000 2325 60  0000 C CNN
 F 3 "" H 2000 2325 60  0000 C CNN
@@ -98,7 +98,7 @@ F 2 "wyostat_fp:R_0805" V 2605 2750 30  0001 C CNN
 F 3 "~" H 2675 2750 30  0000 C CNN
 F 4 "mfr_pn" H 2675 2750 50  0001 C CNN "manf#"
 	1    2675 2750
-	1    0    0    -1  
+	1    0    0    1   
 $EndComp
 $Comp
 L wyostat:Batt_RTC BT1

@@ -1,4 +1,4 @@
-(module logo-OSHW_6mm (layer F.Cu) (tedit 0)
+(module logo-OSHW_6mm (layer F.Cu) (tedit 5B1EB500)
   (fp_text reference G*** (at 0 3.54076) (layer F.SilkS) hide
     (effects (font (size 0.3048 0.3048) (thickness 0.06096)))
   )
@@ -74,4 +74,5 @@
     (xy -2.67208 2.35204) (xy -2.66192 2.37744) (xy -2.60858 2.44094) (xy -2.50952 2.54254)
     (xy -2.3622 2.68732) (xy -2.33934 2.71018) (xy -2.2225 2.82448) (xy -2.12344 2.91592)
     (xy -2.05486 2.97688) (xy -2.02438 2.99974)) (layer F.SilkS) (width 0.00254))
+  (fp_circle (center 0 0) (end -0.03 0) (layer F.CrtYd) (width 0.05))
 )

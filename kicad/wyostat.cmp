@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by PcbNew   date = Thu Apr  5 23:01:48 2018
+Cmp-Mod V01 Created by PcbNew   date = Tue Jun 12 00:47:44 2018
 
 BeginCmp
 TimeStamp = 5AF126E3
@@ -6,6 +6,14 @@ Path = /5ACA4E5A
 Reference = J5;
 ValeurCmp = I2C_ext1;
 IdModule  = wyostat_fp:Pin_Header_TMP102_1x06;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AC9F07E
+Path = /5AA73760
+Reference = U4;
+ValeurCmp = Wemos-Lolin;
+IdModule  = wyostat_fp:Wemos_Lolin;
 EndCmp
 
 BeginCmp
@@ -73,38 +81,6 @@ IdModule  = wyostat_fp:TerminalBlock_Pheonix_MPT-2.54mm_2pol;
 EndCmp
 
 BeginCmp
-TimeStamp = 5AAA7E24
-Path = /5AA95836
-Reference = S1;
-ValeurCmp = SW-ENTER;
-IdModule  = wyostat_fp:SW_SPST_FSM6JSMA;
-EndCmp
-
-BeginCmp
-TimeStamp = 5AC9F95B
-Path = /5AA957EB
-Reference = S3;
-ValeurCmp = SW-DEC;
-IdModule  = wyostat_fp:SW_SPST_FSM6JSMA;
-EndCmp
-
-BeginCmp
-TimeStamp = 5AB4E373
-Path = /5AA957F2
-Reference = S4;
-ValeurCmp = SW-MODE;
-IdModule  = wyostat_fp:SW_SPST_FSM6JSMA;
-EndCmp
-
-BeginCmp
-TimeStamp = 5AB4E347
-Path = /5AA9583D
-Reference = S2;
-ValeurCmp = SW-INC;
-IdModule  = wyostat_fp:SW_SPST_FSM6JSMA;
-EndCmp
-
-BeginCmp
 TimeStamp = 5AB4E1D8
 Path = /5AA72852
 Reference = R3;
@@ -129,7 +105,7 @@ IdModule  = wyostat_fp:R_0805;
 EndCmp
 
 BeginCmp
-TimeStamp = 5AB4E15B
+TimeStamp = 5B333D54
 Path = /5ACA1F7C
 Reference = JP3;
 ValeurCmp = LED_en;
@@ -313,14 +289,6 @@ IdModule  = wyostat_fp:DPAK-2;
 EndCmp
 
 BeginCmp
-TimeStamp = 5AC9F07E
-Path = /5AA73760
-Reference = U4;
-ValeurCmp = Wemos-Lolin;
-IdModule  = wyostat_fp:Wemos_Lolin;
-EndCmp
-
-BeginCmp
 TimeStamp = 5AB6260A
 Path = /5AD09BBB
 Reference = D4;
@@ -364,7 +332,7 @@ BeginCmp
 TimeStamp = 5ACB37D6
 Path = /5AE47A99/5A95B721
 Reference = TP3;
-ValeurCmp = 32k;
+ValeurCmp = 32kHz;
 IdModule  = wyostat_fp:Pin_Header_Straight_1x01;
 EndCmp
 
@@ -742,6 +710,38 @@ Path = /5AE0052A
 Reference = Logo5;
 ValeurCmp = logo_warning;
 IdModule  = wyostat_fp:logo-warning;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B2F3375
+Path = /5AA95836
+Reference = S1;
+ValeurCmp = SW-ENTER;
+IdModule  = wyostat_fp:SW_SPST_FSM6JSMA;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B2F338B
+Path = /5AA9583D
+Reference = S2;
+ValeurCmp = SW-INC;
+IdModule  = wyostat_fp:SW_SPST_FSM6JSMA;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B2F33A1
+Path = /5AA957EB
+Reference = S3;
+ValeurCmp = SW-DEC;
+IdModule  = wyostat_fp:SW_SPST_FSM6JSMA;
+EndCmp
+
+BeginCmp
+TimeStamp = 5B2F33B7
+Path = /5AA957F2
+Reference = S4;
+ValeurCmp = SW-MODE;
+IdModule  = wyostat_fp:SW_SPST_FSM6JSMA;
 EndCmp
 
 EndListe

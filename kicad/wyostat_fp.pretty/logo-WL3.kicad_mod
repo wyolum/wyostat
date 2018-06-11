@@ -1,4 +1,4 @@
-(module logo-WL3 (layer F.Cu) (tedit 4F42763E)
+(module logo-WL3 (layer F.Cu) (tedit 5B1EB579)
   (fp_text reference G1 (at 0 3.937) (layer F.SilkS) hide
     (effects (font (size 1.524 1.524) (thickness 0.3048)))
   )
@@ -22209,4 +22209,5 @@
     (xy 7.366 0.5588)) (layer F.SilkS) (width 0.00254))
   (fp_poly (pts (xy 7.3406 0.5588) (xy 7.366 0.5588) (xy 7.366 0.5842) (xy 7.3406 0.5842)
     (xy 7.3406 0.5588)) (layer F.SilkS) (width 0.00254))
+  (fp_circle (center 5.44 4.62) (end 5.41 4.62) (layer F.CrtYd) (width 0.05))
 )

@@ -1,5 +1,5 @@
-(module Converter_AC_DC_Eshion (layer F.Cu) (tedit 5AAB692F)
-  (fp_text reference U6 (at 0 1.75) (layer F.SilkS)
+(module Converter_AC_DC_Eshion (layer F.Cu) (tedit 5B1EA7B1)
+  (fp_text reference REF** (at 0 1.75) (layer F.SilkS)
     (effects (font (size 1 1) (thickness 0.15)))
   )
   (fp_text value Converter_AC_DC (at 0 -2.25) (layer F.Fab)

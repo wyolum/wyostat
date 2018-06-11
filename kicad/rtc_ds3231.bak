@@ -24,7 +24,7 @@ F 2 "wyostat_fp:R_0805" V 2455 2750 30  0001 C CNN
 F 3 "~" H 2525 2750 30  0000 C CNN
 F 4 "mfr_pn" H 2525 2750 50  0001 C CNN "manf#"
 	1    2525 2750
-	1    0    0    -1  
+	1    0    0    1   
 $EndComp
 $Comp
 L wyostat:GND #PWR017
@@ -98,7 +98,7 @@ F 2 "wyostat_fp:R_0805" V 2605 2750 30  0001 C CNN
 F 3 "~" H 2675 2750 30  0000 C CNN
 F 4 "mfr_pn" H 2675 2750 50  0001 C CNN "manf#"
 	1    2675 2750
-	1    0    0    -1  
+	1    0    0    1   
 $EndComp
 $Comp
 L wyostat:Batt_RTC BT1
