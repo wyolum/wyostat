@@ -1,4 +1,4 @@
-(module C_2220 (layer F.Cu) (tedit 5B1EACDB)
+(module C_2220 (layer F.Cu) (tedit 5B1F988B)
   (descr "Capacitor SMD 2220, reflow soldering, AVX (see smccp.pdf)")
   (tags "capacitor 2220")
   (attr smd)
@@ -25,6 +25,7 @@
   (fp_line (start 0.15 2.75) (end 0.15 -2.75) (layer F.SilkS) (width 0.15))
   (fp_line (start -0.15 2.75) (end -0.15 -2.75) (layer F.SilkS) (width 0.15))
   (fp_line (start -3.55 2.75) (end -3.55 -2.75) (layer F.SilkS) (width 0.15))
+  (fp_line (start 3.55 2.75) (end 3.55 -2.75) (layer F.SilkS) (width 0.15))
   (pad 1 smd rect (at -2.8 0) (size 1 5) (layers F.Cu F.Paste F.Mask))
   (pad 2 smd rect (at 2.8 0) (size 1 5) (layers F.Cu F.Paste F.Mask))
   (model ${KIPRJMOD}/wyostat_3d_modules/cap_2220_5750M.wrl

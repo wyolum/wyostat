@@ -1,4 +1,4 @@
-(module LED_0402 (layer F.Cu) (tedit 5B1EA834)
+(module LED_0402 (layer F.Cu) (tedit 5B1F9A5A)
   (descr "LED 0402 smd package")
   (tags "LED led 0402 SMD smd SMT smt smdled SMDLED smtled SMTLED")
   (attr smd)
@@ -26,6 +26,7 @@
   (fp_line (start 0.1 -0.45) (end 0.1 0.45) (layer F.SilkS) (width 0.12))
   (fp_line (start 0 -0.45) (end 0 0.45) (layer F.SilkS) (width 0.12))
   (fp_line (start -0.1 -0.45) (end -0.1 0.45) (layer F.SilkS) (width 0.12))
+  (fp_line (start 0.95 -0.45) (end 0.95 0.45) (layer F.SilkS) (width 0.12))
   (pad 1 smd rect (at -0.55 0 180) (size 0.6 0.7) (layers F.Cu F.Paste F.Mask))
   (pad 2 smd rect (at 0.55 0 180) (size 0.6 0.7) (layers F.Cu F.Paste F.Mask))
   (model ${KISYS3DMOD}/LEDs.3dshapes/LED_0402.wrl
