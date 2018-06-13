@@ -1,9 +1,9 @@
-(module logo-warning (layer F.Cu) (tedit 5B1EB568)
-  (fp_text reference Logo5 (at 0 0) (layer F.SilkS) hide
-    (effects (font (size 1.524 1.524) (thickness 0.3)))
+(module logo-warning (layer F.Cu) (tedit 5B20F6F2)
+  (fp_text reference REF** (at 0 -1.7) (layer F.Fab) hide
+    (effects (font (size 1 1) (thickness 0.15)))
   )
-  (fp_text value logo_warning (at 0.75 0) (layer F.SilkS) hide
-    (effects (font (size 1.524 1.524) (thickness 0.3)))
+  (fp_text value logo_warning (at 0 1.2) (layer F.Fab) hide
+    (effects (font (size 1 1) (thickness 0.15)))
   )
   (fp_poly (pts (xy 0.269928 -4.29435) (xy 0.612648 -4.212597) (xy 0.922975 -4.069965) (xy 1.18591 -3.872722)
     (xy 1.324956 -3.717331) (xy 1.370107 -3.648653) (xy 1.452707 -3.513932) (xy 1.568649 -3.320305)

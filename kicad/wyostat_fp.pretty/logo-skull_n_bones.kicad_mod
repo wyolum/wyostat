@@ -1,9 +1,9 @@
-(module logo-skull_n_bones (layer F.Cu) (tedit 5B1EB545)
-  (fp_text reference G*** (at 0 0) (layer F.SilkS) hide
-    (effects (font (size 1.524 1.524) (thickness 0.3)))
+(module logo-skull_n_bones (layer F.Cu) (tedit 5B20F6BE)
+  (fp_text reference G*** (at 0 -1.6) (layer F.SilkS) hide
+    (effects (font (size 1 1) (thickness 0.15)))
   )
-  (fp_text value LOGO (at 0.75 0) (layer F.SilkS) hide
-    (effects (font (size 1.524 1.524) (thickness 0.3)))
+  (fp_text value LOGO (at 0 1.4) (layer F.SilkS) hide
+    (effects (font (size 1 1) (thickness 0.15)))
   )
   (fp_poly (pts (xy 0.190422 -7.643965) (xy 0.321739 -7.641659) (xy 0.449399 -7.637836) (xy 0.570281 -7.632556)
     (xy 0.681265 -7.625877) (xy 0.779231 -7.617859) (xy 0.800454 -7.615743) (xy 0.989022 -7.593192)

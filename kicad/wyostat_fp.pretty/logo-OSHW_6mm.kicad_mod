@@ -1,9 +1,9 @@
-(module logo-OSHW_6mm (layer F.Cu) (tedit 5B1EB500)
-  (fp_text reference G*** (at 0 3.54076) (layer F.SilkS) hide
-    (effects (font (size 0.3048 0.3048) (thickness 0.06096)))
+(module logo-OSHW_6mm (layer F.Cu) (tedit 5B20F52C)
+  (fp_text reference G*** (at 0 1.6) (layer F.Fab) hide
+    (effects (font (size 1 1) (thickness 0.15)))
   )
-  (fp_text value LOGO (at 0 -3.54076) (layer F.SilkS) hide
-    (effects (font (size 0.3048 0.3048) (thickness 0.06096)))
+  (fp_text value OSH (at 0 -0.9) (layer F.Fab) hide
+    (effects (font (size 1 1) (thickness 0.15)))
   )
   (fp_poly (pts (xy -2.02438 2.99974) (xy -1.98882 2.97942) (xy -1.91008 2.93116) (xy -1.79832 2.8575)
     (xy -1.66624 2.77114) (xy -1.53416 2.6797) (xy -1.42494 2.60858) (xy -1.34874 2.55778)
@@ -74,5 +74,6 @@
     (xy -2.67208 2.35204) (xy -2.66192 2.37744) (xy -2.60858 2.44094) (xy -2.50952 2.54254)
     (xy -2.3622 2.68732) (xy -2.33934 2.71018) (xy -2.2225 2.82448) (xy -2.12344 2.91592)
     (xy -2.05486 2.97688) (xy -2.02438 2.99974)) (layer F.SilkS) (width 0.00254))
-  (fp_circle (center 0 0) (end -0.03 0) (layer F.CrtYd) (width 0.05))
+  (fp_circle (center 0 0.3) (end -3.5 0.3) (layer F.Fab) (width 0.15))
+  (fp_circle (center 0 0.3) (end -3.5 0.2) (layer F.CrtYd) (width 0.15))
 )
