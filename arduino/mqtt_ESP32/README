@@ -1,0 +1,5 @@
+/*
+fill these in for your network and copy to config.h
+*/const char* ssid = "......";
+const char* password = "";
+const char* mqtt_server = "xxx.xxx.xxx.xxx";
