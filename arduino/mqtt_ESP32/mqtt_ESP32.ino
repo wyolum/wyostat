@@ -90,7 +90,7 @@ void reconnect() {
       Serial.println("connected");
       // Once connected, publish an announcement...
       // ... and resubscribe
-      client.subscribe("wyostat.temp");
+      client.subscribe("wyostat.settemplo");
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
