@@ -39,25 +39,35 @@
 #define CH2 25
 #define CH3 16
 
+bool channel_status[3];
+
 RTC_DS3231 rtc;
 
 // set up feeds
 AdafruitIO_Feed *livingroomtemp = io.feed("LivingRoomTemp");
-AdafruitIO_Feed *bedroomtemp = io.feed("BedroomTemp");
-AdafruitIO_Feed *setTemp = io.feed("setTemp");
-//AdafruitIO_Feed *furnace = io.feed("furnaceOnOff");
+AdafruitIO_Feed *setTempLo = io.feed("wyostat.settemplo");
+AdafruitIO_Feed *setTempHi = io.feed("wyostat.settemphi");
+AdafruitIO_Feed *furnace_state = io.feed("wyostat.furnace-state");
+AdafruitIO_Feed *ac_state = io.feed("wyostat.ac-state");
 
 int living = 0;
 int bedroom =0;
-int settemperature = 55;
- // is the furnace on or off
+int settemperature_lo = 55;
+int settemperature_hi = 80;
+
+ // is the furnace/AC/fan on or off
 int furnacestate = 0;
+int acstate = 0;
+int fanstate = 0;
+
 // temp gap for hysteresis control
 float  tempgap = 2.0L;
  //time
  DateTime now;
  void handleButtons();
-#define furnaceSCR CH1
+#define furnaceSCR CH3
+#define fanSCR CH2
+#define acSCR CH1
  
 // Include the UI lib
 #include "OLEDDisplayUi.h"
@@ -72,7 +82,7 @@ float  tempgap = 2.0L;
 SSD1306  display(0x3c, 5, 4);
 TMP102 sensor0(0x48);
 
-OLEDDisplayUi ui     ( &display );
+// OLEDDisplayUi ui     ( &display );
 String livingroomtitle = String("LivingRoom");
 String bedroomtitle = String("Time");
 String currentRoom = bedroomtitle;
@@ -109,14 +119,29 @@ void drawFrame2(OLEDDisplay *display, OLEDDisplayUiState* state, int16_t x, int1
 
 void drawFrame1(OLEDDisplay *display, OLEDDisplayUiState* state, int16_t x, int16_t y) {
   String livingroomstring = String(living) + String("° F");
-  String setstring = String(settemperature) + String("° F");
+  String setstring = String(settemperature_lo) + String("-") + String(settemperature_hi) + String("° F");
+  String statusstring;
+  if (furnacestate){
+    statusstring = String("Heat");
+  }
+  else if(acstate){
+    statusstring = String("Cool");
+  }
+  else if(fanstate){
+    statusstring = String("Fan");
+  }
+  else{
+    statusstring = String("Off");
+  }
+  
   currentRoom = livingroomtitle;
   display->setFont(ArialMT_Plain_24);
   display->setTextAlignment(TEXT_ALIGN_CENTER);
-  display->drawString(80 + x, 25 + y, livingroomstring);
+  display->drawString(80 + x, 15 + y, livingroomstring);
   display->setFont(ArialMT_Plain_16);
   display->setTextAlignment(TEXT_ALIGN_LEFT);
-  display->drawString(0+x,10+y,setstring);
+  display->drawString(0+x,0+y,setstring);
+  display->drawString(58 + x, 45 + y, statusstring);
 }
 
 
@@ -130,7 +155,7 @@ void drawFrame5(OLEDDisplay *display, OLEDDisplayUiState* state, int16_t x, int1
 FrameCallback frames[] = { drawFrame1, drawFrame2 };
 
 // how many frames are there?
-int frameCount = 2;
+int frameCount = 1;
 
 // Overlays are statically drawn on top of a frame eg. a clock
 OverlayCallback overlays[] = { roomOverlay};
@@ -141,7 +166,11 @@ void setup() {
   Serial.println();
   Serial.println();
   pinMode(furnaceSCR,OUTPUT);
+  pinMode(fanSCR,OUTPUT);
+  pinMode(acSCR,OUTPUT);
   digitalWrite(furnaceSCR,LOW);
+  digitalWrite(fanSCR,LOW);
+  digitalWrite(acSCR,LOW);
   sensor0.begin();
   // set the Conversion Rate (how quickly the sensor gets a new reading)
   //0-3: 0:0.25Hz, 1:1Hz, 2:4Hz, 3:8Hz
@@ -152,40 +181,47 @@ void setup() {
 	// The ESP is capable of rendering 60fps in 80Mhz mode
 	// but that won't give you much time for anything else
 	// run it in 160Mhz mode or just set it to 30 fps
-  ui.setTargetFPS(30);
-  ui.setTimePerFrame(20000);
-  ui.transitionToFrame(0);
+
+  // prevent page automatic turns.
+  // ui.disableAutoTransition();
+
+
+  // these are not needed, unless we re enable display changing.
+  //ui.setTargetFPS(30);
+  //ui.setTimePerFrame(20000);
+  //ui.transitionToFrame(0);
 
 	// Customize the active and inactive symbol
-  ui.setActiveSymbol(activeSymbol);
-  ui.setInactiveSymbol(inactiveSymbol);
+  //ui.setActiveSymbol(activeSymbol);
+  //ui.setInactiveSymbol(inactiveSymbol);
 
   // You can change this to
   // TOP, LEFT, BOTTOM, RIGHT
-  ui.setIndicatorPosition(BOTTOM);
+  //ui.setIndicatorPosition(BOTTOM);
 
   // Defines where the first frame is located in the bar.
-  ui.setIndicatorDirection(LEFT_RIGHT);
+  //ui.setIndicatorDirection(LEFT_RIGHT);
 
   // You can change the transition that is used
   // SLIDE_LEFT, SLIDE_RIGHT, SLIDE_UP, SLIDE_DOWN
-  ui.setFrameAnimation(SLIDE_UP);
+  //ui.setFrameAnimation(SLIDE_UP);
 
   // Add frames
-  ui.setFrames(frames, frameCount);
+  //ui.setFrames(frames, frameCount);
 
   // Add overlays
-  ui.setOverlays(overlays, overlaysCount);
+  //ui.setOverlays(overlays, overlaysCount);
 
   // Initialising the UI will init the display too.
-  ui.init();
+  //ui.init();
 
   display.flipScreenVertically();
   // connect to adafruit.io
   io.connect();
-  bedroomtemp->onMessage(handleBedroom);
+  //bedroomtemp->onMessage(handleBedroom);
   livingroomtemp->onMessage(handleLivingroom);
-  setTemp->onMessage(handleSetTemp);
+  setTempLo->onMessage(handleSetTempLo);
+  setTempHi->onMessage(handleSetTempHi);
   //furnace->onMessage(handleFurnace);
     // wait for a connection
   while(io.status() < AIO_CONNECTED) {
@@ -212,14 +248,24 @@ void setup() {
     // January 21, 2014 at 3am you would call:
     // rtc.adjust(DateTime(2014, 1, 21, 3, 0, 0));
   }
+  
+  // dont draw display indicator
+  //ui.disableIndicator();
+  //ui.disableAllIndicators();
 }
-const uint8_t DEFAULT_SET_TEMP = 70;
-const uint8_t SET_TEMP_ADDR = 0;
+const uint8_t DEFAULT_SET_TEMP_LO = 55;
+const uint8_t DEFAULT_SET_TEMP_HI = 80;
+const uint8_t SET_TEMP_LO_ADDR = 0;
+const uint8_t SET_TEMP_HI_ADDR = 1;
 void loadSettings()
 {
-  settemperature = EEPROM.read(SET_TEMP_ADDR);
-  if(settemperature == 255){
-    settemperature = DEFAULT_SET_TEMP;
+  settemperature_lo = EEPROM.read(SET_TEMP_LO_ADDR);
+  if(settemperature_lo == 255){
+    settemperature_lo = DEFAULT_SET_TEMP_LO;
+  }
+  settemperature_hi = EEPROM.read(SET_TEMP_HI_ADDR);
+  if(settemperature_hi == 255){
+    settemperature_hi = DEFAULT_SET_TEMP_HI;
   }
     
 }
@@ -286,7 +332,7 @@ void handleFurnace(AdafruitIO_Data *message){
   // print out the received count or counter-two value
   Serial.println(message->value());
 }
-void handleSetTemp(AdafruitIO_Data *message){
+void handleSetTempLo(AdafruitIO_Data *message){
     char *data = (char*)message->value();
   Serial.print("received <- ");
   Serial.println(data);
@@ -299,13 +345,13 @@ void handleSetTemp(AdafruitIO_Data *message){
      return;
   }
   String dataStr = String(data);
-  int new_settemperature = (int)dataStr.toInt();
-  if(new_settemperature != settemperature){
-    EEPROM.write(SET_TEMP_ADDR, new_settemperature);
+  int new_settemperature_lo = (int)dataStr.toInt();
+  if(new_settemperature_lo != settemperature_lo){
+    EEPROM.write(SET_TEMP_LO_ADDR, new_settemperature_lo);
     EEPROM.commit();
-    settemperature = new_settemperature;
-    Serial.print("EEPROM SET TEMP: ");
-    Serial.println(EEPROM.read(SET_TEMP_ADDR));
+    settemperature_lo = new_settemperature_lo;
+    Serial.print("EEPROM SET TEMP LO: ");
+    Serial.println(EEPROM.read(SET_TEMP_LO_ADDR));
   }
 
   Serial.print(message->feedName());
@@ -314,26 +360,63 @@ void handleSetTemp(AdafruitIO_Data *message){
   // print out the received count or counter-two value
   Serial.println(message->value());
 }
+
+void handleSetTempHi(AdafruitIO_Data *message){
+    char *data = (char*)message->value();
+  Serial.print("received <- ");
+  Serial.println(data);
+
+  int dataLen = strlen(data);
+  Serial.print("Got: ");
+  Serial.println(data);
+  if (dataLen < 1) {
+  // Stop processing if not enough data was received.
+     return;
+  }
+  String dataStr = String(data);
+  int new_settemperature_hi = (int)dataStr.toInt();
+  if(new_settemperature_hi != settemperature_hi){
+    EEPROM.write(SET_TEMP_HI_ADDR, new_settemperature_hi);
+    EEPROM.commit();
+    settemperature_hi = new_settemperature_hi;
+    Serial.print("EEPROM SET TEMP HI: ");
+    Serial.println(EEPROM.read(SET_TEMP_HI_ADDR));
+  }
+
+  Serial.print(message->feedName());
+  Serial.print(" ");
+
+  // print out the received count or counter-two value
+  Serial.println(message->value());
+}
+
 // 1 sec temperature update
 long lastUpdate;
 #define TEMPINTERVAL 1000
-#define RECORDUPDATE 120000
+#define RECORDUPDATE 10000L
 long lastrecord;
-float localtemperature;
+float localtemperature = 0;
 void loop() {
-  int remainingTimeBudget = ui.update();
+  //int remainingTimeBudget = ui.update();
+  int remainingTimeBudget = 100;
   io.run();
   if (millis()-lastUpdate> TEMPINTERVAL)
   {
     now = rtc.now();
     sensor0.wakeup();
-    localtemperature = sensor0.readTempF();
+    if (localtemperature < 45){
+      localtemperature = sensor0.readTempF();
+    }
+    else{
+      localtemperature = sensor0.readTempF() * .1 + localtemperature * .9;
+    }
+
     sensor0.sleep();
     living = (int)localtemperature;
     //Adafruit IO stores a limited amount of data, if we record
     // every second, it wraps too quickly
     if (millis()-lastrecord > RECORDUPDATE){
-      //livingroomtemp->save(localtemperature);
+      livingroomtemp->save((int)localtemperature);
       lastrecord = millis();
       Serial.println("updated localtemp");
     }
@@ -342,19 +425,50 @@ void loop() {
   //heater control
   if (!furnacestate) // furnace is off
   {
-    if (localtemperature < (settemperature-tempgap)){
+    if (localtemperature < (settemperature_lo-tempgap)){
+      //// no furnace for now
       furnacestate = 1;
+      fanstate = 1;
       Serial.println("Turning on furnace");
       digitalWrite(furnaceSCR,HIGH);  
+      digitalWrite(fanSCR,HIGH);  
+      furnace_state->save(furnacestate);
     }
   }
   else //furnace is on
   {
-    if (localtemperature >= settemperature)
+    if (localtemperature >= settemperature_lo)
     {
       furnacestate =0;
+      fanstate =0;
       Serial.println("Turning off furnace");
       digitalWrite(furnaceSCR,LOW);
+      digitalWrite(fanSCR,LOW);  
+      furnace_state->save(furnacestate);
+    }
+  }
+  //AC control
+  if (!acstate) // furnace is off
+  {
+    if (localtemperature > (settemperature_hi+tempgap)){
+      acstate = 1;
+      fanstate = 1;
+      Serial.println("Turning on AC");
+      digitalWrite(acSCR,HIGH);  
+      digitalWrite(fanSCR,HIGH);
+      ac_state->save(acstate);
+    }
+  }
+  else //ac is on
+  {
+    if (localtemperature <= settemperature_hi)
+    {
+      acstate = 0;
+      fanstate = 0;
+      Serial.println("Turning off ac");
+      digitalWrite(acSCR,LOW);
+      digitalWrite(fanSCR,LOW);  
+      ac_state->save(acstate);
     }
   }
   if (remainingTimeBudget > 0) {
@@ -374,21 +488,23 @@ void loop() {
       lastMode = modeb;
       if (modeb == LOW){
         screen = screen++ > 1?0:screen;
-        ui.switchToFrame(screen);
+        //ui.switchToFrame(screen);
       }
     }
     int incb = digitalRead(INCR);
     if (incb != lastInc){
       lastInc = incb;
       if (incb == LOW){
-        settemperature++;
+        settemperature_lo++;
+	setTempLo->save(settemperature_lo);
       }
     }
    int decb = digitalRead(DECR);
     if (decb != lastDec){
       lastDec = decb;
       if (decb == LOW){
-        settemperature--;
+        settemperature_lo--;
+	setTempLo->save(settemperature_lo);
       }
     }
   }

@@ -29,7 +29,7 @@
 WiFiClient espClient;
 PubSubClient client(espClient);
 long lastMsg = 0;
-char msg[50];
+char msg[50] = "Hello Mosquitto!\n(from ESP32)";
 int value = 0;
 
 void setup() {
@@ -89,9 +89,8 @@ void reconnect() {
     if (client.connect("ESP32Client")) {
       Serial.println("connected");
       // Once connected, publish an announcement...
-      client.publish("outTopic", "hello world");
       // ... and resubscribe
-      client.subscribe("inTopic");
+      client.subscribe("wyostat.settemplo");
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
@@ -101,6 +100,7 @@ void reconnect() {
     }
   }
 }
+int count = 0;
 void loop() {
 
   if (!client.connected()) {
@@ -115,7 +115,9 @@ void loop() {
     /* snprintf (msg, 75, "hello world #%ld", value);
     Serial.print("Publish message: ");
     Serial.println(msg);
-    client.publish("outTopic", msg);
     */
+    int temp = sin(count++ / 10.) * 10 + 70;
+    String str_temp = String(temp);
+    client.publish("wyostat.temp", str_temp.c_str());
   }
 }
