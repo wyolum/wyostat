@@ -82,7 +82,7 @@ float  tempgap = 2.0L;
 SSD1306  display(0x3c, 5, 4);
 TMP102 sensor0(0x48);
 
-OLEDDisplayUi ui     ( &display );
+// OLEDDisplayUi ui     ( &display );
 String livingroomtitle = String("LivingRoom");
 String bedroomtitle = String("Time");
 String currentRoom = bedroomtitle;
@@ -183,37 +183,37 @@ void setup() {
 	// run it in 160Mhz mode or just set it to 30 fps
 
   // prevent page automatic turns.
-  ui.disableAutoTransition();
+  // ui.disableAutoTransition();
 
 
   // these are not needed, unless we re enable display changing.
-  ui.setTargetFPS(30);
-  ui.setTimePerFrame(20000);
-  ui.transitionToFrame(0);
+  //ui.setTargetFPS(30);
+  //ui.setTimePerFrame(20000);
+  //ui.transitionToFrame(0);
 
 	// Customize the active and inactive symbol
-  ui.setActiveSymbol(activeSymbol);
-  ui.setInactiveSymbol(inactiveSymbol);
+  //ui.setActiveSymbol(activeSymbol);
+  //ui.setInactiveSymbol(inactiveSymbol);
 
   // You can change this to
   // TOP, LEFT, BOTTOM, RIGHT
-  ui.setIndicatorPosition(BOTTOM);
+  //ui.setIndicatorPosition(BOTTOM);
 
   // Defines where the first frame is located in the bar.
-  ui.setIndicatorDirection(LEFT_RIGHT);
+  //ui.setIndicatorDirection(LEFT_RIGHT);
 
   // You can change the transition that is used
   // SLIDE_LEFT, SLIDE_RIGHT, SLIDE_UP, SLIDE_DOWN
-  ui.setFrameAnimation(SLIDE_UP);
+  //ui.setFrameAnimation(SLIDE_UP);
 
   // Add frames
-  ui.setFrames(frames, frameCount);
+  //ui.setFrames(frames, frameCount);
 
   // Add overlays
-  ui.setOverlays(overlays, overlaysCount);
+  //ui.setOverlays(overlays, overlaysCount);
 
   // Initialising the UI will init the display too.
-  ui.init();
+  //ui.init();
 
   display.flipScreenVertically();
   // connect to adafruit.io
@@ -251,7 +251,7 @@ void setup() {
   
   // dont draw display indicator
   //ui.disableIndicator();
-  ui.disableAllIndicators();
+  //ui.disableAllIndicators();
 }
 const uint8_t DEFAULT_SET_TEMP_LO = 55;
 const uint8_t DEFAULT_SET_TEMP_HI = 80;
@@ -397,7 +397,8 @@ long lastUpdate;
 long lastrecord;
 float localtemperature = 0;
 void loop() {
-  int remainingTimeBudget = ui.update();
+  //int remainingTimeBudget = ui.update();
+  int remainingTimeBudget = 100;
   io.run();
   if (millis()-lastUpdate> TEMPINTERVAL)
   {
@@ -487,7 +488,7 @@ void loop() {
       lastMode = modeb;
       if (modeb == LOW){
         screen = screen++ > 1?0:screen;
-        ui.switchToFrame(screen);
+        //ui.switchToFrame(screen);
       }
     }
     int incb = digitalRead(INCR);
