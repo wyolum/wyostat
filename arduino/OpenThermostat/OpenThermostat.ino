@@ -30,6 +30,11 @@
 // Update these with values suitable for your network.
 
 #include "constants.h"
+void publish_int(char* topic, int val);
+
+int count = 0;
+float localtemp = 0;
+int last_temp = 0;
 
 WiFiClient espClient;
 PubSubClient mqtt_client(espClient);
@@ -57,113 +62,124 @@ int bytes2int(byte* payload, unsigned int length){
   return String(str_payload).toInt();
 }
 
-int settemplo;
-int settemphi;
+int targettemp;
+char hvacmode[50] = "cooling";
 
-void _settemplo(int temp){
+void _targettemp(int temp){
   if(LOWEST_TEMP < temp && temp <HIGHEST_TEMP){
-    if(temp != settemplo){
-      settemplo = temp;
-      EEPROM.write(SETTEMPLO_ADDR, settemplo);
+    if(temp != targettemp){
+      targettemp = temp;
+      EEPROM.write(TARGETTEMP_ADDR, targettemp);
       EEPROM.commit();
     }
   }
 }
-void _settemphi(int temp){
-  if(LOWEST_TEMP < temp && temp <HIGHEST_TEMP){
-    if(temp != settemphi){
-      settemphi = temp;
-      EEPROM.write(SETTEMPHI_ADDR, settemphi);
-      EEPROM.commit();
-    }
-  }
-}
-
-void settemplo_cb(byte *payload, unsigned int length){
+void targettemp_cb(byte *payload, unsigned int length){
   String str_temp;
     
-  Serial.print("Set temp low cb: ");
+  Serial.print("Set temp cb: ");
   Serial.println(bytes2int(payload, length));
-  _settemplo(bytes2int(payload, length));
-  
-  if(settemplo > settemphi){
-    Serial.print("Lo > Hi!  Resetting Hi to");
-    Serial.println(HIGHEST_TEMP);
-    _settemphi(HIGHEST_TEMP);
-    publish_int("wyostat.settemphi", settemphi);
-  }
+  _targettemp(bytes2int(payload, length));  
 }
 
-void settemphi_cb(byte *payload, unsigned int length){
-  String str_temp;
-
-  Serial.print("Set temp high cb: ");
-  Serial.println(bytes2int(payload, length));
-  _settemphi(bytes2int(payload, length));
-  if(settemphi <= settemplo){
-    _settemplo(LOWEST_TEMP);
-    str_temp = String(settemplo);    
-    //mqtt_client.publish("wyostat.settemplo", str_temp.c_str());
-  }
+void requesttemp_cb(byte *payload, unsigned int length){
+  Serial.println("Request temp cb.");
+  Serial.print("Sending:");
+  Serial.println(localtemp);
+  publish_hvac_state();
 }
 
-int n_topic_listeners = 2;
+void requesttargettemp_cb(byte *payload, unsigned int length){
+  Serial.println("Request target temp cb.");
+  Serial.print("Sending:");
+  Serial.println(targettemp);
+  publish_hvac_state();
+}
+
+void requestmode_cb(byte *payload, unsigned int length){
+  Serial.println("Request mode cb.");
+  Serial.print("Sending:");
+  Serial.println(hvacmode);
+  mqtt_client.publish("wyostat.hvacmode", hvacmode);  
+  publish_hvac_state();
+}
+
+void publish_hvac_state(){
+  char *state;
+  if(ac_state){
+    state = "cooling";
+  }
+  else if(furnace_state){
+    state = "heating";
+  }
+  else{
+    state = "off";
+  }
+  Serial.print("Sending:");
+  Serial.println(state);
+  mqtt_client.publish("wyostat.hvac_state", state);
+  publish_int("wyostat.temp", localtemp);
+  publish_int("wyostat.targettemp", targettemp);
+}
+void requeststate_cb(byte *payload, unsigned int length){
+  Serial.println("Request state cb.");
+  publish_hvac_state();
+}
+
+void hvacmode_cb(byte *payload, unsigned int length){
+  for(int i = 0; i < length; i++){
+    hvacmode[i] = (char)payload[i];
+  }
+  hvacmode[length] = 0;
+  Serial.print("wyostat.hvacmode: ");
+  Serial.println(hvacmode);
+}
+
+int n_topic_listeners = 6;
 const int MAX_TOPIC_LISTENERS = 50;
-TopicListener settemplo_listener = {"wyostat.settemplo", settemplo_cb};
-TopicListener settemphi_listener = {"wyostat.settemphi", settemphi_cb};
-TopicListener *TopicListeners[MAX_TOPIC_LISTENERS] = {&settemplo_listener,
-						      &settemphi_listener};
+
+TopicListener targettemp_listener = {"wyostat.targettemp", targettemp_cb};
+TopicListener requesttemp_listener = {"wyostat.requesttemp", requesttemp_cb};
+TopicListener requesttargettemp_listener = {"wyostat.requesttargettemp", requesttargettemp_cb};
+TopicListener requestmode_listener = {"wyostat.requeststate", requestmode_cb};
+TopicListener requeststate_listener = {"wyostat.requeststate", requeststate_cb};
+TopicListener hvacmode_listener = {"wyostat.hvacmode", hvacmode_cb};
+
+TopicListener *TopicListeners[MAX_TOPIC_LISTENERS] = {&targettemp_listener,
+						      &requesttemp_listener,
+						      &requesttargettemp_listener,
+						      &requestmode_listener,
+						      &hvacmode_listener,
+						      &requeststate_listener,
+						      };
 
 void loadSettings()
 {
-  settemplo = EEPROM.read(SETTEMPLO_ADDR);
-  if(settemplo == 255){
-    settemplo = DEFAULT_SETTEMPLO;
+  targettemp = EEPROM.read(TARGETTEMP_ADDR);
+  if(targettemp == 255){
+    targettemp = DEFAULT_TARGETTEMP;
   }
-  settemphi = EEPROM.read(SETTEMPHI_ADDR);
-  if(settemphi == 255){
-    settemphi = DEFAULT_SETTEMPHI;
-  }
-    
-}
-
-void subscribe(char* topic, TopicCallback_p cb){
-  //char topic_str[50];
-  //strcpy(topic, topic_str);
-  //const TopicListener listener = {topic_str, cb};
-  //TopicListener listener = {"wyostat.settemplo", settemplo_cb};
-  //TopicListeners[n_topic_listeners++] = &listener;
-  //mqtt_client.subscribe(topic);
 }
 
 void set_furnace(bool state){
   if(state != furnace_state){
     Serial.print("Setting Furnace:");
-    if(state){
-      Serial.println(" On");
-      mqtt_client.publish("wyostat.furnace_state", "1");
-    }
-    else{
-      Serial.println(" Off");
-      mqtt_client.publish("wyostat.furnace_state", "0");
-    }
+    Serial.println(furnace_state);
     furnace_state = state;
     digitalWrite(furnaceSCR, state);
+    Serial.print("Setting furnace:");
+    publish_of_on("wyostat.furnace_state", furnace_state);
+    publish_hvac_state();
   }
 }
 void set_ac(bool state){
   if(state != ac_state){
-    Serial.print("Setting AC:");
-    if(state){
-      Serial.println(" On");
-      mqtt_client.publish("wyostat.ac_state", "1");
-    }
-    else{
-      Serial.println(" Off");
-      mqtt_client.publish("wyostat.ac_state", "0");
-    }
+    Serial.println(ac_state);
     ac_state = state;
     digitalWrite(acSCR, state);
+    Serial.print("Setting AC:");
+    publish_of_on("wyostat.furnace_state", ac_state);
+    publish_hvac_state();
   }
 }
 
@@ -188,6 +204,7 @@ void setup() {
   
   pinMode(BUILTIN_LED, OUTPUT);     // Initialize the BUILTIN_LED pin as an output
   Serial.begin(115200);
+  setup_pins();
   setup_wifi();
   setup_temp();
   
@@ -196,8 +213,17 @@ void setup() {
 
   EEPROM.begin(512);
   loadSettings();
+  connect();
 }
 
+void setup_pins(){
+  pinMode(furnaceSCR,OUTPUT);
+  pinMode(fanSCR,OUTPUT);
+  pinMode(acSCR,OUTPUT);
+  digitalWrite(furnaceSCR,LOW);
+  digitalWrite(fanSCR,LOW);
+  digitalWrite(acSCR,LOW);
+}
 void setup_temp(){
   sensor0.begin();
   // set the Conversion Rate (how quickly the sensor gets a new reading)
@@ -206,6 +232,7 @@ void setup_temp(){
   //set Extended Mode.
   //0:12-bit Temperature(-55C to +128C) 1:13-bit Temperature(-55C to +150C)
   sensor0.setExtendedMode(0);
+  localtemp = sensor0.readTempF();
 }
 
 void setup_wifi() {
@@ -234,8 +261,7 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
 
   Serial.print("Message arrived [");
   Serial.print(topic);
-  Serial.print("] ");
-  
+  Serial.println("] ");
   for(int i=0; i < n_topic_listeners && !handled; i++){
     if(strcmp(topic, TopicListeners[i]->topic) == 0){
       TopicListeners[i]->callback_p(payload, length);
@@ -244,10 +270,19 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
   }
   if(!handled){
     for (int i = 0; i < length; i++) {
-      Serial.print((char)payload[i]);
+      Serial.print(payload[i]);
     }
     Serial.println();
     Serial.println("Not handled.");
+  }
+}
+
+void publish_of_on(char* topic, int val){
+  if(val){
+    mqtt_client.publish(topic, "on");
+  }
+  else{
+    mqtt_client.publish(topic, "off");
   }
 }
 
@@ -255,45 +290,39 @@ void publish_int(char* topic, int val){
   String val_str = String(val);
   mqtt_client.publish(topic, val_str.c_str());
 }
+void subscribe(){
+  for(int i=0; i < n_topic_listeners; i++){
+    mqtt_client.subscribe(TopicListeners[i]->topic);
+  }
+  //mqtt_client.subscribe("wyostat.targettemp");
+  //mqtt_client.subscribe("wyostat.requesttemp");
+  //mqtt_client.subscribe("wyostat.requesttargettemp");
+  //mqtt_client.subscribe("wyostat.requeststate");
+}
+
 void connect(){
   String str;
   
-  if (mqtt_client.connect("ESP32Client")) {
-    Serial.println("connected");
-    // Once connected, publish an announcement...
-    // ... and resubscribe
-    mqtt_client.subscribe("wyostat.settemplo");
-    mqtt_client.subscribe("wyostat.settemphi");
+  while (!mqtt_client.connected()) {
+    if(mqtt_client.connect("ESP32Client")) {
+      Serial.println("connected");
+      // Once connected, publish an announcement...
+      // ... and resubscribe
+      subscribe();
+      
+      publish_int("wyostat.fan_state",     fan_state);
+      publish_int("wyostat.ac_state",      ac_state);
+      publish_int("wyostat.furnace_state", furnace_state);
+      publish_int("wyostat.targettemp",    targettemp);
+      
+      Serial.print("TARGETTEMP:");
+      Serial.println(targettemp);
+    }
+    else{
+      Serial.print("Try again in 5 seconds.");
+      delay(5000);
+    }
   }
-  if(fan_state){
-    mqtt_client.publish("wyostat.fan_state", "1");
-  }
-  else{
-    mqtt_client.publish("wyostat.fan_state", "0");
-  }
-
-  if(ac_state){
-    mqtt_client.publish("wyostat.ac_state", "1");
-  }
-  else{
-    mqtt_client.publish("wyostat.ac_state", "0");
-  }
-
-  if(furnace_state){
-    mqtt_client.publish("wyostat.furnace_state", "1");
-  }
-  else{
-    mqtt_client.publish("wyostat.furnace_state", "0");
-  }
-  str = String(settemplo);
-  mqtt_client.publish("wyostat.settemplo", str.c_str());
-  Serial.print("settemplo:");
-  Serial.println(str.c_str());
-  str = String(settemphi);
-  mqtt_client.publish("wyostat.settemphi", str.c_str());
-  Serial.print("settemphi:");
-  Serial.println(str.c_str());
-  
 }
 
 void reconnect() {
@@ -305,8 +334,7 @@ void reconnect() {
       Serial.println("connected");
       // Once connected, publish an announcement...
       // ... and resubscribe
-      mqtt_client.subscribe("wyostat.settemplo");
-      mqtt_client.subscribe("wyostat.settemphi");
+      subscribe();
     } else {
       Serial.print("failed, rc=");
       Serial.print(mqtt_client.state());
@@ -316,33 +344,45 @@ void reconnect() {
     }
   }
 }
-int count = 0;
-float localtemperature = 0;
-int last_temp = 0;
 
 void loop() {
-  int temp = localtemperature;
+  int temp = localtemp;
   long now;
   String str_temp;
   String topic = String("wyostat.temp");
   
-  localtemperature = .99 * localtemperature + .01 * sensor0.readTempF();
+  localtemp = .9999 * localtemp + .0001 * sensor0.readTempF();
   if (!mqtt_client.connected()) {
     reconnect();
   }
   mqtt_client.loop();
 
-  if (localtemperature < settemplo){
+  if(hvacmode[0] == 'h'){ // heating mode
     set_ac(false);
-    set_furnace(true);
-    set_fan(true);
+    if (int(localtemp) > targettemp){ // too hot
+      set_furnace(false);
+      set_fan(false);
+    }
+    else if(int(localtemp) <= targettemp + HILOGAP){ // too cold
+      set_furnace(true);
+      set_fan(true);
+    }
+    else{ // just right
+    }
   }
-  else if (localtemperature > settemphi){
+  else if(hvacmode[0] == 'c'){ // cooling mode
     set_furnace(false);
-    set_ac(true);
-    set_fan(true);
+    if (int(localtemp) > targettemp){ // too hot
+      set_ac(true);
+      set_fan(true);
+    }
+    else if (int(localtemp) <= targettemp - HILOGAP){ // too cold
+      set_ac(false);
+      set_fan(false);
+    }
+    else{ // just right
+    }
   }
-  
   else{
     set_ac(false);
     set_furnace(false);
