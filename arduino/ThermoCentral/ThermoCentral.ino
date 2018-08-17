@@ -82,7 +82,7 @@ float  tempgap = 2.0L;
 SSD1306  display(0x3c, 5, 4);
 TMP102 sensor0(0x48);
 
-// OLEDDisplayUi ui     ( &display );
+OLEDDisplayUi ui     ( &display );
 String livingroomtitle = String("LivingRoom");
 String bedroomtitle = String("Time");
 String currentRoom = bedroomtitle;
@@ -183,13 +183,13 @@ void setup() {
 	// run it in 160Mhz mode or just set it to 30 fps
 
   // prevent page automatic turns.
-  // ui.disableAutoTransition();
+  ui.disableAutoTransition();
 
 
   // these are not needed, unless we re enable display changing.
-  //ui.setTargetFPS(30);
+  ui.setTargetFPS(30);
   //ui.setTimePerFrame(20000);
-  //ui.transitionToFrame(0);
+  ui.transitionToFrame(0);
 
 	// Customize the active and inactive symbol
   //ui.setActiveSymbol(activeSymbol);
@@ -213,7 +213,7 @@ void setup() {
   //ui.setOverlays(overlays, overlaysCount);
 
   // Initialising the UI will init the display too.
-  //ui.init();
+  ui.init();
 
   display.flipScreenVertically();
   // connect to adafruit.io
@@ -397,8 +397,8 @@ long lastUpdate;
 long lastrecord;
 float localtemperature = 0;
 void loop() {
-  //int remainingTimeBudget = ui.update();
-  int remainingTimeBudget = 100;
+  int remainingTimeBudget = ui.update();
+  //int remainingTimeBudget = 100;
   io.run();
   if (millis()-lastUpdate> TEMPINTERVAL)
   {

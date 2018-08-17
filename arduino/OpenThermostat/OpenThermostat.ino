@@ -27,10 +27,77 @@
 #include "RTClib.h"
 #include "SparkFunTMP102.h"
 #include "SSD1306.h" // alias for `#include "SSD1306Wire.h"`
+#include "icons.h"
+
 // Update these with values suitable for your network.
 
 #include "constants.h"
 void publish_int(char* topic, int val);
+void publish_off_on(char* topic, int val);
+void setup_pins();
+void setup_wifi();
+void setup_temp();
+void setup_display();
+void mqtt_callback(char* topic, byte* payload, unsigned int length);
+void connect();
+void arcDemo();
+
+//Adafruit_SSD1306  display(0x3c, 5, 4);
+SSD1306  display(0x3c, 5, 4);
+void drawTick(int16_t x0, int16_t y0, int16_t radius, double theta_deg, double length){
+  double theta = theta_deg * PI / 180;
+  double x1, x2, y1, y2;
+  
+  x1 = (radius - length) * cos(theta) + x0;
+  y1 = -(radius - length) * sin(theta) + y0;
+  x2 = (radius - 1) * cos(theta) + x0;
+  y2 = -(radius - 1) * sin(theta) + y0;
+  display.drawLine(x1, y1, x2, y2);
+}
+
+void arc_helper(int x0, int y0, int x, int y, int theta0_deg, int theta1_deg){
+  double theta0 = theta0_deg * PI / 180;
+  double theta1 = theta1_deg * PI / 180;
+  double theta = atan2(-y + y0, x - x0);
+  bool good0, good1, good2;
+  good0 = theta0 <= theta - 2 * PI && theta - 2 * PI <= theta1;
+  good1 = theta0 <= theta && theta <= theta1;
+  good2 = theta0 <= theta + 2 * PI && theta + 2 * PI <= theta1;
+  
+  if(good0 || good1 || good2){
+    display.setPixel(x, y);
+  }
+}
+
+void drawArc(int16_t x0, int16_t y0, int16_t radius, double theta0_deg, double theta1_deg){
+  int16_t x = 0, y = radius;
+  int16_t dp = 1 - radius;
+  if(theta0_deg > theta1_deg){
+    int16_t swp = theta0_deg;
+    theta0_deg = theta1_deg;
+    theta1_deg = swp;
+  }
+  do {
+    if (dp < 0)
+      dp = dp + 2 * (++x) + 3;
+    else
+      dp = dp + 2 * (++x) - 2 * (--y) + 5;
+    arc_helper(x0, y0, x0 + x, y0 + y, theta0_deg, theta1_deg);
+    arc_helper(x0, y0, x0 - x, y0 + y, theta0_deg, theta1_deg);
+    arc_helper(x0, y0, x0 + x, y0 - y, theta0_deg, theta1_deg);
+    arc_helper(x0, y0, x0 - x, y0 - y, theta0_deg, theta1_deg);
+    arc_helper(x0, y0, x0 + y, y0 + x, theta0_deg, theta1_deg);
+    arc_helper(x0, y0, x0 - y, y0 + x, theta0_deg, theta1_deg);
+    arc_helper(x0, y0, x0 + y, y0 - x, theta0_deg, theta1_deg);
+    arc_helper(x0, y0, x0 - y, y0 - x, theta0_deg, theta1_deg);
+  } while (x < y);
+  
+  arc_helper(x0, y0, x0 + radius, y0, theta0_deg, theta1_deg);
+  arc_helper(x0, y0, x0, y0 + radius, theta0_deg, theta1_deg);
+  arc_helper(x0, y0, x0 - radius, y0, theta0_deg, theta1_deg);
+  arc_helper(x0, y0, x0, y0 - radius, theta0_deg, theta1_deg);
+}
+
 
 int count = 0;
 float localtemp = 0;
@@ -66,9 +133,10 @@ int targettemp;
 char hvacmode[50] = "cooling";
 
 void _targettemp(int temp){
-  if(LOWEST_TEMP < temp && temp <HIGHEST_TEMP){
+  if(LOWEST_TEMP <= temp && temp <= HIGHEST_TEMP){
     if(temp != targettemp){
       targettemp = temp;
+      arcDemo();
       EEPROM.write(TARGETTEMP_ADDR, targettemp);
       EEPROM.commit();
     }
@@ -167,19 +235,32 @@ void set_furnace(bool state){
     Serial.println(furnace_state);
     furnace_state = state;
     digitalWrite(furnaceSCR, state);
-    Serial.print("Setting furnace:");
-    publish_of_on("wyostat.furnace_state", furnace_state);
+    publish_off_on("wyostat.furnace_state", furnace_state);
     publish_hvac_state();
+    display.setColor(BLACK);
+    display.fillRect(16, 16, 32, 32);
+    display.setColor(WHITE);
+    if(furnace_state){
+      display.drawXbm(16, 16, fire_width, fire_height, fire_bits);
+    }
+    display.display();
   }
 }
+
 void set_ac(bool state){
   if(state != ac_state){
-    Serial.println(ac_state);
     ac_state = state;
     digitalWrite(acSCR, state);
     Serial.print("Setting AC:");
-    publish_of_on("wyostat.furnace_state", ac_state);
+    publish_off_on("wyostat.furnace_state", ac_state);
     publish_hvac_state();
+    display.setColor(BLACK);
+    display.fillRect(16, 16, 32, 32);
+    display.setColor(WHITE);
+    if(ac_state){
+      display.drawXbm(16, 16, flake_width, flake_height, flake_bits);
+    }
+    display.display();
   }
 }
 
@@ -213,9 +294,141 @@ void setup() {
 
   EEPROM.begin(512);
   loadSettings();
+  setup_display();
   connect();
 }
 
+void setup_display(){
+  // Initialising the UI will init the display too.
+  display.init();
+
+  display.flipScreenVertically();
+  display.setFont(ArialMT_Plain_10);
+  display.clear();
+  display.display();
+
+  arcDemo();
+}
+void font_demo(){
+  // Font Demo1
+  // create more fonts at http://oleddisplay.squix.ch/
+  display.clear();
+  display.setTextAlignment(TEXT_ALIGN_LEFT);
+  display.setFont(ArialMT_Plain_10);
+  display.drawString(0, 0, "Hello world");
+  display.display(); delay(1000);
+  display.setFont(ArialMT_Plain_16);
+  display.drawString(0, 10, "Hello world");
+  display.display(); delay(1000);
+  display.setFont(ArialMT_Plain_24);
+  display.drawString(0, 26, "Hello world");
+  display.display(); delay(1000);
+}
+
+void xbmDemo(){
+  // test 1
+  // display.drawXbm(0, -30, xbm_width, xbm_height, xbm_bits);
+  // display.invertDisplay();
+
+  // test 2
+  display.drawXbm(0, 0, leaf_width, leaf_height, leaf_bits);
+  display.drawXbm(0, 32, flake_width, flake_height, flake_bits);
+  display.drawXbm(32, 32, fire_width, fire_height, fire_bits);
+
+  return;
+}
+
+void arcDemo(){
+  double theta_deg;
+
+  int x0 = 128 - 32 - 1;
+  int y0 = 32;
+  int y;
+  
+  int theta0, theta1;
+  String tempstr;
+  double gain = 315 / 50.;
+  
+  if (targettemp < LOWEST_TEMP){
+    theta1 = gain * (80 - LOWEST_TEMP);
+  }
+  else{
+    theta1 = gain * (80 - targettemp);
+  }
+  if (targettemp > HIGHEST_TEMP){
+    theta1 = gain * (80 - HIGHEST_TEMP);
+  }
+  else{
+    theta1 = gain * (80 - targettemp);
+  }
+  if (localtemp < LOWEST_TEMP){
+    theta0 = gain * (80 - LOWEST_TEMP);
+  }
+  else{
+    theta0 = gain * (80 - localtemp);
+  }
+  if (localtemp > HIGHEST_TEMP){
+    theta0 = gain * (80 - HIGHEST_TEMP);
+  }
+  else{
+    theta0 = gain * (80 - localtemp);
+  }
+
+  display.setColor(BLACK); // clear right half of display
+  display.fillRect(64, 0, 64, 64);
+  display.setColor(WHITE);
+
+  drawArc(x0, y0, 31, -67, 247);
+  drawArc(x0, y0, 32, -67, 247);
+  drawArc(x0, y0, 33, -67, 247);
+	     
+  drawArc(x0, y0, 27, theta0, theta1);
+  drawArc(x0, y0, 26, theta0, theta1);
+
+  int n_tick = 6;
+  for(int i=0; i<n_tick; i++){
+    theta_deg = (int)(-67.5 + 315. / (n_tick - 1) * i);
+    //drawTick(x0, y0, 32, theta_deg, 5);
+  }
+  
+  // display target temp
+  display.setFont(ArialMT_Plain_24);
+  display.setTextAlignment(TEXT_ALIGN_CENTER);
+  tempstr = String(targettemp);
+  display.drawString(x0, y0 - 12, tempstr.c_str());
+
+  // display local temp
+  display.setFont(ArialMT_Plain_10);
+  display.setTextAlignment(TEXT_ALIGN_CENTER);
+  tempstr = String((int)localtemp);
+  if(localtemp < targettemp){
+    y = y0 - 24;
+  }
+  else{
+    y = y0 + 12;
+  }
+  display.drawString(x0, y, tempstr.c_str());
+
+  /*
+  if(furnace_state){
+    display.setColor(BLACK);
+    display.fillRect(16, 16, 32, 32);
+    display.setColor(WHITE);
+    display.drawXbm(16, 16, fire_width, fire_height, fire_bits);
+    display.display();
+  }
+  if(ac_state){
+    display.setColor(BLACK);
+    display.fillRect(16, 16, 32, 32);
+    display.setColor(WHITE);
+    display.drawXbm(16, 16, flake_width, flake_height, flake_bits);
+    display.display();
+    }
+  */
+  display.display();
+}
+
+  
 void setup_pins(){
   pinMode(furnaceSCR,OUTPUT);
   pinMode(fanSCR,OUTPUT);
@@ -224,6 +437,7 @@ void setup_pins(){
   digitalWrite(fanSCR,LOW);
   digitalWrite(acSCR,LOW);
 }
+
 void setup_temp(){
   sensor0.begin();
   // set the Conversion Rate (how quickly the sensor gets a new reading)
@@ -277,7 +491,7 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
   }
 }
 
-void publish_of_on(char* topic, int val){
+void publish_off_on(char* topic, int val){
   if(val){
     mqtt_client.publish(topic, "on");
   }
@@ -388,7 +602,10 @@ void loop() {
     set_furnace(false);
     set_fan(false);
   }
-  
+
+  if((int)temp != int(localtemp)){
+    arcDemo();
+  }
   now = millis();
   if (now - lastMsg > 200) {
     lastMsg = now;
