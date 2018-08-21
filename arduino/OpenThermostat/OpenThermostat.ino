@@ -34,13 +34,14 @@
 #include "constants.h"
 void publish_int(char* topic, int val);
 void publish_off_on(char* topic, int val);
+void publish_bool(char* topic, bool val);
 void setup_pins();
 void setup_wifi();
 void setup_temp();
 void setup_display();
 void mqtt_callback(char* topic, byte* payload, unsigned int length);
 void connect();
-void arcDemo();
+void displayTemp();
 
 //Adafruit_SSD1306  display(0x3c, 5, 4);
 SSD1306  display(0x3c, 5, 4);
@@ -112,6 +113,7 @@ TMP102 sensor0(0x48);
 bool furnace_state = false;
 bool ac_state = false;
 bool fan_state = false;
+bool away;
 
 // this is a typedef for topic callback funtions
 typedef void (* TopicCallback_p)(byte* payload, unsigned int length);
@@ -129,6 +131,14 @@ int bytes2int(byte* payload, unsigned int length){
   return String(str_payload).toInt();
 }
 
+bool bytes2bool(byte* payload, unsigned int length){
+  bool out = false;
+  if(length > 0){
+    out = payload[0] == 't';
+  }
+  return out;
+}
+
 int targettemp;
 char hvacmode[50] = "cooling";
 
@@ -136,18 +146,33 @@ void _targettemp(int temp){
   if(LOWEST_TEMP <= temp && temp <= HIGHEST_TEMP){
     if(temp != targettemp){
       targettemp = temp;
-      arcDemo();
+      displayTemp();
       EEPROM.write(TARGETTEMP_ADDR, targettemp);
       EEPROM.commit();
     }
   }
 }
+
 void targettemp_cb(byte *payload, unsigned int length){
   String str_temp;
     
   Serial.print("Set temp cb: ");
   Serial.println(bytes2int(payload, length));
   _targettemp(bytes2int(payload, length));  
+}
+
+void away_cb(byte *payload, unsigned int length){
+  String str_temp;
+  bool tmp = bytes2bool(payload, length);
+  if(tmp != away){
+    away = tmp;
+    EEPROM.write(AWAY_ADDR, away);
+    EEPROM.commit();
+    displayTemp();
+  }
+
+  Serial.print("Set away cb: ");
+  Serial.println(away);
 }
 
 void requesttemp_cb(byte *payload, unsigned int length){
@@ -186,6 +211,7 @@ void publish_hvac_state(){
   Serial.print("Sending:");
   Serial.println(state);
   mqtt_client.publish("wyostat.hvac_state", state);
+  publish_bool("wyostat.away", away);  
   publish_int("wyostat.temp", localtemp);
   publish_int("wyostat.targettemp", targettemp);
 }
@@ -207,6 +233,7 @@ int n_topic_listeners = 6;
 const int MAX_TOPIC_LISTENERS = 50;
 
 TopicListener targettemp_listener = {"wyostat.targettemp", targettemp_cb};
+TopicListener away_listener = {"wyostat.away", away_cb};
 TopicListener requesttemp_listener = {"wyostat.requesttemp", requesttemp_cb};
 TopicListener requesttargettemp_listener = {"wyostat.requesttargettemp", requesttargettemp_cb};
 TopicListener requestmode_listener = {"wyostat.requeststate", requestmode_cb};
@@ -214,6 +241,7 @@ TopicListener requeststate_listener = {"wyostat.requeststate", requeststate_cb};
 TopicListener hvacmode_listener = {"wyostat.hvacmode", hvacmode_cb};
 
 TopicListener *TopicListeners[MAX_TOPIC_LISTENERS] = {&targettemp_listener,
+						      &away_listener,
 						      &requesttemp_listener,
 						      &requesttargettemp_listener,
 						      &requestmode_listener,
@@ -223,9 +251,18 @@ TopicListener *TopicListeners[MAX_TOPIC_LISTENERS] = {&targettemp_listener,
 
 void loadSettings()
 {
+  byte tmp;
+
   targettemp = EEPROM.read(TARGETTEMP_ADDR);
   if(targettemp == 255){
     targettemp = DEFAULT_TARGETTEMP;
+  }
+  tmp = EEPROM.read(AWAY_ADDR);
+  if(tmp == 255){
+    away = false;
+  }
+  else{
+    away = (bool)tmp;
   }
 }
 
@@ -307,7 +344,7 @@ void setup_display(){
   display.clear();
   display.display();
 
-  arcDemo();
+  displayTemp();
 }
 void font_demo(){
   // Font Demo1
@@ -338,7 +375,7 @@ void xbmDemo(){
   return;
 }
 
-void arcDemo(){
+void displayTemp(){
   double theta_deg;
 
   int x0 = 128 - 32 - 1;
@@ -373,7 +410,10 @@ void arcDemo(){
   else{
     theta0 = gain * (80 - localtemp);
   }
-
+  if(away){
+    theta1 = theta0 + 2;
+    theta0 = theta1 - 3;
+  }
   display.setColor(BLACK); // clear right half of display
   display.fillRect(64, 0, 64, 64);
   display.setColor(WHITE);
@@ -392,9 +432,15 @@ void arcDemo(){
   }
   
   // display target temp
-  display.setFont(ArialMT_Plain_24);
   display.setTextAlignment(TEXT_ALIGN_CENTER);
-  tempstr = String(targettemp);
+  if(away){
+    display.setFont(ArialMT_Plain_16);
+    tempstr = String("AWAY");
+  }
+  else{
+    display.setFont(ArialMT_Plain_24);
+    tempstr = String(targettemp);
+  }
   display.drawString(x0, y0 - 12, tempstr.c_str());
 
   // display local temp
@@ -500,6 +546,15 @@ void publish_off_on(char* topic, int val){
   }
 }
 
+void publish_bool(char* topic, bool val){
+  if(val){
+    mqtt_client.publish(topic, "true");
+  }
+  else{
+    mqtt_client.publish(topic, "false");
+  }
+}
+
 void publish_int(char* topic, int val){
   String val_str = String(val);
   mqtt_client.publish(topic, val_str.c_str());
@@ -570,31 +625,54 @@ void loop() {
     reconnect();
   }
   mqtt_client.loop();
-
   if(hvacmode[0] == 'h'){ // heating mode
     set_ac(false);
-    if (int(localtemp) > targettemp){ // too hot
-      set_furnace(false);
-      set_fan(false);
+    if(away){
+      if(localtemp < AWAYMIN){
+	set_fan(true);
+	set_furnace(true);
+      }
+      else if(localtemp > AWAYMIN + HILOGAP){
+	set_fan(false);
+	set_furnace(false);
+      }
     }
-    else if(int(localtemp) <= targettemp + HILOGAP){ // too cold
-      set_furnace(true);
-      set_fan(true);
-    }
-    else{ // just right
+    else{
+      if (int(localtemp) > targettemp){ // too hot
+	set_furnace(false);
+	set_fan(false);
+      }
+      else if(int(localtemp) <= targettemp + HILOGAP){ // too cold
+	set_furnace(true);
+	set_fan(true);
+      }
+      else{ // just right
+      }
     }
   }
   else if(hvacmode[0] == 'c'){ // cooling mode
     set_furnace(false);
-    if (int(localtemp) > targettemp){ // too hot
-      set_ac(true);
-      set_fan(true);
+    if(away){
+      if(localtemp > AWAYMAX){
+	set_fan(true);
+	set_ac(true);
+      }
+      else if(localtemp < AWAYMAX - HILOGAP){
+	set_fan(false);
+	set_ac(false);
+      }
     }
-    else if (int(localtemp) <= targettemp - HILOGAP){ // too cold
-      set_ac(false);
-      set_fan(false);
-    }
-    else{ // just right
+    else{
+      if (int(localtemp) > targettemp){ // too hot
+	set_ac(true);
+	set_fan(true);
+      }
+      else if (int(localtemp) <= targettemp - HILOGAP){ // too cold
+	set_ac(false);
+	set_fan(false);
+      }
+      else{ // just right
+      }
     }
   }
   else{
@@ -604,7 +682,7 @@ void loop() {
   }
 
   if((int)temp != int(localtemp)){
-    arcDemo();
+    displayTemp();
   }
   now = millis();
   if (now - lastMsg > 200) {

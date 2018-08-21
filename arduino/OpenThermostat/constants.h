@@ -11,11 +11,14 @@
 #define acSCR CH1
 
 #define TARGETTEMP_ADDR 40
+#define AWAY_ADDR 41
 
 #define LOWEST_TEMP 40
 #define HIGHEST_TEMP 90
 #define DEFAULT_TARGETTEMP 50
 #define DEFAULT_SETTEMPHI 80
 #define HILOGAP 2
+#define AWAYMIN 50
+#define AWAYMAX 90
 
 #define PI 3.141592653589793
