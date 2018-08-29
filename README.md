@@ -6,6 +6,7 @@ Open source thermostat
 * install node-red-dashboard
    	   * (from the ~/.node-red)
 	   * https://flows.nodered.org/node/node-red-dashboard
+* install node-red start up trigger: npm install node-red-contrib-startup-trigger
 * install mosquitto (steps 1 & 2
            *https://learn.adafruit.com/diy-esp8266-home-security-with-lua-and-mqtt/configuring-mqtt-on-the-raspberry-pi)
 * start node-red (from the command-line type $node-red)
