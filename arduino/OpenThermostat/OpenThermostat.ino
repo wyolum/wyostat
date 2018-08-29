@@ -99,7 +99,6 @@ void drawArc(int16_t x0, int16_t y0, int16_t radius, double theta0_deg, double t
   arc_helper(x0, y0, x0, y0 - radius, theta0_deg, theta1_deg);
 }
 
-
 int count = 0;
 float localtemp = 0;
 int last_temp = 0;
