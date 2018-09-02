@@ -1,3 +1,0 @@
-Solid state relay (SCR) board -- http://makeatronics.blogspot.com/2013/06/24v-ac-solid-state-relay-board.html
-Temperature sensor -- https://www.sparkfun.com/products/13314
-ESP32 Microcontroller with OLED display -- https://www.banggood.com/Wemos-Lolin-ESP32-OLED-Module-For-Arduino-ESP32-OLED-WiFi-Modules-Bluetooth-Dual-ESP-32-p-1181297.html

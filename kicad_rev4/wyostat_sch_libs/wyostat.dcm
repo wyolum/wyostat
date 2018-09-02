@@ -1,0 +1,71 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP 1N5817
+D 20V 1A Schottky Barrier Rectifier Diode, DO-41
+K diode Schottky
+F http://www.vishay.com/docs/88525/1n5817.pdf
+$ENDCMP
+#
+$CMP 1N5818
+D 30V 1A Schottky Barrier Rectifier Diode, DO-41
+K diode Schottky
+F http://www.vishay.com/docs/88525/1n5817.pdf
+$ENDCMP
+#
+$CMP 1N5819
+D 40V 1A Schottky Barrier Rectifier Diode, DO-41
+K diode Schottky
+$ENDCMP
+#
+$CMP Conn_01x06
+D Generic connector, single row, 01x06, script generated (kicad-library-utils/schlib/autogen/connector/)
+K connector
+F ~
+$ENDCMP
+#
+$CMP GNDREF
+D (reference supply) ground power-flag symbol
+K Power Flag Symbol
+$ENDCMP
+#
+$CMP L
+D Inductor
+K inductor choke coil reactor magnetic
+$ENDCMP
+#
+$CMP R
+D Resistor
+K r res resistor
+$ENDCMP
+#
+$CMP SB120
+D 20V 1A Schottky Barrier Rectifier Diode, DO-41
+K diode Schottky
+F http://www.diodes.com/_files/datasheets/ds23022.pdf
+$ENDCMP
+#
+$CMP SB130
+D 30V 1A Schottky Barrier Rectifier Diode, DO-41
+K diode Schottky
+F http://www.diodes.com/_files/datasheets/ds23022.pdf
+$ENDCMP
+#
+$CMP SB140
+D 40V 1A Schottky Barrier Rectifier Diode, DO-41
+K diode Schottky
+F http://www.diodes.com/_files/datasheets/ds23022.pdf
+$ENDCMP
+#
+$CMP SB150
+D 50V 1A Schottky Barrier Rectifier Diode, DO-41
+K diode Schottky
+F http://www.diodes.com/_files/datasheets/ds23022.pdf
+$ENDCMP
+#
+$CMP SB160
+D 60V 1A Schottky Barrier Rectifier Diode, DO-41
+K diode Schottky
+F http://www.diodes.com/_files/datasheets/ds23022.pdf
+$ENDCMP
+#
+#End Doc Library

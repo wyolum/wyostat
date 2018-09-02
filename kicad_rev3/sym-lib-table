@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name wyostat)(type Legacy)(uri ${KIPRJMOD}/wyostat_sch_libs/wyostat.lib)(options "")(descr ""))
+)
