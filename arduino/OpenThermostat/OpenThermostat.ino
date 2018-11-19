@@ -20,9 +20,9 @@
 */
 
 #include <EEPROM.h>
-#include <WiFi.h>
+#include <WiFiManager.h>
 #include <PubSubClient.h>
-#include "config.h"
+//#include "config.h"
 #include <Wire.h>  // Only needed for Arduino 1.6.5 and earlier
 #include "RTClib.h"
 #include "SparkFunTMP102.h"
@@ -40,8 +40,11 @@ void setup_wifi();
 void setup_temp();
 void setup_display();
 void mqtt_callback(char* topic, byte* payload, unsigned int length);
-void connect();
+void mqtt_connect();
+void mqtt_reconnect();
 void displayTemp();
+
+WiFiManager wifiManager;
 
 //Adafruit_SSD1306  display(0x3c, 5, 4);
 SSD1306  display(0x3c, 5, 4);
@@ -325,13 +328,34 @@ void setup() {
   setup_wifi();
   setup_temp();
   
+  uint8_t mqtt_server[4] = {192, 168, 1, 159};
   mqtt_client.setServer(mqtt_server, 1883);
   mqtt_client.setCallback(mqtt_callback);
 
   EEPROM.begin(512);
   loadSettings();
   setup_display();
-  connect();
+
+  if(true){ // test icons?
+////////////////////////////////////////////////////////////////////////////////
+  // TEST  (works !!!)
+    display.clear();
+    display.drawXbm(16, 16, fire_width, fire_height, fire_bits);
+    display.display();
+    delay(1000);
+
+    display.clear();
+    display.drawXbm(16, 16, flake_width, flake_height, flake_bits);
+    display.display();
+    delay(1000);
+
+    display.clear();
+    display.drawXbm(16, 16, leaf_width, leaf_height, leaf_bits);
+    display.display();
+    delay(1000);
+////////////////////////////////////////////////////////////////////////////////
+  }
+  mqtt_connect();
 }
 
 void setup_display(){
@@ -498,11 +522,13 @@ void setup_wifi() {
 
   delay(10);
   // We start by connecting to a WiFi network
-  Serial.println();
-  Serial.print("Connecting to ");
-  Serial.println(ssid);
+  // reset network?
+  // wifiManager.startConfigPortal("WyoStat");
+  wifiManager.autoConnect("WyoStat");
 
-  WiFi.begin(ssid, password);
+  Serial.println("Yay connected!");
+  Serial.println("IP address: ");
+  Serial.println(WiFi.localIP());
 
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
@@ -568,7 +594,7 @@ void subscribe(){
   //mqtt_client.subscribe("wyostat.requeststate");
 }
 
-void connect(){
+void mqtt_connect(){
   String str;
   
   while (!mqtt_client.connected()) {
@@ -593,7 +619,7 @@ void connect(){
   }
 }
 
-void reconnect() {
+void mqtt_reconnect() {
   // Loop until we're reconnected
   while (!mqtt_client.connected()) {
     Serial.print("Attempting MQTT connection...");
@@ -620,10 +646,28 @@ void loop() {
   String topic = String("wyostat.temp");
   
   localtemp = .9999 * localtemp + .0001 * sensor0.readTempF();
+  localtemp = 73;
+  
   if (!mqtt_client.connected()) {
-    reconnect();
+    mqtt_reconnect();
   }
   mqtt_client.loop();
+////////////////////////////////////////////////////////////////////////////////
+  // TEST (does not work!!!)
+  display.drawXbm(16, 16, flake_width, flake_height, flake_bits);
+  Serial.println("Flake");
+
+  int x0 = 128 - 32 - 1;
+  int y0 = 32;
+  drawArc(x0, y0, 31, -67, 247);
+  drawArc(x0, y0, 32, -67, 247);
+  drawArc(x0, y0, 33, -67, 247);
+  
+  display.display();
+  delay(1000);
+  return;
+  // TEST
+////////////////////////////////////////////////////////////////////////////////
   if(hvacmode[0] == 'h'){ // heating mode
     set_ac(false);
     if(away){
@@ -688,6 +732,7 @@ void loop() {
     lastMsg = now;
     if(temp != last_temp){
       last_temp = temp;
+      Serial.print("temp: ");
       Serial.println(temp);
       str_temp = String(temp);
       mqtt_client.publish(topic.c_str(), str_temp.c_str());
