@@ -323,6 +323,7 @@ void setup() {
   String str;
   
   pinMode(BUILTIN_LED, OUTPUT);     // Initialize the BUILTIN_LED pin as an output
+  Wire.begin(5, 4);
   Serial.begin(115200);
   setup_pins();
   setup_wifi();
@@ -644,30 +645,14 @@ void loop() {
   long now;
   String str_temp;
   String topic = String("wyostat.temp");
-  
-  localtemp = .9999 * localtemp + .0001 * sensor0.readTempF();
-  localtemp = 73;
+
+  //localtemp = .9999 * localtemp + .0001 * sensor0.readTempF();
+  localtemp = 73; // previous line breaks display!!
   
   if (!mqtt_client.connected()) {
     mqtt_reconnect();
   }
   mqtt_client.loop();
-////////////////////////////////////////////////////////////////////////////////
-  // TEST (does not work!!!)
-  display.drawXbm(16, 16, flake_width, flake_height, flake_bits);
-  Serial.println("Flake");
-
-  int x0 = 128 - 32 - 1;
-  int y0 = 32;
-  drawArc(x0, y0, 31, -67, 247);
-  drawArc(x0, y0, 32, -67, 247);
-  drawArc(x0, y0, 33, -67, 247);
-  
-  display.display();
-  delay(1000);
-  return;
-  // TEST
-////////////////////////////////////////////////////////////////////////////////
   if(hvacmode[0] == 'h'){ // heating mode
     set_ac(false);
     if(away){
