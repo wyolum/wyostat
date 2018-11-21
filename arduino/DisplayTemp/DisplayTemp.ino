@@ -26,6 +26,7 @@ Distributed as-is; no warranty is given.
 #include <Wire.h> // Used to establied serial communication on the I2C bus
 #include "SparkFunTMP102.h" // Used to send and recieve specific information from our sensor
 
+
 // Connections
 // VCC = 3.3V
 // GND = GND
@@ -39,6 +40,30 @@ TMP102 sensor0(0x48); // Initialize sensor at I2C address 0x48
 //  VCC - 0x49
 //  SDA - 0x4A
 //  SCL - 0x4B
+
+////////////////////////////////////////////////////////////////////////////////
+#include "SSD1306.h" // alias for `#include "SSD1306Wire.h"`
+SSD1306  display(0x3c, 5, 4);
+void setup_display(){
+  // Initialising the UI will init the display too.
+  display.init();
+
+  display.flipScreenVertically();
+  display.setFont(ArialMT_Plain_10);
+  display.clear();
+  display.display();
+}
+void font_demo(){
+  // Font Demo1
+  // create more fonts at http://oleddisplay.squix.ch/
+  int temp = sensor0.readTempF();
+  display.clear();
+  display.setFont(ArialMT_Plain_24);
+  display.drawString(0, 26, String((int)temp));
+  display.display(); 
+}
+
+////////////////////////////////////////////////////////////////////////////////
 
 void setup() {
   Serial.begin(9600); // Start serial communication at 9600 baud
@@ -73,6 +98,8 @@ void setup() {
   //set T_LOW, the lower limit to shut turn off the alert
   sensor0.setLowTempF(84.0);  // set T_LOW in F
   //sensor0.setLowTempC(26.67); // set T_LOW in C
+  // read temperature data
+  setup_display();
 }
  
 void loop()
@@ -106,5 +133,7 @@ void loop()
   Serial.print("\tAlert Register: ");
   Serial.println(alertRegisterState);
   
+  font_demo();
+  Serial.print('loop()');
   delay(1000);  // Wait 1000ms
 }

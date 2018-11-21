@@ -323,11 +323,11 @@ void setup() {
   String str;
   
   pinMode(BUILTIN_LED, OUTPUT);     // Initialize the BUILTIN_LED pin as an output
-  Wire.begin(5, 4);
+  // Wire.begin(5, 4);
   Serial.begin(115200);
   setup_pins();
   setup_wifi();
-  setup_temp();
+  //setup_temp();
   
   uint8_t mqtt_server[4] = {192, 168, 1, 159};
   mqtt_client.setServer(mqtt_server, 1883);
@@ -646,8 +646,12 @@ void loop() {
   String str_temp;
   String topic = String("wyostat.temp");
 
+  //sensor0.wakeup();
   //localtemp = .9999 * localtemp + .0001 * sensor0.readTempF();
   localtemp = 73; // previous line breaks display!!
+  
+  // Turn sensor on to start temperature measurement.
+  // Current consumtion typically ~10uA.
   
   if (!mqtt_client.connected()) {
     mqtt_reconnect();
