@@ -130,7 +130,7 @@ void setup() {
   pinMode(ALERT_PIN,INPUT);  // Declare alertPin as an input
   setup_sensor();
   setup_display();
-  setup_wifi();// comment out this line and sensor and display both work.  
+  setup_wifi();// comment out this line and sensor and display both wo
 }
  
 void loop()
