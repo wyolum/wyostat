@@ -25,6 +25,8 @@ Distributed as-is; no warranty is given.
 
 #include <Wire.h> // Used to establied serial communication on the I2C bus
 #include "SparkFunTMP102.h" // Used to send and recieve specific information from our sensor
+#include <WiFiManager.h>
+//#include<WiFi.h>
 
 
 // Connections
@@ -44,6 +46,8 @@ TMP102 sensor0(0x48); // Initialize sensor at I2C address 0x48
 ////////////////////////////////////////////////////////////////////////////////
 #include "SSD1306.h" // alias for `#include "SSD1306Wire.h"`
 SSD1306  display(0x3c, 5, 4);
+WiFiManager wifiManager;
+
 void setup_display(){
   // Initialising the UI will init the display too.
   display.init();
@@ -62,12 +66,32 @@ void font_demo(){
   display.drawString(0, 26, String((int)temp));
   display.display(); 
 }
+void setup_wifi() {
+
+  delay(10);
+  // We start by connecting to a WiFi network
+  // reset network?
+  // wifiManager.startConfigPortal("WyoStat");
+  wifiManager.autoConnect("WyoStat");
+
+  Serial.println("Yay connected!");
+  Serial.println("IP address: ");
+  Serial.println(WiFi.localIP());
+
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+
+  Serial.println("");
+  Serial.println("WiFi connected");
+  Serial.println("IP address: ");
+  Serial.println(WiFi.localIP());
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 
-void setup() {
-  Serial.begin(9600); // Start serial communication at 9600 baud
-  pinMode(ALERT_PIN,INPUT);  // Declare alertPin as an input
+void setup_sensor(){
   sensor0.begin();  // Join I2C bus
 
   // Initialize sensor0 settings
@@ -99,7 +123,14 @@ void setup() {
   sensor0.setLowTempF(84.0);  // set T_LOW in F
   //sensor0.setLowTempC(26.67); // set T_LOW in C
   // read temperature data
+}
+
+void setup() {
+  Serial.begin(115200); // Start serial communication at 9600 baud
+  pinMode(ALERT_PIN,INPUT);  // Declare alertPin as an input
+  setup_sensor();
   setup_display();
+  setup_wifi();// comment out this line and sensor and display both work.  
 }
  
 void loop()
