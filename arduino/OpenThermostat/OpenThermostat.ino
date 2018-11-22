@@ -516,6 +516,7 @@ void setup_temp(){
   //set Extended Mode.
   //0:12-bit Temperature(-55C to +128C) 1:13-bit Temperature(-55C to +150C)
   sensor0.setExtendedMode(0);
+  sensor0.wakeup();
   localtemp = sensor0.readTempF();
 }
 
@@ -646,9 +647,8 @@ void loop() {
   String str_temp;
   String topic = String("wyostat.temp");
 
-  sensor0.wakeup();
-  //localtemp = .9999 * localtemp + .0001 * sensor0.readTempF();
-  localtemp = sensor0.readTempF();
+  localtemp = .9999 * localtemp + .0001 * sensor0.readTempF();
+  //localtemp = sensor0.readTempF();
   //localtemp = 73; // previous line breaks display!!
   
   // Turn sensor on to start temperature measurement.
@@ -671,11 +671,11 @@ void loop() {
       }
     }
     else{
-      if (int(localtemp) > targettemp){ // too hot
+      if (localtemp > targettemp + HILOGAP){ // too hot
 	set_furnace(false);
 	set_fan(false);
       }
-      else if(int(localtemp) <= targettemp + HILOGAP){ // too cold
+      else if(localtemp <= targettemp - HILOGAP){ // too cold
 	set_furnace(true);
 	set_fan(true);
       }
@@ -696,11 +696,11 @@ void loop() {
       }
     }
     else{
-      if (int(localtemp) > targettemp){ // too hot
+      if (localtemp > targettemp + HILOGAP){ // too hota
 	set_ac(true);
 	set_fan(true);
       }
-      else if (int(localtemp) <= targettemp - HILOGAP){ // too cold
+      else if (localtemp <= targettemp - HILOGAP){ // too cold
 	set_ac(false);
 	set_fan(false);
       }
