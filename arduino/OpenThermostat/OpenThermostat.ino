@@ -646,7 +646,7 @@ void loop() {
   String str_temp;
   String topic = String("wyostat.temp");
 
-  //sensor0.wakeup();
+  sensor0.wakeup();
   //localtemp = .9999 * localtemp + .0001 * sensor0.readTempF();
   localtemp = sensor0.readTempF();
   //localtemp = 73; // previous line breaks display!!
