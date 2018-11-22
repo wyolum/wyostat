@@ -327,7 +327,7 @@ void setup() {
   Serial.begin(115200);
   setup_pins();
   setup_wifi();
-  //setup_temp();
+  setup_temp();
   
   uint8_t mqtt_server[4] = {192, 168, 1, 159};
   mqtt_client.setServer(mqtt_server, 1883);
@@ -337,7 +337,7 @@ void setup() {
   loadSettings();
   setup_display();
 
-  if(true){ // test icons?
+  if(false){ // test icons?
 ////////////////////////////////////////////////////////////////////////////////
   // TEST  (works !!!)
     display.clear();
@@ -648,7 +648,8 @@ void loop() {
 
   //sensor0.wakeup();
   //localtemp = .9999 * localtemp + .0001 * sensor0.readTempF();
-  localtemp = 73; // previous line breaks display!!
+  localtemp = sensor0.readTempF();
+  //localtemp = 73; // previous line breaks display!!
   
   // Turn sensor on to start temperature measurement.
   // Current consumtion typically ~10uA.
