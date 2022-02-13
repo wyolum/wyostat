@@ -110,7 +110,7 @@ WiFiClient espClient;
 PubSubClient mqtt_client(espClient);
 long lastMsg = 0;
 char msg[50] = "Hello Mosquitto!\n(from ESP32)";
-TMP102 sensor0(0x48);
+TMP102 sensor0;
 
 bool furnace_state = false;
 bool ac_state = false;
@@ -323,13 +323,13 @@ void setup() {
   String str;
   
   pinMode(BUILTIN_LED, OUTPUT);     // Initialize the BUILTIN_LED pin as an output
-  // Wire.begin(5, 4);
+  Wire.begin(5, 4);
   Serial.begin(115200);
   setup_pins();
   setup_wifi();
-  //setup_temp();
+   setup_temp();
   
-  uint8_t mqtt_server[4] = {192, 168, 1, 159};
+  uint8_t mqtt_server[4] = {192, 168, 7, 159};
   mqtt_client.setServer(mqtt_server, 1883);
   mqtt_client.setCallback(mqtt_callback);
 
@@ -646,9 +646,9 @@ void loop() {
   String str_temp;
   String topic = String("wyostat.temp");
 
-  //sensor0.wakeup();
-  //localtemp = .9999 * localtemp + .0001 * sensor0.readTempF();
-  localtemp = 73; // previous line breaks display!!
+  sensor0.wakeup();
+  localtemp = .9999 * localtemp + .0001 * sensor0.readTempF();
+  //localtemp = 73; // previous line breaks display!!
   
   // Turn sensor on to start temperature measurement.
   // Current consumtion typically ~10uA.

@@ -36,7 +36,7 @@ Distributed as-is; no warranty is given.
 // SCL = A5
 const int ALERT_PIN = A3;
 
-TMP102 sensor0(0x48); // Initialize sensor at I2C address 0x48
+TMP102 sensor0(); // Initialize sensor at I2C address 0x48
 // Sensor address can be changed with an external jumper to:
 // ADD0 - Address
 //  VCC - 0x49
@@ -67,11 +67,10 @@ void font_demo(){
   display.display(); 
 }
 void setup_wifi() {
-
   delay(10);
   // We start by connecting to a WiFi network
   // reset network?
-  // wifiManager.startConfigPortal("WyoStat");
+  //wifiManager.startConfigPortal("WyoStat");
   wifiManager.autoConnect("WyoStat");
 
   Serial.println("Yay connected!");
@@ -130,7 +129,7 @@ void setup() {
   pinMode(ALERT_PIN,INPUT);  // Declare alertPin as an input
   setup_sensor();
   setup_display();
-  setup_wifi();// comment out this line and sensor and display both wo
+  //setup_wifi();// comment out this line and sensor and display both wo
 }
  
 void loop()
