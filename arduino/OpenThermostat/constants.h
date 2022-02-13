@@ -17,7 +17,7 @@
 #define HIGHEST_TEMP 90
 #define DEFAULT_TARGETTEMP 50
 #define DEFAULT_SETTEMPHI 80
-#define HILOGAP 2
+#define HILOGAP 1
 #define AWAYMIN 50
 #define AWAYMAX 90
 
