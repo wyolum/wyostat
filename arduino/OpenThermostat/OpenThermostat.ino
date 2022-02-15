@@ -19,15 +19,23 @@
 
 */
 
+#include "config.h"
+#include <DNSServer.h>
 #include <EEPROM.h>
 #include <WiFiManager.h>
+#include <NTPClient.h>
+#include <TimeLib.h>
+#include <EEPROM.h>
+#include <EEPROMAnything.h>
+#include <HTTPClient.h>
 #include <PubSubClient.h>
-//#include "config.h"
 #include <Wire.h>  // Only needed for Arduino 1.6.5 and earlier
+#include <credentials.h>
 #include "RTClib.h"
 #include "SparkFunTMP102.h"
 #include "SSD1306.h" // alias for `#include "SSD1306Wire.h"`
 #include "icons.h"
+#include "get_time.h"
 
 // Update these with values suitable for your network.
 
@@ -111,6 +119,9 @@ PubSubClient mqtt_client(espClient);
 long lastMsg = 0;
 char msg[50] = "Hello Mosquitto!\n(from ESP32)";
 TMP102 sensor0;
+NTPClock ntp_clock;
+DS3231Clock ds3231_clock;
+DoomsdayClock doomsday_clock;
 
 bool furnace_state = false;
 bool ac_state = false;
@@ -251,6 +262,115 @@ TopicListener *TopicListeners[MAX_TOPIC_LISTENERS] = {&targettemp_listener,
 						      &requeststate_listener,
 						      };
 
+
+// return json value for name identified (or "not found")
+String jsonLookup(String s, String name){
+  String out;
+  int start, stop;
+  
+  name = String("\"") + name + String("\""); // add bounding quotes
+
+  start = s.indexOf(name);
+  if(start < 0){
+    out = String("not found");
+  }
+  else{
+    start +=  name.length() + 2;
+    stop = s.indexOf('"', start);
+    out = s.substring(start, stop);
+  }
+  return out;
+}
+
+void set_timezone_from_ip(){
+
+  HTTPClient http;
+  String payload;
+  
+  Serial.print("[HTTP] begin...\n");
+  // configure traged server and url
+  //http.begin("https://www.howsmyssl.com/a/check", ca); //HTTPS
+  // http.begin("http://example.com/index.html"); //HTTP
+
+  //http.begin("https://timezoneapi.io/api/ip");// no longer works!
+  String url = String("https://www.wyolum.com/utc_offset/utc_offset.py") +
+    String("?refresh=") + String(millis()) +
+    String("&localip=") +
+    String(WiFi.localIP()[0]) + String('.') + 
+    String(WiFi.localIP()[1]) + String('.') + 
+    String(WiFi.localIP()[2]) + String('.') + 
+    String(WiFi.localIP()[3]) + String('&') +
+    String("macaddress=") + WiFi.macAddress() + String('&') + 
+    String("dev_type=ClockIOT");
+  Serial.println(url);
+  http.begin(url);
+  
+  Serial.print("[HTTP] GET...\n");
+  // start connection and send HTTP header
+  int httpCode = http.GET();
+  
+  // httpCode will be negative on error
+  //httpCode = -1; // force error
+  if(httpCode < 0){
+    http.end();
+    url = String("https://ipapi.co/json/?key=");
+    Serial.print("Using backup url:");
+    Serial.println(url + "<SECRET KEY>");
+    http.begin(url + ipapikey);
+  
+    Serial.print("[HTTP] GET...\n");
+    // start connection and send HTTP header
+    httpCode = http.GET();
+  }
+  payload = http.getString();
+  if(httpCode > 0) {
+    // HTTP header has been send and Server response header has been handled
+    Serial.printf("[HTTP] GET... code: %d\n", httpCode);
+    
+    // file found at server
+    //String findme = String("offset_seconds");
+    if(httpCode == HTTP_CODE_OK) {
+      Serial.print("payload:");
+      Serial.println(payload);
+      payload.replace(" ", "");
+      String offset_str = jsonLookup(payload, String("utc_offset"));
+      int hours = offset_str.substring(0, 3).toInt();
+      int minutes = offset_str.substring(3, 5).toInt();
+      if(hours < 0){
+	minutes *= -1;
+      }
+      int offset = hours * 3600 + minutes * 60;
+
+      String utc_str =jsonLookup(payload, String("utc"));
+      Serial.print("  UTC:"); Serial.println(utc_str);
+      if(!utc_str.equals("not found")){
+	uint32_t local = utc_str.toInt() + offset;
+	Serial.print("Local:");Serial.println(local);
+	ds3231_clock.set(local);
+      }
+      if(doomsday_clock.master->initialized){
+	Serial.println("NTP is clock alive!");
+      }
+      else{
+	Serial.println("No NTP, fall back to DS3231");
+      }
+      Serial.println();
+      Serial.print("timezone_offset String:");
+      Serial.println(offset_str);
+      Serial.print("timezone_offset:");
+      Serial.println(offset);
+      set_timezone_offset(offset, ntp_clock);
+      my_config.last_tz_lookup = doomsday_clock.gmt();
+      saveSettings();
+    }
+    else{
+      Serial.println("No timezone found");
+      Serial.println("Payload:");
+      Serial.println(payload);
+    }
+  }
+}
+
 void loadSettings()
 {
   byte tmp;
@@ -335,8 +455,8 @@ void setup() {
 
   EEPROM.begin(512);
   loadSettings();
+  setup_rtc();
   setup_display();
-
   if(true){ // test icons?
 ////////////////////////////////////////////////////////////////////////////////
   // TEST  (works !!!)
@@ -357,6 +477,11 @@ void setup() {
 ////////////////////////////////////////////////////////////////////////////////
   }
   mqtt_connect();
+}
+
+void setup_rtc(){
+  //ds3231_clock.begin();
+  //ds3231_clock.adjust(DateTime(2022, 2, 13, 15, 17, 0));
 }
 
 void setup_display(){
@@ -652,7 +777,13 @@ void loop() {
   
   // Turn sensor on to start temperature measurement.
   // Current consumtion typically ~10uA.
-  
+  /*
+  Serial.print(ds3231_clock.now().hour());
+  Serial.print(":");
+  Serial.print(ds3231_clock.now().minute());
+  Serial.print(":");
+  Serial.println(ds3231_clock.now().second());
+  */
   if (!mqtt_client.connected()) {
     mqtt_reconnect();
   }
