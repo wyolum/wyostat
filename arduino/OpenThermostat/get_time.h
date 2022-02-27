@@ -2,7 +2,6 @@
 #define GET_TIME_H
 
 #include "TimeLib.h"
-#include "config.h"
 #include <DNSServer.h>
 #include <stdint.h>
 #include <WiFiUdp.h>
@@ -48,6 +47,7 @@ class NTPClock : public Clock{
   bool update();
 };
 
+/*
 void set_timezone_offset(int32_t offset, NTPClock ntp_clock){
   my_config.timezone = offset % 86400;
   saveSettings();
@@ -55,6 +55,7 @@ void set_timezone_offset(int32_t offset, NTPClock ntp_clock){
     ntp_clock.setOffset(my_config.timezone);
   }
 }
+*/
 
 class DS3231Clock : public Clock{
  public:

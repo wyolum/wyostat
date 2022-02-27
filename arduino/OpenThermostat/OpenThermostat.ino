@@ -19,7 +19,6 @@
 
 */
 
-#include "config.h"
 #include <DNSServer.h>
 #include <EEPROM.h>
 #include <WiFiManager.h>
@@ -40,6 +39,24 @@
 // Update these with values suitable for your network.
 
 #include "constants.h"
+
+struct config_t{
+  int timezone;
+  uint8_t brightness;
+  uint8_t display_idx;
+  bool factory_reset;
+  bool use_wifi;
+  bool use_ip_timezone;
+  uint8_t mqtt_ip[4];
+  bool flip_display;
+  uint32_t last_tz_lookup; // look up tz info every Sunday at 3:00 AM
+  uint8_t solid_color_rgb[3];
+  bool use_ntp_time;
+  bool wifi_reset;
+  uint8_t faceplate_idx;
+} my_config;
+
+
 void publish_int(char* topic, int val);
 void publish_off_on(char* topic, int val);
 void publish_bool(char* topic, bool val);
@@ -111,7 +128,7 @@ void drawArc(int16_t x0, int16_t y0, int16_t radius, double theta0_deg, double t
 }
 
 int count = 0;
-float localtemp = 0;
+float localtemp = 50.;
 int last_temp = 0;
 
 WiFiClient espClient;
@@ -122,6 +139,8 @@ TMP102 sensor0;
 NTPClock ntp_clock;
 DS3231Clock ds3231_clock;
 DoomsdayClock doomsday_clock;
+WiFiUDP ntpUDP;
+NTPClient timeClient(ntpUDP, "us.pool.ntp.org", 0, 60000); //Default
 
 bool furnace_state = false;
 bool ac_state = false;
@@ -152,15 +171,41 @@ bool bytes2bool(byte* payload, unsigned int length){
   return out;
 }
 
-int targettemp;
-char hvacmode[50] = "cooling";
+uint8_t targettemps[2] = {60, 68};
+uint8_t targettimes[2] = { 6, 22};
+char hvacmode[50] = "heating";
+
+int get_target_index(){
+  uint8_t hh = ds3231_clock.hours();
+  uint8_t out;
+  if(hh < targettimes[0]){
+    out = 0;
+  }
+  else if(hh < targettimes[1]){
+    out = 1;
+  }
+  else{
+    out = 0;
+  }
+  return out;
+}
+ 
+uint8_t get_targettemp(){
+  uint8_t index = get_target_index();
+  return targettemps[index];
+}
+
+uint8_t set_targettemp(uint8_t t){
+  uint8_t index = get_target_index();
+  targettemps[index] = t;
+}
 
 void _targettemp(int temp){
   if(LOWEST_TEMP <= temp && temp <= HIGHEST_TEMP){
-    if(temp != targettemp){
-      targettemp = temp;
+    if(temp != get_targettemp()){
+      set_targettemp(temp);
       displayTemp();
-      EEPROM.write(TARGETTEMP_ADDR, targettemp);
+      EEPROM.write(TARGETTEMP_ADDR, temp);
       EEPROM.commit();
     }
   }
@@ -198,7 +243,7 @@ void requesttemp_cb(byte *payload, unsigned int length){
 void requesttargettemp_cb(byte *payload, unsigned int length){
   Serial.println("Request target temp cb.");
   Serial.print("Sending:");
-  Serial.println(targettemp);
+  Serial.println(get_targettemp());
   publish_hvac_state();
 }
 
@@ -226,7 +271,7 @@ void publish_hvac_state(){
   mqtt_client.publish("wyostat.hvac_state", state);
   publish_bool("wyostat.away", away);  
   publish_int("wyostat.temp", localtemp);
-  publish_int("wyostat.targettemp", targettemp);
+  publish_int("wyostat.targettemp", get_targettemp());
 }
 void requeststate_cb(byte *payload, unsigned int length){
   Serial.println("Request state cb.");
@@ -347,8 +392,10 @@ void set_timezone_from_ip(){
 	uint32_t local = utc_str.toInt() + offset;
 	Serial.print("Local:");Serial.println(local);
 	ds3231_clock.set(local);
+	Serial.println("local set");
       }
-      if(doomsday_clock.master->initialized){
+      Serial.println("is NTP Alive?");
+      if(false && doomsday_clock.master->initialized){
 	Serial.println("NTP is clock alive!");
       }
       else{
@@ -359,9 +406,9 @@ void set_timezone_from_ip(){
       Serial.println(offset_str);
       Serial.print("timezone_offset:");
       Serial.println(offset);
-      set_timezone_offset(offset, ntp_clock);
-      my_config.last_tz_lookup = doomsday_clock.gmt();
-      saveSettings();
+      //set_timezone_offset(offset, gmt);
+      //my_config.last_tz_lookup = doomsday_clock.gmt();
+      //saveSettings();
     }
     else{
       Serial.println("No timezone found");
@@ -375,10 +422,10 @@ void loadSettings()
 {
   byte tmp;
 
-  targettemp = EEPROM.read(TARGETTEMP_ADDR);
-  if(targettemp == 255){
-    targettemp = DEFAULT_TARGETTEMP;
-  }
+  //targettemp = EEPROM.read(TARGETTEMP_ADDR);
+  //if(targettemp == 255){
+  //  targettemp = DEFAULT_TARGETTEMP;
+  // }
   tmp = EEPROM.read(AWAY_ADDR);
   if(tmp == 255){
     away = false;
@@ -388,12 +435,15 @@ void loadSettings()
   }
 }
 
+unsigned int last_furnace_state_change = 0;
 void set_furnace(bool state){
-  if(state != furnace_state){
+  if(state != furnace_state &&
+     ds3231_clock.now() - last_furnace_state_change > MIN_CHANGE_DURATION){
     Serial.print("Setting Furnace:");
     Serial.println(furnace_state);
     furnace_state = state;
     digitalWrite(furnaceSCR, state);
+    last_furnace_state_change = ds3231_clock.now();
     publish_off_on("wyostat.furnace_state", furnace_state);
     publish_hvac_state();
     display.setColor(BLACK);
@@ -476,7 +526,13 @@ void setup() {
     delay(1000);
 ////////////////////////////////////////////////////////////////////////////////
   }
+  set_timezone_from_ip();
   mqtt_connect();
+  ntp_clock.setup(&timeClient);
+  ntp_clock.setOffset(0);
+  doomsday_clock.setup(&ntp_clock, &ds3231_clock);
+  
+  Serial.println(ds3231_clock.now());
 }
 
 void setup_rtc(){
@@ -535,17 +591,17 @@ void displayTemp(){
   String tempstr;
   double gain = 315 / 50.;
   
-  if (targettemp < LOWEST_TEMP){
+  if (get_targettemp() < LOWEST_TEMP){
     theta1 = gain * (80 - LOWEST_TEMP);
   }
   else{
-    theta1 = gain * (80 - targettemp);
+    theta1 = gain * (80 - get_targettemp());
   }
-  if (targettemp > HIGHEST_TEMP){
+  if (get_targettemp() > HIGHEST_TEMP){
     theta1 = gain * (80 - HIGHEST_TEMP);
   }
   else{
-    theta1 = gain * (80 - targettemp);
+    theta1 = gain * (80 - get_targettemp());
   }
   if (localtemp < LOWEST_TEMP){
     theta0 = gain * (80 - LOWEST_TEMP);
@@ -588,7 +644,7 @@ void displayTemp(){
   }
   else{
     display.setFont(ArialMT_Plain_24);
-    tempstr = String(targettemp);
+    tempstr = String(get_targettemp());
   }
   display.drawString(x0, y0 - 12, tempstr.c_str());
 
@@ -596,7 +652,7 @@ void displayTemp(){
   display.setFont(ArialMT_Plain_10);
   display.setTextAlignment(TEXT_ALIGN_CENTER);
   tempstr = String((int)localtemp);
-  if(localtemp < targettemp){
+  if(localtemp < get_targettemp()){
     y = y0 - 24;
   }
   else{
@@ -733,10 +789,10 @@ void mqtt_connect(){
       publish_int("wyostat.fan_state",     fan_state);
       publish_int("wyostat.ac_state",      ac_state);
       publish_int("wyostat.furnace_state", furnace_state);
-      publish_int("wyostat.targettemp",    targettemp);
+      publish_int("wyostat.targettemp",    get_targettemp());
       
       Serial.print("TARGETTEMP:");
-      Serial.println(targettemp);
+      Serial.println(get_targettemp());
     }
     else{
       Serial.print("Try again in 5 seconds.");
@@ -765,24 +821,30 @@ void mqtt_reconnect() {
   }
 }
 
+unsigned long loop_counter = 0;
 void loop() {
-  int temp = localtemp;
+  float temp = localtemp;
+  int sensor_temp;
   long now;
   String str_temp;
   String topic = String("wyostat.temp");
 
-  sensor0.wakeup();
-  localtemp = .9999 * localtemp + .0001 * sensor0.readTempF();
+  if(loop_counter++ % 1000 == 0){
+    sensor0.wakeup();
+    sensor_temp =  sensor0.readTempF();
+    if(0 < sensor_temp && sensor_temp < 200){
+      localtemp = 0.9999 * localtemp + 0.0001 * sensor_temp;
+    }
+    //Serial.println(localtemp);
+  }
+  else{
+    delay(1);
+  }
   //localtemp = 73; // previous line breaks display!!
   
   // Turn sensor on to start temperature measurement.
   // Current consumtion typically ~10uA.
   /*
-  Serial.print(ds3231_clock.now().hour());
-  Serial.print(":");
-  Serial.print(ds3231_clock.now().minute());
-  Serial.print(":");
-  Serial.println(ds3231_clock.now().second());
   */
   if (!mqtt_client.connected()) {
     mqtt_reconnect();
@@ -791,26 +853,24 @@ void loop() {
   if(hvacmode[0] == 'h'){ // heating mode
     set_ac(false);
     if(away){
-      if(localtemp < AWAYMIN){
-	set_fan(true);
+      if(localtemp < AWAYMIN - HILOGAP / 2){
 	set_furnace(true);
       }
-      else if(localtemp > AWAYMIN + HILOGAP){
-	set_fan(false);
+      else if(localtemp > AWAYMIN + HILOGAP / 2){
 	set_furnace(false);
       }
+      set_fan(furnace_state);
     }
     else{
-      if (int(localtemp) > targettemp){ // too hot
+      if (int(localtemp) > get_targettemp() - HILOGAP / 2){ // too hot
 	set_furnace(false);
-	set_fan(false);
       }
-      else if(int(localtemp) <= targettemp + HILOGAP){ // too cold
+      else if(int(localtemp) < get_targettemp() + HILOGAP / 2){ // too cold
 	set_furnace(true);
-	set_fan(true);
       }
       else{ // just right
       }
+      set_fan(furnace_state);      
     }
   }
   else if(hvacmode[0] == 'c'){ // cooling mode
@@ -826,11 +886,11 @@ void loop() {
       }
     }
     else{
-      if (int(localtemp) > targettemp){ // too hot
+      if (int(localtemp) > get_targettemp()){ // too hot
 	set_ac(true);
 	set_fan(true);
       }
-      else if (int(localtemp) <= targettemp - HILOGAP){ // too cold
+      else if (int(localtemp) <= get_targettemp() - HILOGAP){ // too cold
 	set_ac(false);
 	set_fan(false);
       }
@@ -848,7 +908,7 @@ void loop() {
     displayTemp();
   }
   now = millis();
-  if (now - lastMsg > 200) {
+  if (now - lastMsg > 2000) {
     lastMsg = now;
     if(temp != last_temp){
       last_temp = temp;
@@ -857,5 +917,29 @@ void loop() {
       str_temp = String(temp);
       mqtt_client.publish(topic.c_str(), str_temp.c_str());
     }
+  }
+
+  static int loop_counter = 0;
+  if(loop_counter++ % 10000 == 0){
+    Serial.print(ds3231_clock.hours());
+    Serial.print(" ");
+    Serial.print(get_targettemp());
+    Serial.print(" ");
+    Serial.print(targettemps[0]);
+    Serial.print(" ");
+    Serial.print(targettemps[1]);
+    Serial.print(" ");
+    if(ds3231_clock.now() - last_furnace_state_change < MIN_CHANGE_DURATION){
+      Serial.print(ds3231_clock.now() - last_furnace_state_change);
+    }
+    Serial.println();
+  }
+}
+
+void set_timezone_offset(int32_t offset, NTPClock ntp_clock){
+  my_config.timezone = offset % 86400;
+  saveSettings();
+  if(my_config.use_wifi){
+    ntp_clock.setOffset(my_config.timezone);
   }
 }
